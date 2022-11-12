@@ -13,6 +13,9 @@
 
 The isascii() function tests for an ASCII character, which is any charac- ter between 0 and octal 0177 **inclusive.** 포함합니다
 
+
+
+
 # 1. Libc functions
 
 ~~• isalpha • isdigit~~ ~~• isalnum~~ ~~• isascii~~ ~~• isprint~~ ~~• strlen~~ memset : write len of value c(converted to unsigned char) to string b / void * return/ return b • memcpy • memmove • memchr • memcmp • bzero • strlcpy • strlcat ~~• toupper • tolower~~ • strchr • strrchr ~~• strncmp~~ • strnstr • atoi

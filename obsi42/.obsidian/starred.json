@@ -2,13 +2,13 @@
   "items": [
     {
       "type": "file",
-      "title": "Libft",
-      "path": "inbox/Libft.md"
+      "title": "To search list",
+      "path": "To search list.md"
     },
     {
       "type": "file",
-      "title": "To search list",
-      "path": "To search list.md"
+      "title": "Libft",
+      "path": "inbox/Libft.md"
     }
   ]
 }
