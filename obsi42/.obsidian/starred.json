@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "type": "file",
+      "title": "Libft",
+      "path": "inbox/Libft.md"
+    },
+    {
+      "type": "file",
+      "title": "To search list",
+      "path": "To search list.md"
+    }
+  ]
+}
