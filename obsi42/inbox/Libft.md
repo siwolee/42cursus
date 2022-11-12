@@ -9,6 +9,24 @@
     -   `bonus` will add all the various headers/lib/func/etc forbidden on the main part of the project. `_bonus.{c/h}` if the subject specify anything else
 -   **Test Enough**
 
+
+memory
+[[memcmp]], 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## [ft_isascii] 아스키에서 127 포함하는가? yes
 
 The isascii() function tests for an ASCII character, which is any charac- ter between 0 and octal 0177 **inclusive.** 포함합니다
