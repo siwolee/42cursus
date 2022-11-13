@@ -13,98 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "inbox/Libft.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "a1c1463ad2d82fd3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Github......md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "27f065d7df692152",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "inbox/Void type Assign.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "397a0c6a8d6a30f3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "To search list.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "f986f4bdd6a68d36",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "inbox/vim useful command.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "0ed364b1f1f56c67",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "inbox/Size_t in return value.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "167455c154451353",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SSH 여러 개 관리하기.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "96ef99599c12d87a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "obsidian - markdown.md",
+                "file": "ft_substr.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 6
+        ]
       }
     ],
     "direction": "vertical"
@@ -151,11 +66,12 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "d1cbf950b4559c58",
@@ -171,7 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Main.md",
+                "file": "ft_substr.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -188,7 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Main.md",
+                "file": "ft_substr.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -211,7 +127,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Main.md"
+                "file": "ft_substr.md"
               }
             }
           }
@@ -222,13 +138,16 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "0b79e9734a180f7b",
+  "active": "bcd46bee5d1e3916",
   "lastOpenFiles": [
-    "SSH 여러 개 관리하기.md",
     "inbox/Libft.md",
+    "Main.md",
+    "To search list.md",
+    "inbox/obsidian - markdown.md",
+    "inbox/memcmp.md",
+    "inbox/SSH 여러 개 관리하기.md",
     "Github......md",
     "inbox/Void type Assign.md",
-    "To search list.md",
     "inbox/Size_t in return value.md",
     "inbox/vim useful command.md"
   ]

@@ -2,6 +2,11 @@
   "items": [
     {
       "type": "file",
+      "title": "Main",
+      "path": "Main.md"
+    },
+    {
+      "type": "file",
       "title": "To search list",
       "path": "To search list.md"
     },

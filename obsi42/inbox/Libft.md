@@ -9,10 +9,13 @@
     -   `bonus` will add all the various headers/lib/func/etc forbidden on the main part of the project. `_bonus.{c/h}` if the subject specify anything else
 -   **Test Enough**
 
+size_t 에서의 문제
 
-memory
-[[memcmp]], 
+## part 1
+memory - [[memcmp]]
 
+## part 2
+[[ft_substr]]
 
 
 
