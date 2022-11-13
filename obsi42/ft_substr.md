@@ -21,4 +21,9 @@ len: 생성할 substring의 최대 길이
 
 So, `malloc(0)` could return `NULL` or a valid pointer _that may not be dereferenced_. In either case, it's perfectly valid to call `free()` on it.
 - if s_string is empty
-	- 
+
+
+start  + len > strsize
+	len = strsize- start
+len == 0
+	return malloc (0)

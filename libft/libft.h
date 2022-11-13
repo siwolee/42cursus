@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haecho <haecho@student.42.fr>              +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 23:02:09 by siwolee           #+#    #+#             */
-/*   Updated: 2022/11/13 14:32:38 by haecho           ###   ########.fr       */
+/*   Updated: 2022/11/13 16:36:54 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ char	*ft_strrchr(const char *s, int c);
 
 // part 2
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strtrim(char const *s1, char const *set);
 #endif
