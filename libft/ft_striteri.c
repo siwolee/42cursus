@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_                                                :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:45:58 by siwolee           #+#    #+#             */
-/*   Updated: 2022/11/18 18:58:18 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/11/18 13:50:12 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "bonus.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	t_list	*node;
-	t_list	*temp;
+	unsigned int		i;
 
-	if (*lst)
+	i = 0;
+	while (s[i])
 	{
-		node = lst;
-		while (node->next)
-		{
-			temp = node->next;
-			(*del)(node);
-			free(node);
-		}
-		(*del)(temp);
-		free(temp);
+		(*f)(i, s + i);
+		i++;
 	}
-	free(lst);
 }

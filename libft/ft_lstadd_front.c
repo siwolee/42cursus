@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_                                                :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:45:58 by siwolee           #+#    #+#             */
-/*   Updated: 2022/11/18 18:58:18 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/11/18 18:39:00 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "bonus.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	t_list	*node;
 	t_list	*temp;
 
-	if (*lst)
+	if (!*lst)
+		*lst = new;
+	else
 	{
-		node = lst;
-		while (node->next)
-		{
-			temp = node->next;
-			(*del)(node);
-			free(node);
-		}
-		(*del)(temp);
-		free(temp);
+		temp = (*lst)->next;
+		*lst = new;
+		new->next = temp;
 	}
-	free(lst);
 }

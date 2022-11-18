@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_                                                :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:45:58 by siwolee           #+#    #+#             */
-/*   Updated: 2022/11/18 18:58:18 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/11/18 13:48:15 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "bonus.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	t_list	*node;
-	t_list	*temp;
+	unsigned int		i;
+	char				*res;
+	int					len;
 
-	if (*lst)
+	len = ft_strlen(s);
+	res = (char *)malloc(sizeof(char) * (len + 1));
+	if (!res)
+		return (0);
+	res[len] = 0;
+	i = 0;
+	while (s[i])
 	{
-		node = lst;
-		while (node->next)
-		{
-			temp = node->next;
-			(*del)(node);
-			free(node);
-		}
-		(*del)(temp);
-		free(temp);
+		res[i] = (*f)(i, s[i]);
+		i++;
 	}
-	free(lst);
+	return (res);
 }

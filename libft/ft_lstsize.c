@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_                                                :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:45:58 by siwolee           #+#    #+#             */
-/*   Updated: 2022/11/18 18:58:18 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/11/18 18:48:31 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "bonus.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+int	ft_lstsize(t_list *lst)
 {
 	t_list	*node;
-	t_list	*temp;
+	int		len;
 
-	if (*lst)
+	len = 0;
+	if (lst)
 	{
 		node = lst;
-		while (node->next)
+		len = 1;
+		while (node->next != 0)
 		{
-			temp = node->next;
-			(*del)(node);
-			free(node);
+			node = node->next;
+			len++;
 		}
-		(*del)(temp);
-		free(temp);
 	}
-	free(lst);
+	return (len);
 }
