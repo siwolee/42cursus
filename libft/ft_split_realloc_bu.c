@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_split_realloc_bu.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: haecho <haecho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,19 +12,14 @@
 
 #include "libft.h"
 
-char	*new_word_to_c(char *str, char c)
+int	is_c(char *str, char c)
 {
-	int		len;
-	char	*word;
+	int	i;
 
-	len = 0;
-	while (str[len] != c && str[len])
-		len++;
-	word = ft_calloc(len + 1, sizeof(char));
-	if (!word)
-		return (0);
-	ft_strlcpy(word, str, len + 1);
-	return (word);
+	i = 0;
+	while (str[i] != c && str[i])
+		i++;
+	return (i);
 }
 
 void	free_all(char **re)
@@ -40,21 +35,24 @@ void	free_all(char **re)
 	free(re);
 }
 
-char	**ft_split_realloc(char **ptr, char *s, int cnt, int len)
+char	**ft_split_realloc(char **ptr, size_t cnt, size_t size)
 {
 	char	**res;
 
-	res = (char **)malloc(sizeof(char *) * cnt);
+	if (size == 0)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	res = (char **)malloc(cnt * size);
 	if (!res)
 		return (0);
 	if (ptr != 0)
-	{
-		ft_memcpy((void *)res, (void *)ptr, (sizeof(char *) * (cnt - 1)));
-		free(ptr);
-		new_word_to_c
-	}
+		ft_memcpy((void *)res, (void *)ptr, size * (cnt - 1));
+	free(ptr);
+	res[cnt] = (char *)ft_calloc(word_len + 1, sizeof(char));
+
 	res[cnt] = 0;
-	ptr = res;
 	return (res);
 }
 
@@ -67,20 +65,18 @@ char	**ft_split(char const *s, char c)
 
 	i = 0;
 	word_cnt = -1;
-	res = ft_split_realloc(res, (char *)s + i, ++word_cnt + 2, word_len);
-	if (!res)
-		return (0);
+	res = 0;
 	while (s[i] != '\0')
 	{
 		word_len = 0;
 		while (word_len == 0)
-		{
-			word_len = is_c((char *)s + i, c);
-			i++;
-		}
-		res = ft_split_realloc(res, (char *)s + i, ++word_cnt + 2, word_len);
+			word_len = is_c((char *)s + i++, c);
+		res = ft_split_realloc(res, ++word_cnt + 2, sizeof(char *));
 		if (!res)
 			break ;
+		if (!res[word_cnt])
+			break ;
+		ft_strlcpy(res[word_cnt], s + --i, word_len + 1);
 		i += word_len;
 	}
 	if (s[i] != '\0')
@@ -90,16 +86,16 @@ char	**ft_split(char const *s, char c)
 
 
 
-#include <stdio.h>
-int main()
-{
-	char **p;
-	int	i;
+// #include <stdio.h>
+// int main()
+// {
+// 	char **p;
+// 	int	i;
 
-	i =-1;
-	p = ft_split("dsdayud7sgdasgf", 'd');
-	while (p[++i])
-		printf("%d : %s\n", i, p[i]);
-	//free_all(p);
-	system("leaks a.out");
-}
+// 	i =-1;
+// 	p = ft_split("dsdayud7sgdasgf", 'd');
+// 	while (p[++i])
+// 		printf("%d : %s\n", i, p[i]);
+// 	//free_all(p);
+// 	//system("leaks a.out");
+// }
