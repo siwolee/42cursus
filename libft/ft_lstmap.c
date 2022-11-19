@@ -3,32 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: haecho <haecho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:45:58 by siwolee           #+#    #+#             */
-/*   Updated: 2022/11/18 19:07:10 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/11/19 10:36:28 by haecho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "bonus.h"
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
+	t_list	*res;
 	t_list	*node;
-	t_list	*temp;
-	t_list	*new;
 
-	if (lst)
+	if (!lst || !f)
+		return (0);
+	res = ft_lstnew((*f)(lst->content));
+	if (!res)
+		return (0);
+	node = res;
+	lst = lst->next;
+	while (lst)
 	{
-		node = lst;
-		while (node->next)
+		node->next = ft_lstnew((*f)(lst->content));
+		if (!node->next)
 		{
-			temp = node->next;
-			new = (*f)(node);
-			if 
-			node = temp;
+			ft_lstclear(&res, (*del));
+			res = 0;
 		}
-		(*f)(node);
+		node = node->next;
+		lst = lst->next;
 	}
+	node->next = 0;
+	return (res);
 }

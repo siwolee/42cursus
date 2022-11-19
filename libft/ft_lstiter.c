@@ -3,30 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: haecho <haecho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:45:58 by siwolee           #+#    #+#             */
-/*   Updated: 2022/11/18 19:01:42 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/11/19 11:00:01 by haecho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "bonus.h"
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	t_list	*node;
-	t_list	*temp;
 
-	if (*lst)
+	if (lst)
 	{
 		node = lst;
 		while (node->next)
 		{
-			temp = node->next;
-			(*f)(node);
-			node = temp;
+			(*f)(node->content);
+			node = node->next;
 		}
-		(*f)(node);
+		(*f)(node->content);
 	}
 }
