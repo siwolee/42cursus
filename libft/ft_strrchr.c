@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: haecho <haecho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:45:58 by siwolee           #+#    #+#             */
-/*   Updated: 2022/11/12 21:18:00 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/11/22 14:36:18 by haecho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,20 @@
 char	*ft_strrchr(const char *s, int c)
 {
 	char	*ptr;
+	char	cc;
+	int		len;
 
 	ptr = (char *)s;
-	if (*ptr == '\0' && c == '\0')
+	cc = (char)c;
+	if (*ptr == '\0' && cc == '\0')
 		return (ptr);
-	ptr += ft_strlen(ptr) + 1;
-	while (ptr != s || c == '\0')
+	len = ft_strlen(ptr);
+	if (cc == '\0')
+		return (ptr + len);
+	while (--len >= 0)
 	{
-		ptr--;
-		if (*ptr == (char)c)
-			return (ptr);
+		if (ptr[len] == cc)
+			return (ptr + len);
 	}
 	return (0);
 }

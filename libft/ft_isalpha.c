@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: haecho <haecho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 12:53:35 by siwolee           #+#    #+#             */
-/*   Updated: 2022/11/11 17:04:20 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/11/22 14:37:17 by haecho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_islower(int c)
+static int	ft_islower(int c)
 {
 	if (c >= 'a' && c <= 'z')
 		return (1);
@@ -20,7 +20,7 @@ int	ft_islower(int c)
 		return (0);
 }
 
-int	ft_isupper(int c)
+static int	ft_isupper(int c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return (1);

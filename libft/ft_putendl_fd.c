@@ -6,7 +6,7 @@
 /*   By: haecho <haecho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:45:58 by siwolee           #+#    #+#             */
-/*   Updated: 2022/11/19 11:01:13 by haecho           ###   ########.fr       */
+/*   Updated: 2022/11/22 10:57:56 by haecho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	size_t	len;
-
-	len = ft_strlen(s);
-	write(fd, s, len);
+	while (*s)
+	{
+		write(fd, s, 1);
+		s++;
+	}
 	write(fd, "\n", 1);
 }
