@@ -19,6 +19,11 @@
       "type": "search",
       "title": "[memcmp]",
       "query": "[memcmp]"
+    },
+    {
+      "type": "file",
+      "title": "obsidian - markdown",
+      "path": "inbox/obsidian - markdown.md"
     }
   ]
 }

@@ -1,5 +1,6 @@
 # 42 cursus
 0. [[Libft]]
+1. [[get_next_line(GNL)]]
 
 
 [[obsidian - markdown]]

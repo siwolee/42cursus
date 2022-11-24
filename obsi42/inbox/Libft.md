@@ -16,6 +16,7 @@ memory - [[memcmp]]
 
 ## part 2
 [[ft_substr]]
+[[split]]
 
 
 

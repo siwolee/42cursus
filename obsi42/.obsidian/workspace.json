@@ -13,7 +13,31 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "ft_substr.md",
+                "file": "inbox/get_next_line(GNL).md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "bcc8da1f7bf7233b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "variable.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "ec4ea7c9b5c3d8dc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "inbox/split.md",
                 "mode": "source",
                 "source": false
               }
@@ -33,14 +57,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "split.md",
-                "mode": "source",
+                "file": "inbox/obsidian - markdown.md",
+                "mode": "preview",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -90,7 +113,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "d1cbf950b4559c58",
@@ -106,7 +130,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "split.md",
+                "file": "inbox/get_next_line(GNL).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +147,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "split.md",
+                "file": "inbox/get_next_line(GNL).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -146,7 +170,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "split.md"
+                "file": "inbox/get_next_line(GNL).md"
               }
             }
           }
@@ -157,17 +181,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "d391c8f2abd023bd",
+  "active": "646215709b8297a1",
   "lastOpenFiles": [
-    "ft_substr.md",
-    "split.md",
-    "inbox/Libft.md",
-    "Main.md",
-    "To search list.md",
+    "variable.md",
+    "inbox/get_next_line(GNL).md",
+    "inbox/split.md",
     "inbox/obsidian - markdown.md",
-    "inbox/memcmp.md",
-    "inbox/SSH 여러 개 관리하기.md",
-    "Github......md",
-    "inbox/Void type Assign.md"
+    "Main.md",
+    "inbox/ft_substr.md",
+    "inbox/Libft.md",
+    "ft_split.md",
+    "inbox/Screen Shot 2022-11-15 at 12.23.49 AM.png",
+    "To search list.md"
   ]
 }

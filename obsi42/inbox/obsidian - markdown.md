@@ -416,7 +416,7 @@ Any word wrapped with two tildes (like ~~this~~) will appear crossed out.
 Use two equal signs to ==highlight text==.
 ```
 
-Use two equal signs to highlight text.
+Use two equal signs to ==highlight text==.
 
 ---
 
