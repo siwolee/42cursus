@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 13:58:14 by siwolee           #+#    #+#             */
-/*   Updated: 2022/11/29 16:21:04 by siwolee          ###   ########.fr       */
+/*   Created: 2022/11/11 12:53:35 by siwolee           #+#    #+#             */
+/*   Updated: 2022/11/29 16:20:43 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
+#include "printf.h"
 
-int		ft_isalpha(int c);
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+static int	ft_islower(int c)
+{
+	if (c >= 'a' && c <= 'z')
+		return (1);
+	else
+		return (0);
+}
 
-void	putchar(char c);
+static int	ft_isupper(int c)
+{
+	if (c >= 'A' && c <= 'Z')
+		return (1);
+	else
+		return (0);
+}
 
-char	*get_format(char **format, char *type);
-void	print_char(char *format, char *type, char arg);
-void	print_type(char *type, va_list arg_list);
-void	print_escape(char *c);
-
-#endif
+int	ft_isalpha(int c)
+{
+	if (ft_isupper(c))
+		return (1);
+	if (ft_islower(c))
+		return (1);
+	else
+		return (0);
+}

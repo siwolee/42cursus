@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "printf.md",
+                "file": "inbox/obsidian - markdown.md",
                 "mode": "source",
                 "source": false
               }
@@ -21,18 +21,6 @@
           },
           {
             "id": "0f3325db265d9299",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "가변인자 인수의 사용.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "dc28feb9ba72f605",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -93,13 +81,14 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "inbox/obsidian - markdown.md",
-                "mode": "preview",
+                "file": "inbox/Size_t in return value.md",
+                "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -165,7 +154,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "printf.md",
+                "file": "Libft 검사내역.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -182,7 +171,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "printf.md",
+                "file": "Libft 검사내역.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -205,7 +194,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "printf.md"
+                "file": "Libft 검사내역.md"
               }
             }
           }
@@ -216,17 +205,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "bcd46bee5d1e3916",
+  "active": "0d429cda260ac889",
   "lastOpenFiles": [
-    "가변인자 인수의 사용.md",
-    "printf.md",
-    "Project.md",
-    "Libft 검사내역.md",
-    "variable.md",
-    "inbox/get_next_line(GNL).md",
-    "inbox/obsidian - markdown.md",
+    "inbox/Size_t in return value.md",
+    "inbox/Void type Assign.md",
+    "inbox/vim useful command.md",
     "inbox/split.md",
-    "inbox/ft_substr.md",
-    "inbox/Libft.md"
+    "inbox/가변인자 인수의 사용.md",
+    "Libft 검사내역.md",
+    "inbox/obsidian - markdown.md",
+    "variable.md",
+    "printf.md",
+    "Project.md"
   ]
 }
