@@ -35,3 +35,6 @@ external library
 ### %X :  \" : uppercase
 ### \% : percent sign.
 
+
+
+안희근데 대체 메인문은 따로 어떻게 만드는거임
