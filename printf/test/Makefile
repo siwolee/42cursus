@@ -1,16 +1,15 @@
-NAME = libftprintf.a
+NAME = a.out
 
-SRCS = printf.c printf_type.c\
-		ft_isalpha.c ft_strlcpy.c ft_strlen.c
+SRCS = test.c ../printf.c ../printf_type.c\
+		../ft_isalpha.c ../ft_strlcpy.c ../ft_strlen.c\
+		../printf_num.c
 
-OBJS = $(SRCS:.c=.o)
-
-INC = ft_printf.h
+INC = ../ft_printf.h
 
 DIR = ./
 
-CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -g
 
 AR = ar
 ARFLAGS = crs
@@ -19,14 +18,8 @@ ARFLAGS = crs
 
 all : $(NAME)
 
-$(NAME) : $(OBJS)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
-
-%.o : %.c
-	$(CC) $(CFLAGS) -c $^ -o $@
-
-clean :
-	rm -f $(OBJS)
+$(NAME) : 
+	$(CC) $(CFLAGS) $(SRCS) $(INC)
 
 fclean : clean
 	rm -f $(NAME)

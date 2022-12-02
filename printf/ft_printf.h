@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 13:58:14 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/01 23:16:59 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/02 21:18:21 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
@@ -25,13 +25,19 @@ size_t	ft_strlen(const char *s);
 void	ft_putchar(char c);
 
 char	*get_format(char **format, char *type);
-void	print_char(char *format, char arg);
-va_list	print_type(char *type, va_list arg_ptr);
-void	print_escape(char c);
-void	print_string(char *format, char *str);
-void	print_format(char *format, char *str, int strlen);
+int		print_char(char *format, char arg);
+int		print_type(char *type, va_list arg_ptr);
+int		print_escape(char c);
+int		print_string(char *format, char *str);
+int		print_format(char *format, char *str, int strlen);
 
-void	print_pointer(char *format, void *ptr);
+int		print_pointer(char *format, void *ptr);
+
+int		get_itoa(int sign, char buf[], long long arg);
+int		print_integer(char *format, int arg);
+int		print_unsigened_int(char *format, unsigned int);
+int		print_num_in_hex_low(char *format, int arg);
+int		print_num_in_hex_up(char *format, int arg);
 
 
 #endif
