@@ -2,7 +2,7 @@ NAME = libftprintf.a
 
 SRCS = printf.c printf_type.c\
 		ft_isalpha.c ft_strlcpy.c ft_strlen.c\
-		printf_num.c
+		printf_num.c printf_hex.c
 
 OBJS = $(SRCS:.c=.o)
 
