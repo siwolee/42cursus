@@ -1,42 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.c                                           :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 13:04:03 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/04 18:18:01 by siwolee          ###   ########.fr       */
+/*   Created: 2022/12/04 17:15:59 by siwolee           #+#    #+#             */
+/*   Updated: 2022/12/04 17:16:38 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *buf, ...)
+void	ft_bzero(void *s, size_t n)
 {
-	int		i;
-	va_list	arg_ptr;
-	char	*bbuf;
-	int		len;
-
-	if (!buf)
-		return (-1);
-	i = 1;
-	bbuf = (char *)buf;
-	va_start(arg_ptr, buf);
-	i = 0;
-	len = 0;
-	while (bbuf[i])
+	while (n)
 	{
-		if (bbuf[i] == '%')
-			len += print_type(bbuf + ++i, &arg_ptr);
-		else
-		{
-			ft_putchar(bbuf[i]);
-			len += 1;
-		}
-		i++;
+		*(char *)s = 0;
+		n--;
+		s++;
 	}
-	va_end(arg_ptr);
-	return (len);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*ptr;
+
+	ptr = malloc(count * size);
+	if (!ptr)
+		return (0);
+	ft_bzero(ptr, count * size);
+	return (ptr);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haecho <haecho@student.42.fr>              +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:58:24 by haecho            #+#    #+#             */
-/*   Updated: 2022/11/24 15:19:34 by haecho           ###   ########.fr       */
+/*   Updated: 2022/12/04 18:40:47 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	*new_head(t_head *head, int fd)
 t_node	*chk_head(t_head **hhead, int fd)
 {
 	t_head			*head;
-	t_node			*line;
+	t_node			*node;
 
 	if (!hhead)
 		hhead = init_head(hhead, fd);
@@ -73,10 +73,10 @@ t_node	*chk_head(t_head **hhead, int fd)
 			return (head->node);
 		head = head->next;
 	}
-	line = new_head(head, fd);
-	if (!line)
+	node = new_head(head, fd);
+	if (!node)
 		free_all();
-	return (line);
+	return (node);
 }
 
 int	find_newline(t_head **hhead, t_node *head, int fd, char **line)

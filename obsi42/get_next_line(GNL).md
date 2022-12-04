@@ -1,17 +1,17 @@
 > 호출 반복이 될 때 한 줄씩 읽어서 반환하는 함수 구현하기.
 
-파일 구성
+## 파일 구성
 - get_next_line.c : main func.
 - get_next_line_utils.c : helper functions
 - get_next_line.h - stdlib / unistd
 
-조건
+## 조건
 - return : line that was read.
 	ex 1. nothing else to read
 	ex 2. error occur - malloc error, NULL return
 - exturnal functs. : read, malloc, free
 
-주의사항
+## 주의사항
 - include \n : except file ends without \n
 - ==-D BUFFER_SIZE=n== add It will define the buffer size for read() / it will be modified
 	-D name=definition
@@ -25,8 +25,10 @@
 
 - Gloval Variable : forbidden
 - lseek : forbidden - file reading must be done only once.
-
-참고사항
+- `-D BUFFER_SIZE` 옵션  없이도  작동해야 함. > 미지정시 기본 값필요함
+- 바이너리 파일 읽을 경우 행위 미지정
+- 
+## 참고사항
 [[variable]]
 ### static variable
 자동 변수는 콜 스택서 할당/ 해제되지만, 정적 변수는 힙 메모리에 저장
@@ -35,7 +37,7 @@
 전역변수는 파일 밖에서도 선언 후 사용 가능
 정적변수는 파일 안에서만 사용 가능
 
-보너스
+## 보너스
 - 정적변수 1개만 선언
 - 여러 개의 파일 디스크립터 관리하기
 
@@ -58,3 +60,29 @@ chk_head
 
 free_all(pointer head)
 - 현재까지 생성된 모든 것을 반환
+
+## pesudo code
+정적 변수 : hhead (파일 디스크립터를 포함하는 리스트) 
+hhead 
+	head : fd 별 열어둔 파일 디스크립터를 저장.
+		fd
+		next(head)
+		node : 파일 디스크립터에서 읽어낸 라인을 저장하는 리스트 노드.
+			line : 읽어낸 라인
+			num(check eof & out) : eof 감지시 -1, 내보냄 0, 안내보냄 1. 미완 2. 초기화 1 또는 2.
+			next(node)
+
+함수 실행 시 fd를 받는다.
+	이미 열린 파일 디스크립터인지 확인한다.
+			hhead가 없을 경우 새로 생성한다.
+		열려 있을 경우 : 해당 line을 찾아 반환한다
+		닫혀 있을 경우 : 파일 디스크립터를 새로 열고, hhead에 저장한다. 저장된 새로운 head를 반환한다.
+	파일 디스크립터 노드가 미생성시(말록 할당 실패): 널리턴
+	새로운 라인이 있는지 탐색 : head 받아서 돌리면서 확인
+		head 내 node를 순환, node->num 확인
+			num : -1 : eof, return stop
+			num : 0 : next
+			num : 1 : return line
+			num : 2 : get newline, continue
+				read newline : num == 2 || (num == 0 && next == 0) *eof는 아니지만 읽은 건 다 보냈음* 
+					

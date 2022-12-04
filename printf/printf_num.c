@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 18:37:09 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/02 21:05:47 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/04 16:44:49 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	get_itoa(int sign, char buf[], long long arg)
 
 	len = 1;
 	temp = arg;
+	buf[0] = 0;
 	if (sign == -1)
 	{
 		len++;
@@ -63,7 +64,7 @@ int	print_integer(char *format, int arg)
 		return (write(1, buf, len));
 }
 
-int		print_unsigened_int(char *format, unsigned int arg)
+int	print_unsigened_int(char *format, unsigned int arg)
 {
 	char	buf[20];
 	int		len;

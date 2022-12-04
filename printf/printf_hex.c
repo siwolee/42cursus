@@ -3,90 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   printf_hex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 21:12:49 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/02 23:19:13 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/04 16:47:46 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	get_itohex_low(int sign, char buf[], long long arg)
+int	get_itohex_low(char buf[], long long arg)
 {
-	char		hex[16]="0123456789abcdef";
+	char		*hex;
 	int			len;
 	int			i;
 	long long	temp;
 
+	hex = "0123456789abcdef";
 	len = 1;
 	temp = arg;
-	if (sign == -1)
-	{
-		len++;
-		buf[0] = '-';
-	}
 	while (temp >= 16)
 	{
 		temp /= 16;
 		len++;
 	}
 	i = len - 1;
-	while (i >= 0 && buf[i] != '-')
+	while (i >= 0)
 	{
-		buf[i] = hex[arg % 10];
+		buf[i] = hex[arg % 16];
 		i--;
-		arg /= 10;
+		arg /= 16;
 	}
 	return (len);
 }
 
-int	get_itohex_up(int sign, char buf[], long long arg)
+int	get_itohex_up(char buf[], long long arg)
 {
-	char		hex[16]="0123456789ABCDEF";
+	char		*hex;
 	int			len;
 	int			i;
 	long long	temp;
 
+	hex = "0123456789ABCDEF";
 	len = 1;
 	temp = arg;
-	if (sign == -1)
-	{
-		len++;
-		buf[0] = '-';
-	}
 	while (temp >= 16)
 	{
 		temp /= 16;
 		len++;
 	}
 	i = len - 1;
-	while (i >= 0 && buf[i] != '-')
+	while (i >= 0)
 	{
-		buf[i] = hex[arg % 10];
+		buf[i] = hex[arg % 16];
 		i--;
-		arg /= 10;
+		arg /= 16;
 	}
 	return (len);
 }
 
 int	print_num_in_hex_low(char *format, int arg)
 {
-	char	buf[10];
-	int		sign;
-	int		len;
+	char			buf[10];
+	int				len;
+	unsigned int	uarg;
 
-	sign = 1;
 	if (arg == 0)
 		return (write(1, "0", 1));
-	if (arg == -2147483647 -1)
-		return (write(1, "80000000", 8));
-	if (arg < 0)
-	{
-		sign = -1;
-		arg *= -1;
-	}
-	len = get_itohex_low(sign, buf, arg);
+	uarg = (unsigned int)arg;
+	len = get_itohex_low(buf, uarg);
 	if (format)
 		return (print_format(format, buf, len));
 	else
@@ -95,21 +80,16 @@ int	print_num_in_hex_low(char *format, int arg)
 
 int	print_num_in_hex_up(char *format, int arg)
 {
-	char	buf[10];
-	int		sign;
-	int		len;
+	char			buf[10];
+	int				len;
+	unsigned int	uarg;
 
-	sign = 1;
 	if (arg == 0)
 		return (write(1, "0", 1));
-	if (arg == -2147483647 -1)
-		return (write(1, "8000000", 8));
-	if (arg < 0)
-	{
-		sign = -1;
-		arg *= -1;
-	}
-	len = get_itohex_up(sign, buf, arg);
+	if (arg == -2147483647 - 1)
+		return (write(1, "80000000", 8));
+	uarg = (unsigned int)arg;
+	len = get_itohex_up(buf, uarg);
 	if (format)
 		return (print_format(format, buf, len));
 	else
