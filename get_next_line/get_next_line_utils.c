@@ -3,36 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:58:24 by haecho            #+#    #+#             */
-/*   Updated: 2022/12/04 18:40:47 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/05 12:12:17 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+t_node	*init_node()
+{
+	t_node	*node;
+	node = (t_node *)malloc(sizeof(t_node));
+	if (!node)
+		return (0);
+	node->num = 2;
+	node->next = 0;
+	return (node);
+}
+
 void	*init_head(t_head **hhead, int fd)
 {
 	t_head	*head;
-	t_head	*tail;
 
-	hhead = (t_head **)malloc(sizeof(t_head *) * 2);
+	hhead = (t_head **)malloc(sizeof(t_head *));
 	if (!hhead)
 		return (0);
-	head = hhead[0];
-	tail = hhead[1];
+	head = *hhead;
 	head->fd = fd;
-	head->next = tail;
-	tail->next = 0;
-	tail->node = 0;
-	tail->fd = -1;
-	head->node = (t_node *)malloc(sizeof(t_node) * 2);
+	head->next = 0;
+	head->node = init_node();
 	if (!head->node)
 		return (0);
-	head->node->num = 0;
-	head->node->next = 0;
-	head->node->line = 0;
 	return (hhead);
 }
 
@@ -40,20 +43,26 @@ void	*new_head(t_head *head, int fd)
 {
 	t_head			*tail;
 
+	tail = (t_head *)malloc(sizeof(t_head));
 	tail = head->next;
-	head->next = (t_head *)malloc(sizeof(t_head));
-	if (!head->next)
+	if (!tail)
 		return (0);
-	head = head->next;
-	head->fd = fd;
-	head->node = (t_node *)malloc(sizeof(t_node));
-	if (!head->node);
-	{
-		free(head);
+	tail->fd = fd;
+	tail->next = 0;
+	tail->node = init_node();
+	if (!tail->node);
 		return (0);
-	}
-	head->next = tail;
-	return (head->node);
+	return (tail);
+}
+
+t_head	*get_head(t_head *head, int fd)
+{
+	while (head->fd != fd && head->next)
+		head = head->next;
+	if (head->fd == fd)
+		return (head);
+	else
+		return (new_head(head, fd));
 }
 
 //들어오는 fd에 따라 fd에 맞는 head를 찾고, head 내 첫 line을 반환.
@@ -66,40 +75,29 @@ t_node	*chk_head(t_head **hhead, int fd)
 		hhead = init_head(hhead, fd);
 	if (!hhead)
 		return (0);
-	head = *hhead;
-	while (head->next)
-	{
-		if (head->fd == fd)
-			return (head->node);
-		head = head->next;
-	}
-	node = new_head(head, fd);
-	if (!node)
-		free_all();
+	head = get_head(*hhead, fd);
+	return (head);
+}
+
+t_node	*last_node(t_node *node)
+{
+	while (node->next && node->num != 1)
+		node = node->next;
 	return (node);
 }
 
-int	find_newline(t_head **hhead, t_node *head, int fd, char **line)
+t_node	*chk_line(t_head *head)
 {
 	t_node			*node;
 
-	node = *head;
-	while (node)
-	{
-		if (node->num == -1)
-		{
-			free_all(hhead);
-			return (-1);
-		}
-		if (node->num == 1)
-		{
-			node->num = 0;
-			*line = node->line;
-			return (1);
-		}
-		node = node->next;
-	}//node == 0. 마지막이지만 eof는 도달하지 않은 상태 -> get newline 예정.
-	return (read_newline(hhead, node, fd, line));
+	node = last_node(head->node);
+	if (node->num == -1)
+		return (0);
+	if (node->num == 1)
+		return (node);
+	else
+		return (read_line(node, head->fd));
+	
 }
 
 char	*ft_strndup(char *dst, char *src, int len)
@@ -119,9 +117,21 @@ char	*ft_strndup(char *dst, char *src, int len)
 	return (dst);
 }
 
-char	*new_node(t_node *node, char *buf, int len, int chk)
+t_node	*read_line(t_node *node, int fd)
 {
-	char line;
+	int		read_num;
+	char	*buf;
+
+	read_num == BUFFER_SIZE;
+	while (read_num == BUFFER_SIZE)
+	{
+		read_num = read(fd, buf, BUFFR_SIZE);
+		new_node(node, buf);
+		if (chk_buf_n(buf, '\n'))
+			return (node);
+	}
+	new_node
+	return (node);
 }
 
 char	*make_newline(t_node *node, char *buf, int line_len, int size)

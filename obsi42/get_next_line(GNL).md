@@ -69,7 +69,7 @@ hhead
 		next(head)
 		node : 파일 디스크립터에서 읽어낸 라인을 저장하는 리스트 노드.
 			line : 읽어낸 라인
-			num(check eof & out) : eof 감지시 -1, 내보냄 0, 안내보냄 1. 미완 2. 초기화 1 또는 2.
+			num(check eof & out) : eof 감지시 -1, 내보냄 0, 안내보냄 1. 미완 2. 초기화 2.
 			next(node)
 
 함수 실행 시 fd를 받는다.
@@ -80,9 +80,29 @@ hhead
 	파일 디스크립터 노드가 미생성시(말록 할당 실패): 널리턴
 	새로운 라인이 있는지 탐색 : head 받아서 돌리면서 확인
 		head 내 node를 순환, node->num 확인
+		get_last_node : 마지막 노드 반환
+		if
 			num : -1 : eof, return stop
-			num : 0 : next
-			num : 1 : return line
+				close fd
+				return 0
+			num : 0  *eof는 아니지만 읽은 건 다 보냈음* 
+				make_newline
+					while (read_num == buffer)
+							if  buf contains n : 
+								get_newline & return newline
+									node->num = 1
+									node->line = newline
+									node-> next = 0 
+							else
+								new node : realloc and alloc buf to newline
+					while end : read_num buffer가 다르므로 eof 도달
+						get_newline & return newline
+							node->num = 0
+							node->line = newline
+							node-> next = 0 
 			num : 2 : get newline, continue
-				read newline : num == 2 || (num == 0 && next == 0) *eof는 아니지만 읽은 건 다 보냈음* 
-					
+				read add_line : num == 2 || 
+					read - buffer size만큼, while - \n appears
+					make_newline
+			num == 1 
+				: return node->line
