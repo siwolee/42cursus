@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:58:24 by haecho            #+#    #+#             */
-/*   Updated: 2022/12/05 12:12:17 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/06 17:27:22 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,29 @@ t_node	*chk_head(t_head **hhead, int fd)
 	return (head);
 }
 
+t_node	*last_unout_node(t_head *head)
+{
+	t_node	*node;
+	t_node	*next;
+
+	node = head->node;
+	while (node->next && node->num != 1)
+	{
+		next = node->next;
+		if (node->num == 0)
+		{
+			free(node->line);
+			free(node);
+		}
+		node = next;
+	}
+	head->node = node;
+	return (node);
+}
+
 t_node	*last_node(t_node *node)
 {
-	while (node->next && node->num != 1)
+	while (node->next)
 		node = node->next;
 	return (node);
 }
@@ -90,10 +110,8 @@ t_node	*chk_line(t_head *head)
 {
 	t_node			*node;
 
-	node = last_node(head->node);
-	if (node->num == -1)
-		return (0);
-	if (node->num == 1)
+	node = last_unout_node(head->node);
+	if (node->num == -1 || node->num == 1)
 		return (node);
 	else
 		return (read_line(node, head->fd));
@@ -117,70 +135,174 @@ char	*ft_strndup(char *dst, char *src, int len)
 	return (dst);
 }
 
+
+
 t_node	*read_line(t_node *node, int fd)
 {
 	int		read_num;
 	char	*buf;
+	t_node	*tail;
 
 	read_num == BUFFER_SIZE;
 	while (read_num == BUFFER_SIZE)
 	{
-		read_num = read(fd, buf, BUFFR_SIZE);
-		new_node(node, buf);
+		read_num = read(fd, buf, BUFFER_SIZE);
+		tail = last_node(node);
+		if (new_node(tail, buf))
+			return (0);
 		if (chk_buf_n(buf, '\n'))
 			return (node);
 	}
-	new_node
+	close(fd);
 	return (node);
 }
 
-char	*make_newline(t_node *node, char *buf, int line_len, int size)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	int		total_len;
-	int		line_len;
-	t_node	*temp;
+	size_t	d_len;
+	size_t	s_len;
+	size_t	idx;
 
-	total_len = 0;
-	temp = node;
-	while (total_len <= size)
+	d_len = 0;
+	s_len = 0;
+	idx = -1;
+	while (dst[d_len])
+		d_len++;
+	while (src[s_len])
+		s_len++;
+	if (d_len >= dstsize)
+		return (s_len + dstsize);
+	if (dstsize == 0)
+		return (s_len);
+	while (src[++idx] && idx + d_len < dstsize - 1)
+		dst[d_len + idx] = src[idx];
+	dst[d_len + idx] = 0;
+	return (d_len + s_len);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	int		i;
+	char	*dest;
+
+	i = 0;
+	while (s1[i])
+		i++;
+	dest = (char *)malloc(sizeof(char) * i + 1);
+	if (!dest)
+		return (0);
+	i = 0;
+	while (s1[i])
 	{
-		line_len = ft_strnchar(buf, '\n', 0);
-		if (buf[total_len + line_len] == '\n') // 한 줄이 정상적으로 나온 경우.
-		{
-			new_node(temp, buf + total_len, line_len, 1);
-			temp = temp->next;
-		}
-		else if (size < BUFFER_SIZE) // eof에 도달한 경우. 마지막 줄을 -1로 처리해야 함.
-		{
-			new_node(temp, buf + total_len, line_len, -1);
-		}
-		else // 버퍼를 추가로 읽어야 하는 경우.
-		{
-			add_line(temp, buf + total_len, line_len, 2);
+		dest[i] = s1[i];
+		i++;
+	}
+	dest[i] = 0;
+	return (dest);
+}
+
+char *ft_calloc(size_t bufsize)
+{
+	char	*str;
+
+	str = (char *)malloc(bufsize);
+	while (str[--bufsize])
+		str[bufsize] = 0;
+	return (str);
+}
+
+void	realloc_line(t_node *node, char *buf, size_t bufsize)
+{
+	char	*newline;
+
+	newline = ft_calloc(bufsize);
+	if (!newline)
+	{
+		return (0);
+	}
+	ft_strlcat(newline, node->line, ft_strlen(node->line));
+	ft_strlcat(newline, buf, bufsize);
+	free(node->line);
+	node->line = newline;
+}
+
+int	chk_buf_n(char *buf, char n)
+{
+	int i;
+
+	i = 0;
+	while (buf[i] && buf[i] != n)
+		i++;
+	return (i);
+}
+
+int	new_node(t_node *node, char *buf)
+{
+	size_t	bufsize;
+	t_node	new;
+
+	bufsize = ft_strlen(buf);
+	new = node;
+	while (bufsize)
+	{
+		bufsize = chk_buf_n(buf, '\n');
+		if (node->num == 2)
+			realloc_line(node, buf, ft_strlen(node->line) + bufsize);
+		else
+			node->line = ft_strndup(buf);
+		if (!node->line)
 			return (0);
-		}
 	}
-	return (node->line);
+	
 }
 
-//새로운 라인을 읽는 함수. 만약 읽었는데 라인이 완성되지 않았을 경우, 계속 라인을 완성해서 넘김
-int	read_newline(t_head **hhead, t_node *node, int fd, char **line) 
-{
-	char	buf[BUFFER_SIZE];
-	int		size;
-	int		chk; //읽어낸 문장이 완성인지 아닌지(2)
+// char	*make_newline(t_node *node, char *buf, int line_len, int size)
+// {
+// 	int		total_len;
+// 	int		line_len;
+// 	t_node	*temp;
 
-	chk = 0;
-	size = BUFFER_SIZE;
-	while (size == BUFFER_SIZE)
-	{
+// 	total_len = 0;
+// 	temp = node;
+// 	while (total_len <= size)
+// 	{
+// 		line_len = ft_strnchar(buf, '\n', 0);
+// 		if (buf[total_len + line_len] == '\n') // 한 줄이 정상적으로 나온 경우.
+// 		{
+// 			new_node(temp, buf + total_len, line_len, 1);
+// 			temp = temp->next;
+// 		}
+// 		else if (size < BUFFER_SIZE) // eof에 도달한 경우. 마지막 줄을 -1로 처리해야 함.
+// 		{
+// 			new_node(temp, buf + total_len, line_len, -1);
+// 		}
+// 		else // 버퍼를 추가로 읽어야 하는 경우.
+// 		{
+// 			add_line(temp, buf + total_len, line_len, 2);
+// 			return (0);
+// 		}
+// 	}
+// 	return (node->line);
+// }
+
+// //새로운 라인을 읽는 함수. 만약 읽었는데 라인이 완성되지 않았을 경우, 계속 라인을 완성해서 넘김
+// int	read_newline(t_head **hhead, t_node *node, int fd, char **line) 
+// {
+// 	char	buf[BUFFER_SIZE];
+// 	int		size;
+// 	int		chk; //읽어낸 문장이 완성인지 아닌지(2)
+
+// 	chk = 0;
+// 	size = BUFFER_SIZE;
+// 	while (size == BUFFER_SIZE)
+// 	{
 		
-		size = read(fd, buf, BUFFER_SIZE);
-		if (size < 0)
-			return (-1);
-		line = make_newline(node, buf, size);
-		if (line)
-			return (line);
-	}
-	return (0);
-}
+// 		size = read(fd, buf, BUFFER_SIZE);
+// 		if (size < 0)
+// 			return (-1);
+// 		line = make_newline(node, buf, size);
+// 		if (line)
+// 			return (line);
+// 	}
+// 	return (0);
+// }
