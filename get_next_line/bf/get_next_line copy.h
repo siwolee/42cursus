@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:58:34 by haecho            #+#    #+#             */
-/*   Updated: 2022/12/07 23:52:30 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/07 02:02:19 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,20 @@
 # endif
 typedef struct	s_list
 {
-	int		fd;
-	char	*buf;
-	int		idx;
+	int				fd;
+	struct s_list	*next;
+	char			*buf;
+	int				flag;
 }	t_list;
 
-char	*ft_calloc(size_t size);
-size_t	ft_strncat(char *dst, const char *src, size_t len);
-size_t	ft_strlen(const char *s);
-void	*ft_free(void *ptr);
-void	ft_bzero(void *s, size_t n);
-int		chk_buf_n(char *buf);
-
+t_list	*new_node(int fd);
 char	*get_next_line(int fd);
-char	*read_line(char *buf, int fd, char *line, int *chk);
-char	*seperate_line(char *buf, char *line, int *chk);
-char	*seperate_buf(char *buf, int *chk);
+int		chk_buf_n(char *buf, char n);
+t_list	*chk_node(t_list **head, int fd);
+char	*trim_buf(char *buf, char n);
+char	*realloc_line(char *line, char *buf, size_t len);
+size_t	ft_strlen(const char *s);
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+char	*next_line(t_list *node);
 
 #endif

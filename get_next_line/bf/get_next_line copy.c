@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 18:53:00 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/07 23:53:27 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/07 02:07:13 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,16 @@ char	*get_next_line(int fd)
 {
 	static char	*buf;
 	char		*line;
-	int			chk;
+	int			*flag;
 
-	if (fd < 0 || BUFFER_SIZE < 1)
-		return (0);
-	line = 0;
-	chk = 0;
+	buf = malloc(BUFFER_SIZE);
 	if (!buf)
-		buf = ft_calloc(1024);
-	line = read_line(buf, fd, line, &chk);
-	buf = seperate_buf(buf, &chk);
+		return (0);
+	*flag = 1;
+	line = next_line(buf, fd, flag);
+	if (*flag == 0)
+	{
+		free(buf);
+	}
 	return (line);
 }

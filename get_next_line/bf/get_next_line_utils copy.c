@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 18:53:00 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/07 23:52:51 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/07 23:25:14 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,78 +85,78 @@ int	chk_buf_n(char *buf)
 	return (0);
 }
 
-char	*read_line(char *buf, int fd, char *line, int *chk)
+char	*read_line(t_list *node, char *buf, char *line)
 {
 	int		read_num;
-	char	*temp;
+	char	*buf;
 
-	if (!buf)
+	if (!node->buf)
 		return (0);
 	read_num = 1;
-	temp = buf + ft_strlen(buf);
-	*chk = 0;
-	while (*chk == 0)
+	buf = node->buf + ft_strlen(node->buf);
+	while (1)
 	{
-		while (!chk_buf_n(buf) && temp < buf + 1024 && read_num > 0)
+		while (!chk_buf_n(node->buf) && buf < node->buf + 1024 && read_num > 0)
 		{
-			read_num = read(fd, temp, (size_t)BUFFER_SIZE);
-			temp += read_num;
+			read_num = read(node->fd, buf, (size_t)BUFFER_SIZE);
+			buf += read_num;
 		}
 		if (read_num == -1)
 			return (0);
-		line = seperate_line(buf, line, chk);
+		line = seperate_line(node, line);
 		if (read_num == 0)
-			*chk = 1;
+			node->idx = -1;
+		if (node->idx == 1 || node->idx == -1)
+			return (line);
 	}
-	return (line);
 }
 
-char	*seperate_line(char *buf, char *line, int *chk)
+char	*seperate_line(t_list *node, char *line)
 {
 	int		len;
 	int		buflen;
 	char	*newline;
 
 	len = ft_strlen(line);
-	buflen = chk_buf_n(buf);
+	buflen = chk_buf_n(node->buf);
 	if (!buflen)
 	{
-		buflen = ft_strlen(buf);
-		*chk = 0;
+		buflen = ft_strlen(node->buf);
+		node->idx = 0;
 	}
 	else
-		*chk = 1;
+		node->idx = 1;
 	newline = ft_calloc(len + buflen + 1);
 	if (line)
 	{
 		ft_strncat(newline, line, len + 1);
 		ft_free(line);
 	}
-	ft_strncat(newline, buf, buflen);
+	ft_strncat(newline, node->buf, buflen);
+	node->buf = seperate_buf(node);
 	return (newline);
 }
 
-char	*seperate_buf(char *buf, int *chk)
+char	*seperate_buf(t_list *node)
 {
 	int		n;
 	int		len;
 	char	*newbuf;
 
 	newbuf = ft_calloc(1024);
-	if (*chk == 0)
+	if (node->idx == 0)
 	{
-		buf = ft_free(buf);
+		node->buf = ft_free(node->buf);
 		return (newbuf);
 	}
 	n = 0;
 	len = 0;
-	while (buf[n] != '\n')
+	while (node->buf[n] != '\n')
 		n++;
-	while (buf[n + len] != 0)
+	while (node->buf[n + len] != 0)
 		len++;
 	if (!newbuf)
 		return (0);
-	ft_strncat(newbuf, buf + n + 1, len + 1);
-	ft_free(buf);
+	ft_strncat(newbuf, node->buf + n + 1, len + 1);
 	return (newbuf);
 }
