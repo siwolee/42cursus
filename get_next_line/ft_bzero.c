@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 18:53:00 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/08 18:03:08 by siwolee          ###   ########.fr       */
+/*   Created: 2022/11/11 14:40:48 by siwolee           #+#    #+#             */
+/*   Updated: 2022/12/08 17:36:12 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*get_next_line(int fd)
+void	ft_bzero(void *s, size_t n)
 {
-	static char	*buf;
-	char		*line;
-	int			chk;
-
-	if (fd < 0 || BUFFER_SIZE < 1)
-		return (0);
-	line = 0;
-	chk = 0;
-	if (!buf)
-		buf = ft_calloc(BUFFER_SIZE, sizeof(char));
-	if (!buf)
-		return (0);
-	line = read_line(&buf, fd);
-	return (line);
+	while (n)
+	{
+		*(char *)s = 0;
+		n--;
+		s++;
+	}
 }

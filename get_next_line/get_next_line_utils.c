@@ -3,81 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 18:53:00 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/07 23:52:51 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/08 18:39:16 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	ft_bzero(void *s, size_t n)
-{
-	while (n)
-	{
-		*(char *)s = 0;
-		n--;
-		s++;
-	}
-}
-
-char	*ft_calloc(size_t size)
-{
-	char	*ptr;
-	size_t	i;
-
-	ptr = malloc(size);
-	if (!ptr)
-		return (0);
-	i = -1;
-	while (++i < size)
-		ptr[i] = 0;
-	return (ptr);
-}
-size_t	ft_strncat(char *dst, const char *src, size_t len)
-{
-	size_t	d_len;
-	size_t	idx;
-
-	if (!src)
-		return (0);
-	d_len = 0;
-	idx = -1;
-	while (dst[d_len])
-		d_len++;
-	if (len == 0)
-		return (d_len);
-	while (src[++idx] && idx < len - 1)
-		dst[d_len + idx] = src[idx];
-	dst[d_len + idx] = 0;
-	return (d_len + len);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	size;
-
-	size = 0;
-	if (!s)
-		return (0);
-	while (s && s[size])
-		size++;
-	return (size);
-}
-
 void	*ft_free(void *ptr)
 {
-	if (ptr)
-		free(ptr);
+	free(ptr);
 	return (0);
 }
 
-int	chk_buf_n(char *buf)
+int	chk_n_idx(char *buf)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
+	if (!buf)
+		return (0);
 	while (buf[i] && buf[i] != '\n')
 		i++;
 	if (buf[i] == '\n')
@@ -85,78 +32,66 @@ int	chk_buf_n(char *buf)
 	return (0);
 }
 
-char	*read_line(char *buf, int fd, char *line, int *chk)
+char	*read_line(char **buf, int fd)
 {
 	int		read_num;
-	char	*temp;
+	char	*line;
 
-	if (!buf)
-		return (0);
-	read_num = 1;
-	temp = buf + ft_strlen(buf);
-	*chk = 0;
-	while (*chk == 0)
+	line = NULL;
+	if (!*buf)
+		return (line);
+	while (read_num > 0)
 	{
-		while (!chk_buf_n(buf) && temp < buf + 1024 && read_num > 0)
-		{
-			read_num = read(fd, temp, (size_t)BUFFER_SIZE);
-			temp += read_num;
-		}
-		if (read_num == -1)
-			return (0);
-		line = seperate_line(buf, line, chk);
-		if (read_num == 0)
-			*chk = 1;
+		line = new_line(buf, line);
+		if (chk_n_idx(line))
+			return (line);
+		if (line != NULL && *line == 0)
+			return (ft_free(line));
+		if (!chk_n_idx(*buf))
+			read_num = read(fd, *buf, BUFFER_SIZE);
 	}
+	*buf = ft_free(*buf);
+	if (read_num == -1)
+		return (ft_free(line));
 	return (line);
 }
 
-char	*seperate_line(char *buf, char *line, int *chk)
+char	*new_line(char **buf, char *line)
 {
-	int		len;
-	int		buflen;
+	size_t	b_idx;
+	size_t	l_idx;
 	char	*newline;
 
-	len = ft_strlen(line);
-	buflen = chk_buf_n(buf);
-	if (!buflen)
-	{
-		buflen = ft_strlen(buf);
-		*chk = 0;
-	}
-	else
-		*chk = 1;
-	newline = ft_calloc(len + buflen + 1);
-	if (line)
-	{
-		ft_strncat(newline, line, len + 1);
-		ft_free(line);
-	}
-	ft_strncat(newline, buf, buflen);
+	if (!*buf)
+		return (line);
+	b_idx = 0;
+	while ((*buf)[b_idx] && (*buf)[b_idx] != '\n')
+		b_idx++;
+	if ((*buf)[b_idx] == '\n')
+		b_idx++;
+	l_idx = 0;
+	while (line && line[l_idx])
+		l_idx++;
+	newline = ft_calloc(b_idx + l_idx + 1, sizeof(char));
+	if (!newline)
+		return (0);
+	ft_strlcat(newline, line, l_idx + 1);
+	ft_strlcat(newline, *buf, b_idx + 1);
+	*buf = split_buf(buf, b_idx);
 	return (newline);
 }
 
-char	*seperate_buf(char *buf, int *chk)
+char	*split_buf(char **buf, size_t b_idx)
 {
-	int		n;
-	int		len;
 	char	*newbuf;
 
-	newbuf = ft_calloc(1024);
-	if (*chk == 0)
+	if (!(*buf)[b_idx])
+		ft_bzero(*buf, BUFFER_SIZE);
+	else
 	{
-		buf = ft_free(buf);
-		return (newbuf);
+		newbuf = ft_substr(*buf, b_idx, BUFFER_SIZE);
+		ft_free(*buf);
+		*buf = newbuf;
 	}
-	n = 0;
-	len = 0;
-	while (buf[n] != '\n')
-		n++;
-	while (buf[n + len] != 0)
-		len++;
-	if (!newbuf)
-		return (0);
-	ft_strncat(newbuf, buf + n + 1, len + 1);
-	ft_free(buf);
-	return (newbuf);
+	return (*buf);
 }

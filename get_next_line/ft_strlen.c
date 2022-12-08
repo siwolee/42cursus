@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 18:53:00 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/08 18:03:08 by siwolee          ###   ########.fr       */
+/*   Created: 2022/11/07 23:17:51 by siwolee           #+#    #+#             */
+/*   Updated: 2022/12/08 17:36:50 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*get_next_line(int fd)
+size_t	ft_strlen(const char *s)
 {
-	static char	*buf;
-	char		*line;
-	int			chk;
+	size_t	size;
 
-	if (fd < 0 || BUFFER_SIZE < 1)
-		return (0);
-	line = 0;
-	chk = 0;
-	if (!buf)
-		buf = ft_calloc(BUFFER_SIZE, sizeof(char));
-	if (!buf)
-		return (0);
-	line = read_line(&buf, fd);
-	return (line);
+	size = 0;
+	while (s && s[size])
+		size++;
+	return (size);
 }

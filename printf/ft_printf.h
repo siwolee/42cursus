@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 13:58:14 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/04 18:25:18 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/08 14:43:58 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	*ft_calloc(size_t count, size_t size);
 
 void	ft_putchar(char c);
 
+int		print_type(char *type, va_list *arg_ptr);
+int		print_format(char *format, char *str, int strlen);
 char	*get_format(char **format, char *type);
 int		print_char(char *format, char arg);
-int		print_type(char *type, va_list *arg_ptr);
 int		print_escape(char c);
 int		print_string(char *format, char *str);
-int		print_format(char *format, char *str, int strlen);
 
 int		print_pointer(char *format, void *ptr);
 
