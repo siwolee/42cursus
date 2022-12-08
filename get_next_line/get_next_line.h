@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:58:34 by haecho            #+#    #+#             */
-/*   Updated: 2022/12/08 18:03:06 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/08 21:05:10 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,9 @@ typedef struct s_list
 void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t count, size_t size);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
-size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
-char		*ft_strjoin(char const *s1, char const *s2);
 size_t		ft_strlen(const char *s);
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
 
-void		*ft_free(void *ptr);
 int			chk_n_idx(char *buf);
 char		*get_next_line(int fd);
 char		*read_line(char **buf, int fd);

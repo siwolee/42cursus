@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Thu Dec  8 16:16:14 2022
+# Make data base, printed on Thu Dec  8 20:49:16 2022
 
 # Variables
 
@@ -39,7 +39,7 @@ MAKEFILE_LIST :=
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cv240036rj/T/vscode-ipc-7a60fe7a-3e94-44c5-8170-bd25f90d3f72.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cv240036rj/T/vscode-ipc-01461cc0-9771-4678-b1e3-c149510a15a9.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -47,7 +47,7 @@ PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/usr/local/
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-LaunchInstanceID = 2F820A60-DA63-4A91-A33A-956EF37B83CF
+LaunchInstanceID = F39431E7-9FA0-424F-B21D-713FAAB66227
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -55,7 +55,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.Jt5YEf22M7/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.OO8XElK9ve/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -66,7 +66,6 @@ PWD = /Users/siwolee/42c
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
- 
 # environment
 HOME = /Users/siwolee
 # default
@@ -116,7 +115,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000002.Electron
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000006.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -136,7 +135,7 @@ PAGER = less
 # environment
 LC_ALL = C
 # environment
-SECURITYSESSIONID = 186a5
+SECURITYSESSIONID = 186c6
 # automatic
 ^F = $(notdir $^)
 # default
@@ -148,7 +147,7 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 4416
+VSCODE_PID = 29090
 # variable set hash-table stats:
 # Load=67/1024=7%, Rehash=0, Collisions=2/88=2%
 
@@ -228,10 +227,11 @@ GNUmakefile:
 # No general (`VPATH' variable) search path.
 
 # # of strings in strcache: 0
+ 
 # # of strcache buffers: 0
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Thu Dec  8 16:16:14 2022
+# Finished Make data base on Thu Dec  8 20:49:16 2022
 
  

@@ -6,17 +6,11 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 18:53:00 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/08 18:39:16 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/08 22:00:38 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-void	*ft_free(void *ptr)
-{
-	free(ptr);
-	return (0);
-}
 
 int	chk_n_idx(char *buf)
 {
@@ -32,27 +26,52 @@ int	chk_n_idx(char *buf)
 	return (0);
 }
 
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*ptr;
+	size_t	strsize;
+
+	strsize = ft_strlen(s);
+	if (len + start > strsize && start <= strsize)
+		len = strsize - start;
+	if (strsize == 0 || start >= strsize)
+	{
+		ptr = (char *)ft_calloc(1, 1);
+		if (!ptr)
+			return (0);
+		return (ptr);
+	}
+	ptr = ft_calloc(len + 1, sizeof(char));
+	if (!ptr)
+		return (0);
+	ft_strlcat(ptr, s + start, len + 1);
+	return (ptr);
+}
+
 char	*read_line(char **buf, int fd)
 {
 	int		read_num;
 	char	*line;
 
 	line = NULL;
-	if (!*buf)
+	if (!(*buf))
 		return (line);
+	read_num = 1;
 	while (read_num > 0)
 	{
 		line = new_line(buf, line);
 		if (chk_n_idx(line))
 			return (line);
-		if (line != NULL && *line == 0)
-			return (ft_free(line));
-		if (!chk_n_idx(*buf))
-			read_num = read(fd, *buf, BUFFER_SIZE);
+		if (!ft_strlen(*buf))
+			read_num = read(fd, *buf, (size_t)BUFFER_SIZE);
+		if (read_num == -1 || (!read_num && ft_strlen(line) == 0))
+		{
+			free(line);
+			line = 0;
+		}
 	}
-	*buf = ft_free(*buf);
-	if (read_num == -1)
-		return (ft_free(line));
+	free(*buf);
+	*buf = NULL;
 	return (line);
 }
 
@@ -85,13 +104,14 @@ char	*split_buf(char **buf, size_t b_idx)
 {
 	char	*newbuf;
 
-	if (!(*buf)[b_idx])
-		ft_bzero(*buf, BUFFER_SIZE);
+	if ((*buf)[b_idx] == 0)
+	{
+		newbuf = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	}
 	else
 	{
 		newbuf = ft_substr(*buf, b_idx, BUFFER_SIZE);
-		ft_free(*buf);
-		*buf = newbuf;
 	}
-	return (*buf);
+	free(*buf);
+	return (newbuf);
 }

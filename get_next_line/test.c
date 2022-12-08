@@ -30,4 +30,5 @@ int main()
 		free(s);
 	}
 	close(fd);
+	system("leaks a.out");
 }

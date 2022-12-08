@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/11 14:40:48 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/08 17:36:12 by siwolee          ###   ########.fr       */
+/*   Created: 2022/11/07 23:17:51 by siwolee           #+#    #+#             */
+/*   Updated: 2022/12/08 20:46:54 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+size_t	ft_strlen(const char *s)
 {
-	while (n)
-	{
-		*(char *)s = 0;
-		n--;
-		s++;
-	}
+	size_t	size;
+
+	size = 0;
+	while (s && s[size])
+		size++;
+	return (size);
 }
