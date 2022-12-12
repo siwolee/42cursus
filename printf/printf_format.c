@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:07:24 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/08 14:45:15 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/12 13:24:33 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,8 @@ int	print_format(char *format, char *str, int strlen)
 char	*return_format_str(char *format, char *str, int strlen)
 {
 	if (*format == '#')
-		return (1);
+		return (NULL);
+	*str = 1;
+	strlen = 1;
+	return (NULL);
 }

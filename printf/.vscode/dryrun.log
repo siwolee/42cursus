@@ -10,6 +10,7 @@ cc -Wall -Werror -Wextra -c printf_num.c -o printf_num.o
 cc -Wall -Werror -Wextra -c printf_hex.c -o printf_hex.o
  
 cc -Wall -Werror -Wextra -c printf_str.c -o printf_str.o
-ar crs libftprintf.a printf.o printf_type.o ft_isalpha.o ft_strlcpy.o ft_strlen.o printf_num.o printf_hex.o printf_str.o
+cc -Wall -Werror -Wextra -c printf_format.c -o printf_format.o
+ar crs libftprintf.a printf.o printf_type.o ft_isalpha.o ft_strlcpy.o ft_strlen.o printf_num.o printf_hex.o printf_str.o printf_format.o
 make: Leaving directory `/Users/siwolee/42c/printf'
  

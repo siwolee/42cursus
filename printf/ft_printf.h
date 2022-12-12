@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 13:58:14 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/08 14:43:58 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/12 13:19:27 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ int		print_integer(char *format, int arg);
 int		print_unsigened_int(char *format, unsigned int arg);
 int		print_num_in_hex_low(char *format, int arg);
 int		print_num_in_hex_up(char *format, int arg);
+
+char	*return_format_str(char *format, char *str, int strlen);
 
 #endif
