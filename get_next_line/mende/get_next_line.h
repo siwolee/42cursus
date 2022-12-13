@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:58:34 by haecho            #+#    #+#             */
-/*   Updated: 2022/12/09 18:00:59 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/14 00:50:36 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ char		*get_next_line(int fd);
 t_list		*init_list(int fd);
 int			chk_n_idx(char *buf);
 char		*read_line(t_list **lst);
-char		*new_line(t_list *lst, char *line);
+int 		new_line(t_list **lst, char **line);
 char		*split_buf(t_list *lst, size_t b_idx);
+size_t		ft_strsize_n(const char *s, char n);
 
 #endif

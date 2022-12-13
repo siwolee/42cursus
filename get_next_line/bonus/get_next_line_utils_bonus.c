@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 18:53:00 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/09 18:08:51 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/14 00:26:43 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_calloc(size_t count, size_t size)
 	n = count * size;
 	ptr = (char *)malloc(n);
 	if (!ptr)
-		return (0);
+		return (NULL);
 	i = 0;
 	while (i < n)
 	{

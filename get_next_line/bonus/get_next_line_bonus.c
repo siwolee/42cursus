@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 18:53:00 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/10 11:28:19 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/14 00:26:52 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,24 @@ char	*get_next_line(int fd)
 	if (line == NULL)
 		fd_lst = remove_list(&lst, fd_lst);
 	return (line);
+}
+
+t_list	*init_list(int fd)
+{
+	t_list	*lst;
+
+	lst = (t_list *)malloc(sizeof(t_list));
+	if (!lst)
+		return (0);
+	lst->fd = fd;
+	lst->next = 0;
+	lst->buf = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (lst->buf == NULL)
+	{
+		free(lst);
+		return (0);
+	}
+	return (lst);
 }
 
 t_list	*chk_list(t_list **lst, int fd)
@@ -77,6 +95,28 @@ t_list	*remove_list(t_list **lst, t_list *fd_lst)
 	free(fd_lst);
 	return (NULL);
 }
+char	*get_next_line(int fd)
+{
+	static t_list	*lst;
+	char			*line;
+
+	if (fd < 0 || BUFFER_SIZE < 1)
+		return (0);
+	line = 0;
+	if (!lst)
+		lst = init_list(fd);
+	if (!lst)
+		return (NULL);
+	line = read_line(&lst);
+	if (line == NULL)
+	{
+		free(lst->buf);
+		lst->buf = NULL;
+		free(lst);
+		lst = NULL;
+	}
+	return (line);
+}
 
 size_t	ft_strncat(char *dst, const char *src, size_t srcsize)
 {
@@ -97,22 +137,4 @@ size_t	ft_strncat(char *dst, const char *src, size_t srcsize)
 		dst[d_len + idx] = src[idx];
 	dst[d_len + idx] = 0;
 	return (d_len + s_len);
-}
-
-t_list	*init_list(int fd)
-{
-	t_list	*lst;
-
-	lst = (t_list *)malloc(sizeof(t_list));
-	if (!lst)
-		return (NULL);
-	lst->fd = fd;
-	lst->next = 0;
-	lst->buf = ft_calloc((size_t)BUFFER_SIZE, sizeof(char));
-	if (!lst->buf)
-	{
-		free(lst);
-		return (NULL);
-	}
-	return (lst);
 }

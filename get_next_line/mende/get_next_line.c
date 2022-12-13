@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 18:53:00 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/09 18:01:01 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/14 00:32:44 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,18 @@ char	*get_next_line(int fd)
 	line = 0;
 	if (!lst)
 		lst = init_list(fd);
+	if (!lst)
+		return (NULL);
 	line = read_line(&lst);
 	if (line == NULL)
 	{
+		free(lst->buf);
+		lst->buf = NULL;
 		free(lst);
 		lst = NULL;
 	}
 	return (line);
 }
-
-// size_t	ft_strlen(const char *s)
-// {
-// 	size_t	size;
-
-// 	size = 0;
-// 	while (s && s[size])
-// 		size++;
-// 	return (size);
-// }
 
 size_t	ft_strncat(char *dst, const char *src, size_t srcsize)
 {
@@ -71,30 +65,11 @@ t_list	*init_list(int fd)
 		return (0);
 	lst->fd = fd;
 	lst->next = 0;
-	lst->buf = ft_calloc((size_t)BUFFER_SIZE, sizeof(char));
-	if (!lst->buf)
+	lst->buf = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (lst->buf == NULL)
 	{
 		free(lst);
 		return (0);
 	}
 	return (lst);
-}
-
-char	*ft_calloc(size_t count, size_t size)
-{
-	char	*ptr;
-	size_t	n;
-	size_t	i;
-
-	n = count * size;
-	ptr = (char *)malloc(n);
-	if (!ptr)
-		return (0);
-	i = 0;
-	while (i < n)
-	{
-		ptr[i] = 0;
-		i++;
-	}
-	return (ptr);
 }
