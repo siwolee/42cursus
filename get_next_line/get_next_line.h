@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:58:34 by haecho            #+#    #+#             */
-/*   Updated: 2022/12/08 21:05:10 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/08 23:07:00 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t count, size_t size);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 size_t		ft_strlen(const char *s);
-size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
+size_t		ft_strncat(char *dst, const char *src, size_t srcsize);
 
 int			chk_n_idx(char *buf);
 char		*get_next_line(int fd);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 18:53:00 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/08 23:57:03 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/09 01:08:48 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,22 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (ptr);
 }
 
-char	*read_line(char **buf, int fd)
+char	*read_line_bonus(t_list **lst, int fd)
 {
 	int		read_num;
 	char	*line;
 
 	line = NULL;
-	if (!(*buf))
+	*lst = chk_lst(fd);
+	if (!(*lst)->buf)
 		return (line);
 	read_num = 1;
 	while (read_num > 0)
 	{
-		line = new_line(buf, line);
+		line = new_line(lst, line);
 		if (chk_n_idx(line) >= 0)
 			return (line);
-		if (!ft_strlen(*buf))
+		if (!ft_strlen(lst))
 			read_num = read(fd, *buf, (size_t)BUFFER_SIZE);
 		if (read_num == -1 || (!read_num && ft_strlen(line) == 0))
 		{

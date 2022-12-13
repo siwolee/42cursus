@@ -1,42 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:58:34 by haecho            #+#    #+#             */
-/*   Updated: 2022/12/07 00:43:43 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/09 01:00:13 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# include <unistd.h>
-# include <stdlib.h>
 # include <fcntl.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 # ifdef BUFFER_SIZE
 
 # else
-	#define BUFFER_SIZE 42
+#  define BUFFER_SIZE 42
 # endif
-typedef struct	s_list
+
+typedef struct s_list
 {
 	int				fd;
-	struct s_list	*next;
 	char			*buf;
-}	t_list;
+	struct s_list	*next;
+}			t_list;
 
-char	*get_next_line(int fd);
-int		chk_buf_n(char *buf, char n);
-t_list	*chk_node(t_list **head, int fd);
-char	*trim_buf(char *buf, char n);
-char	*realloc_line(char *line, char *buf, size_t len);
-size_t	ft_strlen(const char *s);
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
-t_list	*new_node(int fd);
-void	free_node(t_list **head, t_list *node, int *flag);
-char	*next_line(t_list **head, t_list *node, int *flag);
+void		ft_bzero(void *s, size_t n);
+void		*ft_calloc(size_t count, size_t size);
+char		*ft_substr(char const *s, unsigned int start, size_t len);
+size_t		ft_strlen(const char *s);
+size_t		ft_strncat(char *dst, const char *src, size_t srcsize);
+
+int			chk_n_idx(char *buf);
+char		*get_next_line(int fd);
+char		*read_line(char **buf, int fd);
+char		*new_line(char **buf, char *line);
+char		*split_buf(char **buf, size_t b_idx);
+
+//bonus
+
 
 #endif
