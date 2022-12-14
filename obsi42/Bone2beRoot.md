@@ -16,4 +16,13 @@ set up own operating system while implementing ==strict rules.==
 		- 바꾸고 나서 2일 이내에는 못바꿈
 		- 
 	- You have to install and configure sudo following strict rules.
-	- 
+
+
+https://techdebt.tistory.com/18러 
+첫 설치 및 설정 방법. 
+
+# 명령어
+==lsblk== list block devices (파티션 나눠진 모습 보기)
+==sudo== 
+	`visudo` sudoers file 보기
+`su -` super 유저로 로그인(root)

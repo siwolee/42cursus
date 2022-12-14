@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 13:58:14 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/12 13:19:27 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/14 19:12:12 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,26 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *s);
 void	*ft_calloc(size_t count, size_t size);
 
-void	ft_putchar(char c);
+int		ft_putchar(char c);
 
 int		print_type(char *type, va_list *arg_ptr);
 int		print_format(char *format, char *str, int strlen);
 char	*get_format(char **format, char *type);
-int		print_char(char *format, char arg);
 int		print_escape(char c);
+
+int		print_char(char *format, char arg);
 int		print_string(char *format, char *str);
 
 int		print_pointer(char *format, void *ptr);
+int		requr_pointer(size_t ptr, char *hex);
 
-int		get_itoa(int sign, char buf[], long long arg);
 int		print_integer(char *format, int arg);
+int		requr_integer(long long ptr, char *ten);
 int		print_unsigened_int(char *format, unsigned int arg);
-int		print_num_in_hex_low(char *format, int arg);
-int		print_num_in_hex_up(char *format, int arg);
+
+int		print_num_in_hex(char *format, int arg, char x);
+int		requr_hex(unsigned int ptr, char *hex);
+
 
 char	*return_format_str(char *format, char *str, int strlen);
 

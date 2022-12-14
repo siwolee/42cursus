@@ -4,6 +4,7 @@ SRCS = printf.c printf_type.c\
 		ft_isalpha.c ft_strlcpy.c ft_strlen.c\
 		printf_num.c printf_hex.c printf_str.c\
 		printf_format.c\
+		printf_ptr.c\
 
 OBJS = $(SRCS:.c=.o)
 

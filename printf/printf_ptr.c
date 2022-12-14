@@ -1,43 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_hex.c                                       :+:      :+:    :+:   */
+/*   printf_ptr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/02 21:12:49 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/14 19:13:39 by siwolee          ###   ########.fr       */
+/*   Created: 2022/12/04 16:40:32 by siwolee           #+#    #+#             */
+/*   Updated: 2022/12/14 17:11:27 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_num_in_hex(char *format, int arg, char x)
+int	print_pointer(char *format, void *ptr)
 {
-	char			*hex_low;
-	char			*hex_up;
-	int				size;
-	unsigned int	llarg;
+	char	*hex;
+	size_t	ptr2;
+	int		size;
 
-	hex_low = "0123456789abcdef";
-	hex_up = "0123456789ABCDEF";
-	format = NULL;
-	llarg = (unsigned int)arg;
-	if (x == 'X')
-		size = requr_hex(llarg, hex_up);
-	else
-		size = requr_hex(llarg, hex_low);
+	if (format != NULL)
+		return (0);
+	hex = "0123456789abcdef";
+	ptr2 = (size_t)ptr;
+	if (ptr2 == 0)
+		return (write(1, "0x0", 3));
+	if (write(1, "0x", 2) < 0)
+		return (-1);
+	size = requr_pointer(ptr2, hex);
+	if (size < 0)
+		return (-1);
+	size += 2;
 	return (size);
 }
 
-int	requr_hex(unsigned int ptr, char *hex)
+int	requr_pointer(size_t ptr, char *hex)
 {
 	int	now;
 	int	requr;
 
 	requr = 0;
 	if (ptr >= 16)
-		requr = requr_hex(ptr / 16, hex);
+		requr = requr_pointer(ptr / 16, hex);
 	if (requr < 0)
 		return (-1);
 	now = write(1, &(hex[ptr % 16]), 1);
