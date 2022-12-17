@@ -20,6 +20,18 @@
             }
           },
           {
+            "id": "b0939de572b4e8ff",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "QMK keyboard.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
             "id": "3ef580a61eb86594",
             "type": "leaf",
             "state": {
@@ -147,15 +159,15 @@
   },
   "active": "bcd46bee5d1e3916",
   "lastOpenFiles": [
+    "QMK keyboard.md",
+    "Bone2beRoot.md",
     "Libft 검사내역.md",
     "get_next_line(GNL).md",
-    "Bone2beRoot.md",
     "2022-12-12.md",
     "variable.md",
     "printf.md",
     "inbox/가변인자 인수의 사용.md",
     "가변인자 인수의 사용.md",
-    "Project.md",
-    "inbox/obsidian - markdown.md"
+    "Project.md"
   ]
 }

@@ -26,10 +26,3 @@ https://techdebt.tistory.com/18러
 ==sudo== 
 	`visudo` sudoers file 보기
 `su -` super 유저로 로그인(root)
-
-
-
-## USER
-비밀번호 규정 (기간) `/etc/login.defs`
-비밀번호 규정 (규칙) `/etc/pam.d/common-password`
-	PAM 패키지 Pluggable Authentication Module 사용자 로그인 제어
