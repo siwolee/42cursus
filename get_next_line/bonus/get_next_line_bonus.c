@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 18:53:00 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/14 00:26:52 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/18 11:33:16 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,108 +14,96 @@
 
 char	*get_next_line(int fd)
 {
-	static t_list	*lst;
+	static t_list	lst;
 	t_list			*fd_lst;
 	char			*line;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (0);
-	line = 0;
-	if (!lst)
-		lst = init_list(fd);
 	fd_lst = chk_list(&lst, fd);
-	line = read_line(&fd_lst);
-	if (line == NULL)
+	if (read(fd, NULL, 0) < 0)
+	{
+		fd_lst = remove_list(&lst, fd_lst);
+		return (NULL);
+	}
+	line = read_line(fd_lst->buf, &fd_lst->fd);
+	if (line == NULL || fd_lst->fd == -1)
 		fd_lst = remove_list(&lst, fd_lst);
 	return (line);
 }
 
-t_list	*init_list(int fd)
+char	*read_line(char buf[], int *fd)
 {
-	t_list	*lst;
+	int		read_num;
+	char	*line;
 
-	lst = (t_list *)malloc(sizeof(t_list));
-	if (!lst)
-		return (0);
-	lst->fd = fd;
-	lst->next = 0;
-	lst->buf = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (lst->buf == NULL)
+	line = NULL;
+	read_num = 1;
+	while (read_num > 0)
 	{
-		free(lst);
-		return (0);
-	}
-	return (lst);
-}
-
-t_list	*chk_list(t_list **lst, int fd)
-{
-	t_list *temp;
-
-	temp = *lst;
-	while (temp->next && temp->fd != fd)
-	{
-		temp = temp->next;
-	}
-	if (temp->fd == fd)
-		return (temp);
-	temp->next = init_list(fd);
-	if (!temp->next) //말록실패시
-	{
-		while (lst)
+		line = new_line(buf, line);
+		if (chk_n_idx(line, '\n') >= 0)
+			return (line);
+		if (!chk_n_idx(buf, 0))
+			read_num = read(*fd, buf, (size_t)BUFFER_SIZE);
+		if (read_num == -1 || (!read_num && chk_n_idx(line, 0) == 0))
 		{
-			temp = (*lst)->next;
-			free((*lst)->buf);
-			free((*lst));
-			*lst = temp;
+			free(line);
+			*fd = -1;
+			return (NULL);
 		}
-		return (NULL);
-	}
-	return (temp->next);
-}
-
-t_list	*remove_list(t_list **lst, t_list *fd_lst)
-{
-	if (*lst == fd_lst)
-	{
-		free((*lst)->buf);
-		free(*lst);
-		*lst = NULL;
-		return (NULL);
-	}
-	while ((*lst)->next && (*lst)->next != fd_lst)
-	{
-		*lst = (*lst)->next;
-	}
-	if ((*lst)->next == fd_lst)
-	{
-		(*lst)->next = fd_lst->next;
-	}
-	free(fd_lst->buf);
-	free(fd_lst);
-	return (NULL);
-}
-char	*get_next_line(int fd)
-{
-	static t_list	*lst;
-	char			*line;
-
-	if (fd < 0 || BUFFER_SIZE < 1)
-		return (0);
-	line = 0;
-	if (!lst)
-		lst = init_list(fd);
-	if (!lst)
-		return (NULL);
-	line = read_line(&lst);
-	if (line == NULL)
-	{
-		free(lst->buf);
-		lst->buf = NULL;
-		free(lst);
-		lst = NULL;
 	}
 	return (line);
+}
+
+char	*new_line(char buf[], char *line)
+{
+	size_t	b_idx;
+	size_t	l_idx;
+	char	*newline;
+
+	b_idx = 0;
+	while ((buf)[b_idx] && (buf)[b_idx] != '\n')
+		b_idx++;
+	if ((buf)[b_idx] == '\n')
+		b_idx++;
+	l_idx = 0;
+	while (line && line[l_idx])
+		l_idx++;
+	newline = ft_calloc(b_idx + l_idx + 1, sizeof(char));
+	if (!newline)
+	{
+		free(line); //엉뚱한 데에서 헤매고 있었다...
+		return (NULL);
+	}
+	ft_strncat(newline, line, l_idx + 1);
+	ft_strncat(newline, buf, b_idx + 1);
+	free(line);
+	split_buf(buf, b_idx);
+	return (newline);
+}
+
+char	*split_buf(char buf[], size_t b_idx)
+{
+	int n;
+
+	n = 0;
+	if (buf[b_idx] != 0)
+	{
+		n = 0;
+		while (buf[b_idx] != 0)
+		{
+			buf[n] = buf[b_idx];
+			n++;
+			b_idx++;
+		}
+	}
+	while (n < BUFFER_SIZE)
+	{
+		buf[n] = 0;
+		n++;
+	}
+	return (buf);
 }
 
 size_t	ft_strncat(char *dst, const char *src, size_t srcsize)
@@ -138,3 +126,4 @@ size_t	ft_strncat(char *dst, const char *src, size_t srcsize)
 	dst[d_len + idx] = 0;
 	return (d_len + s_len);
 }
+

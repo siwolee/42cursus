@@ -1,4 +1,5 @@
-#include "get_next_line_bonus.h"
+// #include "get_next_line_bonus.h"
+#include "get_next_line.h"
 #include "stdio.h"
 
 int main()
@@ -13,7 +14,7 @@ int main()
 	int		flag;
 
 	fd = open("./a.txt",  O_RDONLY);
-	fd2 = open("./b.txt",  O_RDONLY);
+	fd2 = -1;
 	fd3 = open("./c.txt",  O_RDONLY);
 	
 	res = 1;
@@ -45,6 +46,4 @@ int main()
 	close(fd);
 	close(fd2);
 	close(fd3);
-
-	system("leaks a.out");
 }

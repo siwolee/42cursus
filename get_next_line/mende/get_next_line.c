@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 18:53:00 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/14 21:15:20 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/17 23:28:25 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,71 +14,97 @@
 
 char	*get_next_line(int fd)
 {
-	static t_list	lst;
+	static t_list	*lst;
 	char			*line;
 
 	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, NULL, 0) < 0)
 	{
-		free(line);
-		free(lst->buf);
 		return (NULL);
 	}
-	line = read_line(&lst);
+	if (!lst)
+	{
+		lst = malloc(sizeof(t_list));
+		lst->fd = fd;
+		lst->buf[0] = 0;
+		lst->idx = 0;
+	}
+	line = read_line(0, fd, lst->buf, &lst->idx);
+	cut_buf(lst->buf, &lst->idx);
+	if (line == NULL)
+		free(lst);
 	return (line);
 }
 
-char	*read_line(t_list **list, int fd)
+char	*read_line(int len, int fd, char buf[], int *idx)
 {
-	t_list	*lst;
+	char	*line;
+	int		read_len;
+	int		n;
 
-	lst = *list;
-	idx = chk_newline(lst->buf);
-	if (idx > -1)
+	line = NULL;
+	read_len = BUFFER_SIZE;
+	if (*idx == 0)
+		read_len = read(fd, buf, BUFFER_SIZE);
+	if (read_len < 0)
+		return (NULL);
+	n = chk_n_idx(buf, '\n');
+	if (n >= 0 || read_len + 1 < BUFFER_SIZE || buf[*idx] == 0)
 	{
-		line = strjoin(line, lst->buf, idx + 1);
-		buf->idx += idx + 1
+		if (n < 0)
+			n = read_len;
+		line = malloc(len + n + 2);
 	}
-	if (lst[buf->idx] ==)
-		
-	read_size = read(fd, lst->buf, BUFFER_SIZE);
-	
+	else
+	{
+		line = read_line(len + BUFFER_SIZE, fd, buf, idx);
+		n = BUFFER_SIZE;
+	}
+	if (line)
+		n_cpy(line + len, buf, n);
+	return (line);
 }
 
-size_t	ft_strncat(char *dst, const char *src, size_t srcsize)
+int n_cpy(char *dst, char *src, int n)
 {
-	size_t	d_len;
-	size_t	s_len;
-	size_t	idx;
+	int	i;
 
-	d_len = 0;
-	s_len = 0;
-	idx = -1;
-	if (!src)
+	if (!dst)
 		return (0);
-	while (dst[d_len])
-		d_len++;
-	while (src[s_len])
-		s_len++;
-	while (src[++idx] && idx < srcsize - 1)
-		dst[d_len + idx] = src[idx];
-	dst[d_len + idx] = 0;
-	return (d_len + s_len);
+	i = 0;
+	while (i <= n && src[i] != 0)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	if (dst[i] == '\n')
+		dst[i + 1] = 0;
+	return (i);
 }
 
-t_list	*init_list(int fd)
+int	chk_n_idx(char *buf, char n)
 {
-	t_list	*lst;
+	int	i;
 
-	lst = (t_list *)malloc(sizeof(t_list));
-	if (!lst)
-		return (0);
-	lst->fd = fd;
-	lst->next = 0;
-	lst->buf = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (lst->buf == NULL)
+	i = 0;
+	if (!buf)
+		return (-1);
+	while (buf[i] && buf[i] != n)
+		i++;
+	if (buf[i] == n)
+		return (i);
+	return (-1);
+}
+
+void	cut_buf(char buf[], int *idx)
+{
+	int	n;
+
+	n = chk_n_idx(buf, '\n');
+	if (n >= 0)
 	{
-		free(lst);
-		return (0);
+		*idx = n_cpy(buf,buf + n + 1, BUFFER_SIZE - n - 1);
 	}
-	return (lst);
+	else
+		*idx = 0;
+	buf[*idx] = 0;
 }
