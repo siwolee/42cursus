@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:58:34 by haecho            #+#    #+#             */
-/*   Updated: 2022/12/18 11:16:51 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/19 20:41:13 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			chk_n_idx(char buf[], char n);
 
 // t_list		*init_list(int fd);
 t_list		*chk_list(t_list *lst, int fd);
-t_list		*remove_list(t_list *lst, t_list *fd_lst, char **line);
+t_list		*remove_list(t_list *lst, t_list *fd_lst);
 // void	delete_list(t_list *lst);
 
 #endif

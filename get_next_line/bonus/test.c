@@ -12,37 +12,36 @@ int main()
 	char	*ss;
 	char	*sss;
 	int		flag;
+	char	*tt = "a";
 
 	fd = open("./a.txt",  O_RDONLY);
-	fd2 = -1;
+	fd2 = open("./b.txt",  O_RDONLY);
 	fd3 = open("./c.txt",  O_RDONLY);
 	
 	res = 1;
 	flag = 0;
-	while (flag < 3)
+	s = tt;
+	ss = tt;
+	sss = tt;
+
+	while (s)
 	{
-		if ((s = get_next_line(fd)) != NULL)
-		{
-			printf("a: %s", s);
-			free(s);
-		}
-		else
-			flag++;
-		if ((ss = get_next_line(fd2)) != NULL)
-		{
-			printf("b: %s", ss);
-			free(ss);
-		}
-		else
-			flag++;
-		if ((sss = get_next_line(fd3)) != NULL)
-		{
-			printf("c: %s", sss);
-			free(sss);
-		}
-		else
-			flag++;
+		s = get_next_line(fd);
+		printf("a: %s", s);
 	}
+	printf("\n");
+	while (ss)
+	{
+		ss = get_next_line(fd2);
+		printf("b: %s", ss);
+	}	
+	printf("\n");
+	while (sss)
+	{
+		sss = get_next_line(fd3);
+		printf("c: %s", sss);
+	}
+	printf("\n");
 	close(fd);
 	close(fd2);
 	close(fd3);

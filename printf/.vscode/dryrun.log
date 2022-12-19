@@ -1,16 +1,15 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/siwolee/42c/printf'
 cc -Wall -Werror -Wextra -c printf.c -o printf.o
- 
 cc -Wall -Werror -Wextra -c printf_type.c -o printf_type.o
 cc -Wall -Werror -Wextra -c ft_isalpha.c -o ft_isalpha.o
 cc -Wall -Werror -Wextra -c ft_strlcpy.c -o ft_strlcpy.o
 cc -Wall -Werror -Wextra -c ft_strlen.c -o ft_strlen.o
 cc -Wall -Werror -Wextra -c printf_num.c -o printf_num.o
 cc -Wall -Werror -Wextra -c printf_hex.c -o printf_hex.o
- 
 cc -Wall -Werror -Wextra -c printf_str.c -o printf_str.o
 cc -Wall -Werror -Wextra -c printf_format.c -o printf_format.o
-ar crs libftprintf.a printf.o printf_type.o ft_isalpha.o ft_strlcpy.o ft_strlen.o printf_num.o printf_hex.o printf_str.o printf_format.o
+cc -Wall -Werror -Wextra -c printf_ptr.c -o printf_ptr.o
+ar crs libftprintf.a printf.o printf_type.o ft_isalpha.o ft_strlcpy.o ft_strlen.o printf_num.o printf_hex.o printf_str.o printf_format.o printf_ptr.o
 make: Leaving directory `/Users/siwolee/42c/printf'
  

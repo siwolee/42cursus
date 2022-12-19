@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 18:53:00 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/18 11:33:16 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/19 20:49:31 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (0);
 	fd_lst = chk_list(&lst, fd);
+	if (fd_lst == 0)
+		return (0);
 	if (read(fd, NULL, 0) < 0)
 	{
-		fd_lst = remove_list(&lst, fd_lst);
+		remove_list(&lst, fd_lst);
 		return (NULL);
 	}
 	line = read_line(fd_lst->buf, &fd_lst->fd);
@@ -45,7 +47,10 @@ char	*read_line(char buf[], int *fd)
 		if (chk_n_idx(line, '\n') >= 0)
 			return (line);
 		if (!chk_n_idx(buf, 0))
+		{
 			read_num = read(*fd, buf, (size_t)BUFFER_SIZE);
+			buf[read_num] = 0;
+		}
 		if (read_num == -1 || (!read_num && chk_n_idx(line, 0) == 0))
 		{
 			free(line);
@@ -63,9 +68,9 @@ char	*new_line(char buf[], char *line)
 	char	*newline;
 
 	b_idx = 0;
-	while ((buf)[b_idx] && (buf)[b_idx] != '\n')
+	while (buf[b_idx] != 0 && (buf)[b_idx] != '\n')
 		b_idx++;
-	if ((buf)[b_idx] == '\n')
+	if (buf[b_idx] == '\n')
 		b_idx++;
 	l_idx = 0;
 	while (line && line[l_idx])

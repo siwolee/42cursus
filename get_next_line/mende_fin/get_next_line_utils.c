@@ -1,73 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 18:53:00 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/19 20:47:54 by siwolee          ###   ########.fr       */
+/*   Updated: 2022/12/18 01:05:31 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
-
-t_list	*chk_list(t_list *lst, int fd)
-{
-	t_list	*temp;
-
-	temp = lst;
-	while (temp != 0 && temp->next != 0 && temp->fd != fd)
-	{
-		temp = temp->next;
-	}
-	if (temp->fd == fd)
-		return (temp);
-	temp->next = (t_list *)malloc(sizeof(t_list));
-	if (!temp->next) //말록실패시
-	{
-		lst = lst->next;
-		while (lst)
-		{
-			temp = (lst)->next;
-			free((lst));
-			lst = temp;
-		}
-		return (0);
-	}
-	temp->next->fd = fd;
-	(temp->next->buf)[0] = 0;
-	temp->next->next = NULL;
-	return (temp->next);
-}
-
-t_list	*remove_list(t_list *lst, t_list *fd_lst)
-{
-	while ((lst)->next && (lst)->next != fd_lst)
-	{
-		lst = (lst)->next;
-	}
-	if ((lst)->next == fd_lst)
-	{
-		(lst)->next = fd_lst->next;
-		free(fd_lst);
-	}
-	return (NULL);
-}
-
-void	delete_list(t_list *lst)
-{
-	t_list	*next;
-	t_list	*temp;
-
-	temp = lst->next;
-	while (temp != NULL)
-	{
-		next = temp->next;
-		free(temp);
-		temp = next;		
-	}
-}
+#include "get_next_line.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {
@@ -101,3 +44,4 @@ int	chk_n_idx(char buf[], char n)
 		return (i);
 	return (-1);
 }
+
