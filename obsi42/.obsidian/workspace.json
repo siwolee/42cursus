@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "get_next_line(GNL).md",
+                "file": "QMK keyboard.md",
                 "mode": "source",
                 "source": false
               }
@@ -105,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "get_next_line(GNL).md",
+                "file": "QMK keyboard.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -122,7 +122,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "get_next_line(GNL).md",
+                "file": "QMK keyboard.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -145,7 +145,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "get_next_line(GNL).md"
+                "file": "QMK keyboard.md"
               }
             }
           }
@@ -159,10 +159,10 @@
   },
   "active": "bcd46bee5d1e3916",
   "lastOpenFiles": [
+    "get_next_line(GNL).md",
     "Bone2beRoot.md",
     "QMK keyboard.md",
     "Libft 검사내역.md",
-    "get_next_line(GNL).md",
     "2022-12-12.md",
     "variable.md",
     "printf.md",
