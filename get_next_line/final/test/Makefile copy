@@ -30,12 +30,18 @@ all : mende bonus
 mende : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(NAME) $(OBJS)
+
+%.o : %.c
+	$(CC) $(CFLAGS) -c $^ -o $@
 
 bonus : $(B_NAME)
 
 $(B_NAME) : $(B_OBJS)
-	$(CC) $(CFLAGS) $(B_OBJS) -o $(B_NAME)
+	$(CC) $(CFLAGS) $(B_NAME) $(B_OBJS)
+
+%.o : %.c
+	$(CC) $(CFLAGS) -c $^ -o $@
 
 clean :
 	rm -f $(OBJS) $(B_OBJS) 

@@ -1,4 +1,6 @@
 > 호출 반복이 될 때 한 줄씩 읽어서 반환하는 함수 구현하기.
+> 
+> 문제  의도  추측 : printf에서 하지 않았던 버퍼 구현하기. 파일 디스크립터의 작동 이해하기. 함수 내에서 여러 파일을 읽을 경우에 
 
 ## 파일 구성
 - get_next_line.c : main func.
@@ -19,6 +21,7 @@
 -  _We consider that `get_next_line` has undefined behavior if, between two calls, the same file descriptor switches to a different file before reading everything from the first fd._
     
     만약 동일한 파일 디스크립터의 두 호출 사이에서, 첫 번째 fd에서 EOF에 도달하기 전에 다른 파일로 전환될 경우, 우리는 `get_next_line`이 정의되지 않은 동작을 가진다고 생각합니다.
+    
 -   _Finally we consider that `get_next_line` has undefined behavior when reading from a binary file. However, if you wish, you can make this behavior coherent._
     
     마지막으로 `get_next_line`은 바이너리 파일을 읽을 때 정의되지 않은 동작을 가진다고 생각하셔야 합니다. 그러나 여러분이 원한다면 이러한 동작을 논리적으로 구현하셔도 됩니다.
@@ -29,14 +32,12 @@
 - 바이너리 파일 읽을 경우 행위 미지정
 - 
 ## 참고사항
-[[variable]]
-### static variable
+### static variable [[variable]]
 자동 변수는 콜 스택서 할당/ 해제되지만, 정적 변수는 힙 메모리에 저장
 따로 초기화하지 않을 경우 0
 둘다 프로그램 런타임 동안 유지되지만 
 전역변수는 파일 밖에서도 선언 후 사용 가능
 정적변수는 파일 안에서만 사용 가능
-
 ### Dangling Point( == premature free)
 해제된 메모리 영역을 가리키는 포인터
 댕글링 포인터가 가리키는 포인터는 더는 유효하지 않다
@@ -134,9 +135,6 @@ hhead
 		프리 후 댕글링방지(널)
 	리턴 라인
 
-
-## heap-buffer-overflow
-메모리 액세스가 힙 할당 개체의 범위 밖에서 발생할 때 발생하는 오류
 
 
 # mende file
@@ -394,3 +392,9 @@ char		*split_buf(char **buf, size_t b_idx);
 
 #endif
 ```
+
+# 문제해결
+## heap-buffer-overflow
+메모리 액세스가 힙 할당 개체의 범위 밖에서 발생할 때 발생하는 오류
+
+

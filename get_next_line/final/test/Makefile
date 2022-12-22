@@ -4,9 +4,9 @@ NAME = a.out
 
 B_NAME = b.out
 
-TEST = main.c
+TEST = mende.c
 
-B_TEST = main_bonus.c
+B_TEST = bonus.c
 
 SRCS = $(TEST) ../get_next_line.c\
 		../get_next_line.h\
