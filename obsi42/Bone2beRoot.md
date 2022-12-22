@@ -18,8 +18,12 @@ set up own operating system while implementing ==strict rules.==
 	- You have to install and configure sudo following strict rules.
 
 
-https://techdebt.tistory.com/18러 
-첫 설치 및 설정 방법. 
+https://tonyhan18.tistory.com/201?category=1018635
+첫 설치 및 설정 방법(보너스용)
+
+https://m.blog.naver.com/dlatjgns/220031793234
+볼륨 축소하기
+
 
 # 명령어
 ==lsblk== list block devices (파티션 나눠진 모습 보기)
