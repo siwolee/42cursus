@@ -1,39 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/11 14:45:58 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/23 23:03:18 by siwolee          ###   ########.fr       */
+/*   Created: 2022/12/22 20:05:59 by siwolee           #+#    #+#             */
+/*   Updated: 2022/12/22 20:26:47 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_atoi(const char *str)
-{
-	int		sign;
-	int		re;
-	size_t	i;
-
-	sign = 1;
-	re = 0;
-	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
-		i++;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
-			sign *= -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9' && str[i])
-	{
-		re = re * 10 + str[i] - '0';
-		i++;
-	}
-	re *= sign;
-	return (re);
-}
+#include "push_swap.h"
