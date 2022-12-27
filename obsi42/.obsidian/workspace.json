@@ -1,82 +1,51 @@
 {
   "main": {
-    "id": "81461af9bf54f76d",
+    "id": "ad61b18cde9b6724",
     "type": "split",
     "children": [
       {
-        "id": "d59efc4526962a7c",
+        "id": "2194cc05b7a88e34",
         "type": "tabs",
         "children": [
           {
-            "id": "bcd46bee5d1e3916",
+            "id": "dec7ac9dd2630e67",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Bone2beRoot.md",
+                "file": "push_swap.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "851080bb939f9c1c",
+            "id": "68237a48f447185f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "c 언어 코드 최적화.md",
+                "file": "inbox/Bone2beRoot.md",
                 "mode": "source",
                 "source": false
               }
-            }
-          },
-          {
-            "id": "7a81df1bcc993396",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.1.9"
-              }
-            }
-          },
-          {
-            "id": "b0939de572b4e8ff",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "QMK keyboard.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "3ef580a61eb86594",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {}
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "2d829cde841b78c3",
+    "id": "1dabbe524beac647",
     "type": "split",
     "children": [
       {
-        "id": "707081045bb3499d",
+        "id": "26bb08272589750a",
         "type": "tabs",
         "children": [
           {
-            "id": "646215709b8297a1",
+            "id": "2b74ccf789b57071",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -86,12 +55,12 @@
             }
           },
           {
-            "id": "cc2ff2d77ca1105c",
+            "id": "82335c4ba5435f01",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "\"encrypted partitions\"",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -101,7 +70,7 @@
             }
           },
           {
-            "id": "015ef33692439093",
+            "id": "93e773051e3e1b7d",
             "type": "leaf",
             "state": {
               "type": "starred",
@@ -112,28 +81,23 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 300
   },
   "right": {
-    "id": "d1cbf950b4559c58",
+    "id": "55b2d3fccd300c96",
     "type": "split",
     "children": [
       {
-        "id": "056fd3ee9971cbe7",
+        "id": "74077c572997302f",
         "type": "tabs",
         "children": [
           {
-            "id": "b7695f11c124bb53",
+            "id": "b5968eb24df1945b",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-<<<<<<< HEAD
-                "file": "Bone2beRoot.md",
-=======
-                "file": "c 언어 코드 최적화.md",
->>>>>>> 96303c3 (..)
+                "file": "push_swap.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -145,23 +109,19 @@
             }
           },
           {
-            "id": "463d338984d13a7c",
+            "id": "5e0d44c5967af785",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-<<<<<<< HEAD
-                "file": "Bone2beRoot.md",
-=======
-                "file": "c 언어 코드 최적화.md",
->>>>>>> 96303c3 (..)
+                "file": "push_swap.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
           },
           {
-            "id": "cc38a65394b48d35",
+            "id": "464b6b7f179b9e03",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -172,21 +132,16 @@
             }
           },
           {
-            "id": "7f259e76e0e8d0c5",
+            "id": "515d280cedfb5bdf",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-<<<<<<< HEAD
-                "file": "Bone2beRoot.md"
-=======
-                "file": "c 언어 코드 최적화.md"
->>>>>>> 96303c3 (..)
+                "file": "push_swap.md"
               }
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -203,21 +158,13 @@
       "command-palette:Open command palette": false
     }
   },
-<<<<<<< HEAD
-  "active": "bcd46bee5d1e3916",
-=======
-  "active": "7a81df1bcc993396",
->>>>>>> 96303c3 (..)
+  "active": "dec7ac9dd2630e67",
   "lastOpenFiles": [
-    "QMK keyboard.md",
-    "get_next_line(GNL).md",
-    "Bone2beRoot.md",
-    "Libft 검사내역.md",
-    "2022-12-12.md",
+    "Project.md",
+    "To search list.md",
     "variable.md",
-    "printf.md",
-    "inbox/가변인자 인수의 사용.md",
-    "가변인자 인수의 사용.md",
-    "Project.md"
+    "QMK keyboard.md",
+    "Screen Shot 2022-12-12 at 2.32.51 PM.png",
+    "inbox/Bone2beRoot.md"
   ]
 }

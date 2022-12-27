@@ -66,3 +66,26 @@ https://m.blog.naver.com/dlatjgns/220031793234
 ### #Cron (시간 기반 잡 스케줄러)
 
 유닉스 계열 OS의 시간 기반 잡 스케줄러이다. 고정된 시간, 날짜, 간격으로 주기적으로 실행하기 위해 cron이 사용된다.
+실행 안됨 오류  : 일단 syslog 확인을 위해 install rsyslog 
+확인했더니  <span style="background:rgba(240, 200, 0, 0.2)">(CRON) info (No MTA installed, discarding output)</span>
+https://cronitor.io/cron-reference/no-mta-installed-discarding-output
+
+
+### #WordPress
+aptitude install lighttpd lighttpd-doc -y
+```
+aptitude purge lighttpd
+aptitude install lighttpd -y
+```
+
+-   DB 생성: `CREATE DATABASE wordpress;`
+-   계정 생성 및 패스워드 설정: `CREATE USER 'siwolee'@'localhost' IDENTIFIED BY 'Dnlsld11.';`
+-   생성한 DB에 대해 생성한 계정에 full access 부여: `GRANT ALL ON wordpress.* TO 'siwolee'@'localhost' IDENTIFIED BY 'Dnlsld11.' WITH GRANT OPTION;`
+-   설정을 마침: `FLUSH PRIVILEGES;`
+-   종료: `EXIT;`
+
+계속 forbidden 403이 떴던 이유: index.html이 없었음....
+
+
+
+https://velog.io/@octo__/Born2beRoot-WordPress-%EA%B5%AC%EC%B6%95
