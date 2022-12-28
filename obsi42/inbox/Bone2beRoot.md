@@ -1,6 +1,10 @@
+
 # Introduction
 
 set up own operating system while implementing ==strict rules.==
+
+login.def
+hostnamectl set-hostname 'newname'
 
 # Mandatory
 	- Virtualbox 사용
@@ -34,31 +38,47 @@ https://m.blog.naver.com/dlatjgns/220031793234
 # 자료 정리
 ## 운영체제
 ### Debian vs Rocky
-## OS란?
-### OS의  구성 - 하드웨어,  커널, 사용자 프로세스
-	하드웨어 : 시스템의 토대가 되는 물리적 머신. 
+
+## OS란? [[OS]]
+### 하드웨어,  커널, 사용자 프로세스
+하드웨어 : 시스템의 토대가 되는 물리적 머신. 
 		메모리(ram) / 프로세서 / 중앙 처리 장치(CPU) / 입출력장치 (I/O)
-	커널 : OS의 핵심. 메모리에 상주하며 CPU에 명령을 내리는 소프트웨어
+
+커널 : OS의 핵심. 메모리에 상주하며 CPU에 명령을 내리는 소프트웨어
+	**사용자가 system call을 통해 컴퓨터 자원을 사용할 수 있게해주는 자원 관리자**
 	사용자 프로세스 (프로세스)
 		실행 중인 프로그램으로, 커널이 관리. 커널은 이러한 프로세스 및 서버가 서로 통신할 수 있도록 해줌
+
+
 ## 패키지관리
 ### 패키지란?
-	패키지란? - 커널 및 라이브러리 버전의 배포판 환경에 맞추어 빌드한 실행파일을 압축한 것
+커널 및 라이브러리 버전의 배포판 환경에 맞추어 빌드한 실행파일을 압축한 것
+
 ### aptitude / apt 차이
-	apt(advanced packaging tool)
-		데비안 GNU, 리눅스 배포판 계열에서 소프트웨어를 설치 및 제거
-		소스 코드 컴파일을 통하여 소프트웨어 관리를 단순화
-		/etc/apt/sources.list 목록에서 해당 패키지 - 종속성 목록과 함께 찾아 자동으로 설치
-		직접 소스 목록을 추가할 수도 있고, 업그레이드는 선택적
-	aptitude
-		apt + GUI 
-		rpm 기반 패키지까지 확장됨
-	실 사용에서의 차이점
-		사용되지 않는 패키지까지 삭제해줌.
-		why-not, why 명령어를 이용해 어떤 동작이 왜 안돼고 되는지를 볼 수 있음
-		해결 방법까지 제시
+- apt(advanced packaging tool)
+	데비안 GNU, 리눅스 배포판 계열에서 소프트웨어를 설치 및 제거
+	소스 코드 컴파일을 통하여 소프트웨어 관리를 단순화
+	/etc/apt/sources.list 목록에서 해당 패키지 - 종속성 목록과 함께 찾아 자동으로 설치
+	직접 소스 목록을 추가할 수도 있고, 업그레이드는 선택적
+- aptitude
+	apt + GUI 
+	rpm 기반 패키지까지 확장됨
+- 실 사용에서의 차이점
+	사용되지 않는 패키지까지 삭제해줌.
+	why-not, why 명령어를 이용해 어떤 동작이 왜 안돼고 되는지를 볼 수 있음
+	해결 방법까지 제시
+
+
 ## Apparmor
-	리눅스 커널 보안 모듈 - 실행되는 어플들을 권한을 제한
+- 리눅스 커널 보안 모듈 - 실행되는 어플들을 권한을 제한
+- CentOS와 같은 제품 및 파생제품은 SELinux, 다른 대부분은 APPArmor를 사용
+- 강제적 접근 통제(MAC)를 제공함으로써 전통적인 유닉스 임의적 접근 통제 모델(DAC)을 지원
+
+unix : DAC 임의 접근 통제
+시스템 객체에 대한 접근을 사용자나 또는 그룹의 신분을 기준으로 제한하는 방법입니다.
+
+강제 접근 통제(MAC; Mandatory Access Control)는 미리 정해진 정책과 보안 등급에 의거하여 주체에게 허용된 접근 권한과 객체에게 부여된 허용 등급을 비교하여 접근을 통제하는 모델입니다.
+
 # user
 ### useradd / adduser 차이점
 ## 보너스 - 파티션을 나누는 이유
@@ -89,3 +109,25 @@ aptitude install lighttpd -y
 
 
 https://velog.io/@octo__/Born2beRoot-WordPress-%EA%B5%AC%EC%B6%95
+
+
+
+
+
+# 유용한 서비스
+https://mpjamong.tistory.com/157
+https://anonyges.tistory.com/5
+https://www.cloudbooklet.com/how-to-install-and-setup-sendmail-on-debian-10/
+
+서버테스트 
+`telnet localhost 25`
+
+
+```
+echo -e "To: kimmy.haecho@gmail.com\nSubject: Test1\njdflkjdklfdjfkldj\n" | ssmtp -bm -t -v
+```
+
+
+
+tlqkf 
+# SSMTP

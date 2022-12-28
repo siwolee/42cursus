@@ -31,7 +31,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -81,7 +82,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "55b2d3fccd300c96",
@@ -97,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "push_swap.md",
+                "file": "inbox/Bone2beRoot.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +116,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "push_swap.md",
+                "file": "inbox/Bone2beRoot.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +139,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "push_swap.md"
+                "file": "inbox/Bone2beRoot.md"
               }
             }
           }
@@ -158,13 +160,15 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "dec7ac9dd2630e67",
+  "active": "68237a48f447185f",
   "lastOpenFiles": [
+    "OS.md",
+    "push_swap.md",
+    "inbox/Bone2beRoot.md",
     "Project.md",
     "To search list.md",
     "variable.md",
     "QMK keyboard.md",
-    "Screen Shot 2022-12-12 at 2.32.51 PM.png",
-    "inbox/Bone2beRoot.md"
+    "Screen Shot 2022-12-12 at 2.32.51 PM.png"
   ]
 }
