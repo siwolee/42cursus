@@ -6,71 +6,71 @@
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:44:38 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/01 17:39:48 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/01 17:19:56 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./push_swap.h"
 
-int	sa(t_stack *s)
+int	sa(t_stack *a)
 {
 	unsigned int	temp;
 
-	if (!s->atop || !s->atop->next)
+	if (!a->top || !a->top->next)
 		return (0);
-	temp = s->atop->val;
-	s->atop->val = s->atop->next->val;
-	s->atop->next->val = temp;
+	temp = a->top->val;
+	a->top->val = a->top->next->val;
+	a->top->next->val = temp;
 	return (1);
 }
 
-int	pa(t_stack *s)
+int	pa(t_stack *a, t_stack *b)
 {
 	t_node	*temp;
 
-	if (!s->btop)
+	if (!b->top)
 		return (0);
-	temp = s->btop->next;
-	if (s->atop)
-		s->atop->before = s->btop;
-	s->btop->next->before = 0;
-	s->btop->next = s->atop;
-	s->btop->next = 0;
-	s->atop = s->btop;
-	s->btop = temp;
+	temp = b->top->next;
+	if (a->top)
+		a->top->before = b->top;
+	b->top->next->before = 0;
+	b->top->next = a->top;
+	b->top->next = 0;
+	a->top = b->top;
+	b->top = temp;
 	printf("pa\n");
 	return (1);
 }
 
-int	ra(t_stack *s)
+int	ra(t_stack *a)
 {
 	// t_node	*temp;
 
-	if (!s->atop || !s->abot)
+	if (!a->top || !a->bot)
 		return (0);
-	s->abot->next = s->atop;
-	s->atop->before = s->abot;
-	s->abot = s->atop;
-	s->atop = s->atop->next;
-	s->atop->before = 0;
-	s->abot->next = 0;
+	a->bot->next = a->top;
+	a->top->before = a->bot;
+	a->bot = a->top;
+	a->top = a->top->next;
+	a->top->before = 0;
+	a->bot->next = 0;
 	printf("ra\n");
 	return (1);
 }
 
-int	rra(t_stack *s)
+int	rra(t_stack *a)
 {
 	t_node	*temp;
 
-	if (!s->atop || !s->abot)
+	if (!a->top || !a->bot)
 		return (0);
-	s->abot->before->next = 0;
-	s->abot->before = 0;
-	s->abot->next = s->atop;
-	s->atop->before = s->abot;
-	temp = s->abot->before;
-	s->atop = s->abot;
-	s->abot = temp;
+	a->bot->before->next = 0;
+	a->bot->before = 0;
+	a->bot->next = a->top;
+	a->top->before = a->bot;
+	temp = a->bot->before;
+	a->top = a->bot;
+	a->bot = temp;
 	printf("rra\n");
 	return (1);
 }

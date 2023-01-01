@@ -6,71 +6,72 @@
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:44:38 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/01 17:47:40 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/01 17:20:54 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./push_swap.h"
 
-int	sb(t_stack *s)
+int	sb(t_stack *b)
 {
 	unsigned int	temp;
 
-	if (!s->btop || !s->btop->next)
+	if (!b->top || !b->top->next)
 		return (0);
-	temp = s->btop->val;
-	s->btop->val = s->btop->next->val;
-	s->btop->next->val = temp;
+	temp = b->top->val;
+	b->top->val = b->top->next->val;
+	b->top->next->val = temp;
 	printf("sb\n");
 	return (1);
 }
 
-int	pb(t_stack *s)
+int	pb(t_stack *a, t_stack *b)
 {
 	t_node	*temp;
 
-	if (!s->atop)
+	if (!a->top)
 		return (0);
-	temp = s->atop->next;
-	if (s->btop)
-		s->btop->before = s->atop;
-	s->atop->next = s->btop;
-	s->btop = s->atop;
-	s->atop = temp;
-	s->atop->before = 0;
+	temp = a->top->next;
+	if (b->top)
+		b->top->before = a->top;
+	a->top->next->before = 0;
+	a->top->next = b->top;
+	a->top->next = 0;
+	b->top = a->top;
+	a->top = temp;
 	printf("pb\n");
 	return (1);
 }
 
-int	rb(t_stack *s)
+int	rb(t_stack *b)
 {
 	// t_node	*temp;
 
-	if (!s->btop || !s->bbot)
+	if (!b->top || !b->bot)
 		return (0);
-	s->bbot->next = s->btop;
-	s->btop->before = s->bbot;
-	s->bbot = s->btop;
-	s->btop = s->btop->next;
-	s->btop->before = 0;
-	s->btop->next = 0;
+	b->bot->next = b->top;
+	b->top->before = b->bot;
+	b->bot = b->top;
+	b->top = b->top->next;
+	b->top->before = 0;
+	b->top->next = 0;
 	printf("rb\n");
 	return (1);
 }
 
-int	rrb(t_stack *s)
+int	rrb(t_stack *b)
 {
 	t_node	*temp;
 
-	if (!s->btop || !s->bbot)
+	if (!b->top || !b->bot)
 		return (0);
-	s->bbot->before->next = 0;
-	s->bbot->before = 0;
-	s->bbot->next = s->btop;
-	s->btop->before = s->bbot;
-	temp = s->bbot->before;
-	s->btop = s->bbot;
-	s->bbot = temp;
+	b->bot->before->next = 0;
+	b->bot->before = 0;
+	b->bot->next = b->top;
+	b->top->before = b->bot;
+	temp = b->bot->before;
+	b->top = b->bot;
+	b->bot = temp;
 	printf("rrb\n");
 	return (1);
 }
