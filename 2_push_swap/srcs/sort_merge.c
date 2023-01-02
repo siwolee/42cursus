@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_merge.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 20:14:57 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/01 22:13:47 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/02 16:22:26 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	mergesort_atop(t_stack *s, unsigned int start, unsigned int end)
 		now = next;
 		i++;
 	}
-		//temp
 	// mergesort_btop(s, start, start + move); // s
 	// mergesort_blow(s, start + move + 1, end - mb); //b
 }

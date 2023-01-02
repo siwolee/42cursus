@@ -13,7 +13,19 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "inbox/get_next_line(GNL).md",
+                "file": "inbox/Makefile bonus.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "fba51a81bcde6a37",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "gcc compiler.md",
                 "mode": "source",
                 "source": false
               }
@@ -25,14 +37,25 @@
             "state": {
               "type": "markdown",
               "state": {
+                "file": "inbox/Bone2beRoot.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "9b72e80c62d2e6c4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
                 "file": "Debugging.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -82,7 +105,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "9b97cdae57489b92",
@@ -98,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Debugging.md",
+                "file": "inbox/Makefile bonus.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Debugging.md",
+                "file": "inbox/Makefile bonus.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Debugging.md"
+                "file": "inbox/Makefile bonus.md"
               }
             }
           }
@@ -146,8 +170,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -159,8 +182,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5e2b470dcfbd4885",
+  "active": "e94f5206fc6f169c",
   "lastOpenFiles": [
-    "inbox/get_next_line(GNL).md"
+    "gcc compiler.md",
+    "inbox/Makefile bonus.md",
+    "Project.md",
+    "Debugging.md",
+    "variable.md",
+    "printf.md",
+    "To search list.md",
+    "QMK keyboard.md",
+    "inbox/get_next_line(GNL).md",
+    "inbox/Bone2beRoot.md"
   ]
 }
