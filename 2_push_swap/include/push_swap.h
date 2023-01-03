@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:37:00 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/01 22:14:34 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/03 16:41:33 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define PUSH_SWAP_H
 # include <stdlib.h>
 # include <unistd.h>
-# include "../libft/libft.h"
+// # include "../libft/libft.h"
 # include <stdio.h>
+# include "get_next_line.h"
 
 typedef struct s_node
 {
@@ -56,6 +57,7 @@ void	init_stack(t_stack *s, int res[], int len);
 void	s_(t_stack *s, int ab);
 void	p_(t_stack *s, int ab);
 void	r_(t_stack *s, int ab);
+void	rb(t_stack *s);
 void	rr_(t_stack *s, int ab);
 
 //operator_a,b
@@ -64,8 +66,8 @@ int					sb(t_stack *s);//001
 // int	ss(t_stack *s);//1000 = 8
 int					pa(t_stack *s);//010 = 2
 int					pb(t_stack *s);//011 = 3
-int					ra(t_stack *s);//100== 4
-int					rb(t_stack *s);//101== 5
+// int					ra(t_stack *s);//100== 4
+// int					rb(t_stack *s);//101== 5
 // int	rr(t_stack *s);//1100= 12
 int					rra(t_stack *s);//110 == 6
 int					rrb(t_stack *s);//111 == 7
@@ -78,5 +80,10 @@ void				mergesort_atop(t_stack *s, unsigned int start, unsigned int end);
 
 
 int					execute(t_stack *s, ...);
+
+
+
+char	*get_next_line(int fd);
+char	*read_line(char buf[], int *fd);
 
 #endif

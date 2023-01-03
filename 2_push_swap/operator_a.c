@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   operator_a.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:44:38 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/01 17:39:48 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/03 15:29:05 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./push_swap.h"
+#include "push_swap.h"
 
 int	sa(t_stack *s)
 {

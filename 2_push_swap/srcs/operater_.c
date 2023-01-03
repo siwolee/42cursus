@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operater_.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:44:38 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/01 23:42:34 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/03 16:40:47 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,24 @@ void	r_(t_stack *s, int ab)
 	}
 	if (s->bsize < 2)
 		return ;
+	if (s->bbot)
 	s->bbot->next = s->btop;
+	s->btop->before = s->bbot;
+	s->bbot = s->btop;
+	s->btop = s->btop->next;
+	s->btop->before = 0;
+	s->bbot->next = 0;
+	printf("rb\n");
+}
+
+void	rb(t_stack *s)
+{
+	if (!s->btop)
+		return ;
+	if (s->bsize < 2)
+		return ;
+	if (s->bbot)
+		s->bbot->next = s->btop;
 	s->btop->before = s->bbot;
 	s->bbot = s->btop;
 	s->btop = s->btop->next;

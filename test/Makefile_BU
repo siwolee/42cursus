@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile_BU                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 19:48:02 by siwolee           #+#    #+#              #
-#    Updated: 2023/01/03 13:22:14 by siwolee          ###   ########.fr        #
+#    Updated: 2023/01/03 13:36:38 by siwolee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,8 +76,17 @@ re : fclean all
 # 	@$(AR) $(ARFLAGS) $@ $(OBJS)
 
 #최종 실행 파일 제작
-$(NAME) : $(LIBFT_FILE) $(OBJS)
-	$(CC) $(CFLAGS) -I$(INC_DIR) -I$(LIBFT_INC_DIR) $(TEST) -l$(LIB_SRCS) -L$(LIB_DIR)
+$(NAME) : $(LIB) $(OBJS)
+	$(CC) $(CFLAGS) -I$(INC_DIR) -I
+	 $(TEST) -l$(LIB_SRCS) -L$(LIB_DIR)
+
+$(LIB) : $(LIB_FILE)
+	@printf "library achived\n"
+
+$(LIB_FILE) :
+	make --no-print-directory -C $(LIB_EACH_DIR)
+	mv $(wildcard $(LIB_EACH_DIR)/*.a) $(LIB_DIR)
+
 
 $(LIBFT) : $(LIBFT_FILE)
 
