@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "inbox/Makefile bonus.md",
+                "file": "QMK keyboard.md",
                 "mode": "source",
                 "source": false
               }
@@ -105,8 +105,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "9b97cdae57489b92",
@@ -122,7 +121,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "inbox/Makefile bonus.md",
+                "file": "QMK keyboard.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +138,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "inbox/Makefile bonus.md",
+                "file": "QMK keyboard.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +161,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "inbox/Makefile bonus.md"
+                "file": "QMK keyboard.md"
               }
             }
           }
@@ -184,8 +183,8 @@
   },
   "active": "e94f5206fc6f169c",
   "lastOpenFiles": [
-    "gcc compiler.md",
     "inbox/Makefile bonus.md",
+    "gcc compiler.md",
     "Project.md",
     "Debugging.md",
     "variable.md",
