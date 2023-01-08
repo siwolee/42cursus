@@ -37,35 +37,36 @@
 // 	return (arr2);
 // }
 
-int main()
+int main(int ac, char **av)
 {
 	//pretreat
-	int val[] = {-1,2,4,-8,-3,0};
-	int res[] = {5, 3, 7, 6, 2, 1};
-	t_pre_val	pre[8];
+	// int val[] = {-1, 3, 4, -5, 6, 2,-7,8,-20,10, 9, 11, -8, 0, -3};
+	int *res;
+	t_pre_val	*pre;
 	t_stack		s;
-	int len = 6;
+	int len = ac - 1;
 
-	for (int i = 0; i < len; i++)
-	{
-		pre[i].idx = i;
-		pre[i].val = val[i];
-	}
+	if (ac <= 2)
+		return (0);
+
+	res = malloc(sizeof(int) * (ac -1));
+	if (!res)
+		return (0);
+	pre = atoi_arr(ac -1, av + 1, res);
 	pre_quick_sort(pre, 0, len);
-	for (int i = 0; i < len; i++)
-	{
-		printf("%d, ", pre[i].val);
-	}
-	printf("\n");
 	indexing(pre, res, len);
-	for (int i = 0; i < len; i++)
-	{
-		printf("%d, ", res[i]);
-	}
-	init_stack(&s, res, len);
-	print_stack(&s, 0);
 
-	//operation
-	mergesort_atop(&s, 1, 6);
+	init_stack(&s, res, len);
+
+	mergesort_atop(&s, 1, len);
+	// print_queue_ab(&s);
+
+	// printf("sssssssssssssssssssssssssss\n\n");
+	// print_queue_ab(&s);
+	// execute(NULL, NULL);
+	free(res);
+	// pri_all_sort(&s, ac -1);
 }
+
+
 

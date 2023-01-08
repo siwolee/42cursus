@@ -6,11 +6,12 @@
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:44:38 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/09 00:53:36 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/08 22:57:35 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+
+#include "chker.h"
 
 void	s_(t_stack *s, int ab)
 {

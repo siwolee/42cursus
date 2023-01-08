@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "QMK keyboard.md",
+                "file": "push_swap.md",
                 "mode": "source",
                 "source": false
               }
@@ -121,7 +121,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "QMK keyboard.md",
+                "file": "push_swap.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -138,7 +138,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "QMK keyboard.md",
+                "file": "push_swap.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -161,7 +161,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "QMK keyboard.md"
+                "file": "push_swap.md"
               }
             }
           }
@@ -183,14 +183,14 @@
   },
   "active": "e94f5206fc6f169c",
   "lastOpenFiles": [
+    "Project.md",
+    "QMK keyboard.md",
     "inbox/Makefile bonus.md",
     "gcc compiler.md",
-    "Project.md",
     "Debugging.md",
     "variable.md",
     "printf.md",
     "To search list.md",
-    "QMK keyboard.md",
     "inbox/get_next_line(GNL).md",
     "inbox/Bone2beRoot.md"
   ]

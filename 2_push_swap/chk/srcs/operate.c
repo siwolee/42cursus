@@ -6,11 +6,11 @@
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 18:17:10 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/09 00:35:53 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/08 23:58:27 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "chker.h"
 #include <stdarg.h>
 
 // void	add_act(char *act,char *newact)
@@ -41,11 +41,11 @@ void	execute(t_stack *s, char *act)
 {
 	static int cnt;
 
-	if (!s)
-	{
-		printf("total cnt : %d\n", cnt);
-		return ;
-	}
+	// if (!s)
+	// {
+	// 	printf("total cnt : %d\n", cnt);
+	// 	return ;
+	// }
 	while (*act != 0)
 	{
 		cnt++;
@@ -68,9 +68,8 @@ void	execute(t_stack *s, char *act)
 		else
 		{
 			cnt--;
-			pri_callerr("exec");
+			return ;
 		}
-		// print_queue_ab(s);
 		act++;
 	}
 }
