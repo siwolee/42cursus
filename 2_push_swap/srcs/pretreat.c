@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   pretreat.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:36:45 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/07 18:27:12 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/10 15:57:44 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-t_pre_val	*atoi_arr(int len, char **av, int *res)
+int	pretreat(t_stack *s, char **av, int len)
 {
-	int	i;
-	int	e;
-	int	val;
+	int			i;
+	int			val;
 	t_pre_val	*pre;
 
 	i = 0;
@@ -28,158 +27,67 @@ t_pre_val	*atoi_arr(int len, char **av, int *res)
 		val = ft_atoi(av[i]);
 		if (val == 0 && av[i][0] != 0)
 		{
-			free(pre);
-			exit(1);
+			return (1);
 		}
 		pre[i].val = val;
-		pre[i].idx = i;
-		res[i] = val;
-		e = 0;
-		while (e < i)
-		{
-			if (pre[e].val == val)
-				{
-					printf("중복입니다..\n");
-					free(pre);
-					exit(1);
-				}
-			e++;
-		}
+		pre[i].idx = 1;
+		if (indexing(pre, i, val))
+			return (1);
 		i++;
 	}
-	return (pre);
+	if (init_stack(s, pre, len))
+		return (1);
+	free(pre);
+	return (0);
 }
 
-static void	swap_pre(t_pre_val *a, t_pre_val *b)
+int	indexing(t_pre_val *pre, int i, int val)
 {
-	int	tval;
-	int tidx;
+	int	e;
 
-	tval = a->val;
-	a->val = b->val;
-	b->val = tval;
-	tidx = a->idx;
-	a->idx = b->idx;
-	b->idx = tidx;
-}
-
-void	pre_quick_sort(t_pre_val *data, int start, int end)
-{
-	// int	*res;
-	int	i;
-	int	j;
-	int	pivot;
-
-	// res = ft_calloc(end, sizeof(int));
-	pivot = start;
-	i = start + 1;
-	j = end - 1;
-	if (start >= end)
-		return ;
-	while (i <= j)
+	e = 0;
+	while (i > e)
 	{
-		while (i <= end && data[i].val <= data[pivot].val)
+		if (pre[e].val > val)
 		{
-			i++;
+			pre[e].idx++;
 		}
-		while (j > start && data[j].val >= data[pivot].val)
+		else if (pre[e].val < val)
 		{
-			j--;
-		}
-		if (i > j)
-		{
-			swap_pre(data + j, data + pivot);
+			if (pre[i].idx <= pre[e].idx)
+				pre[i].idx = pre[e].idx + 1;
 		}
 		else
 		{
-			swap_pre(data + i, data + j);
+			return (1);
 		}
+		e++;
 	}
-	pre_quick_sort(data, start, j - 1);
-    pre_quick_sort(data, j + 1, end);
+	return (0);
 }
 
-void	indexing(t_pre_val pre[], int res[], int len)
+int	ft_atoi(const char *str)
 {
-	int	i;
+	int		sign;
+	int		re;
+	size_t	i;
 
+	sign = 1;
+	re = 0;
 	i = 0;
-	while (i < len)
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	if (str[i] == '+' || str[i] == '-')
 	{
-		res[i] = 0;
+		if (str[i] == '-')
+			sign *= -1;
 		i++;
 	}
-	i = 0;
-	while (i < len)
+	while (str[i] >= '0' && str[i] <= '9' && str[i])
 	{
-		if (res[pre[i].idx] != 0)
-			exit(0);
-		res[pre[i].idx] = i + 1;
+		re = re * 10 + str[i] - '0';
 		i++;
 	}
-	free(pre);
-}
-
-t_node	*newnode(int val)
-{
-	t_node	*new;
-
-	new = malloc(sizeof(t_node));
-	if (!new)
-		return (0);
-	new->val = val;
-	new->next = 0;
-	new->prev = 0;
-	return (new);
-}
-
-void	init_stack(t_stack *s, int res[], int len)
-{
-	int i;
-	t_node	*node;
-	t_node	*next;
-
-	if (res == NULL)
-	{
-		s->atop = NULL;
-		s->abot = NULL;
-		s->asize = 0;
-		return ;
-	}
-	s->btop = s->bbot = 0;
-	s->bsize = 0;
-	node = newnode(res[0]);
-	s->atop = node;
-	i = 1;
-	while (i < len)
-	{
-		next = newnode(res[i]);
-		node->next = next;
-		next->prev = node;
-		node = node->next;
-		i++;
-	}
-	s->asize = len;
-	s->abot = next;
-}
-
-void	init_index(t_pre_val *pre, int *res, int len)
-{
-	int arr[2147483647] = {0,};
-	int 	i;
-
-	while (pre)
-	{
-		arr[pre->val] = pre->idx;
-		pre++;
-	}
-	 i = 0;
-	while (i < 2147483647 && arr[i] < len)
-	{
-		if (arr[i] != 0)
-		{
-			res[arr[i]] = i + 1;
-		}
-		i++;
-	}
+	re *= sign;
+	return (re);
 }

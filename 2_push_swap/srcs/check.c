@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 21:33:33 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/09 00:45:46 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/10 15:56:24 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	print_mb(int mb, int min)
 {
 	static int cnt;
+
 	cnt += mb;
 	printf("^^^^ mbcnt : %d, min: %d ^^^^^^^^^^^\n", cnt, min);
 }
@@ -60,7 +61,6 @@ int	pri_sort(t_stack *s, int len, char ab)
 	unsigned int		bf;
 	t_node	*n;
 
-
 	i = 0;
 	n = s->atop;
 	bf = s->atop->val;
@@ -86,7 +86,6 @@ int	pri_sort(t_stack *s, int len, char ab)
 			i++;
 		}
 	}
-	// printf("GOOD\n");
 	if (i == len)
 		return (1);
 	else

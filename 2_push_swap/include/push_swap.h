@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:37:00 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/09 00:46:24 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/10 20:47:49 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,40 @@
 # define PUSH_SWAP_H
 # include <stdlib.h>
 # include <unistd.h>
-// # include "../libft/libft.h"
 # include <stdio.h>
-// # include "get_next_line.h"
 
-# define SA 1
-# define SB 2
-# define PA 3
-# define PB 4
-# define RA 5
-# define RB 6
-# define RRA 7
-# define RRB 8
+# define SA '1'
+# define SB '2'
+# define PA '3'
+# define PB '4'
+# define RA '5'
+# define RB '6'
+# define RRA '7'
+# define RRB '8'
 
-# define SS 11
-# define RR 12
-# define RRR 13
-# define PASS 140
-# define END -1
+# define SS 91
+# define RR 92
+# define RRR 93
+# define PASS 94
+# define END '~'
 
 # define ATOP 100
 # define BTOP 101
 # define ABOT 102
 # define BBOT 103
 
+# define ACTMAX 5
+
 # define C_PINK "\033[38;5;9m"
 # define C_CYAN "\033[38;5;51m"
 # define C_RED "\033[9m"
 # define C_RS "\033[0m"
+
+typedef struct s_act
+{
+	char			arr[ACTMAX];
+	struct s_act	*next;
+}					t_act;
 
 typedef struct s_node
 {
@@ -52,6 +58,7 @@ typedef struct s_node
 
 typedef struct s_stack
 {
+	t_act			*act;
 	t_node			*atop;
 	t_node			*abot;
 	t_node			*btop;
@@ -60,11 +67,11 @@ typedef struct s_stack
 	int				bsize;
 }					t_stack;
 
-struct	s_pre_val
+typedef struct	s_pre_val
 {
 	int	val;
 	int	idx;
-}typedef	t_pre_val;
+}				t_pre_val;
 
 //temporary
 void	print_stacks(t_stack *s);
@@ -72,20 +79,17 @@ void	print_stack(t_stack *s, int ab);
 void	pri_callerr(char *name);
 void	print_mb(int mb, int min);
 
-
 //pretreat
 int	ft_atoi(const char *str);
-t_pre_val	*atoi_arr(int len, char **av, int *res);
+int pretreat(t_stack *s, char **av, int len);
+int	indexing(t_pre_val *pre, int i, int val);
 
-void	pre_quick_sort(t_pre_val data[], int start, int end);
-void	indexing(t_pre_val pre[], int res[], int len);
+//stack
 t_node	*newnode(int val);
-void	init_stack(t_stack *s, int res[], int len);
-void	init_index(t_pre_val *pre, int *res, int len);
-
+int	init_stack(t_stack *s, t_pre_val *pre, int len);
+void	free_stack(t_stack *s);
 
 //operater_
-void	s_(t_stack *s, int ab);
 void	sa(t_stack *s);
 void	sb(t_stack *s);				
 void	pa(t_stack *s);				
@@ -94,22 +98,9 @@ void	ra(t_stack *s);
 void	rb(t_stack *s);
 void	rra(t_stack *s);
 void	rrb(t_stack *s);
-void	rr_(t_stack *s, int ab);
-
-// //operator_a,b
-// int					sa(t_stack *s);//000
-// int					sb(t_stack *s);//001
-// int	ss(t_stack *s);//1000 = 8
-
-// int					ra(t_stack *s);//100== 4
-// int					rb(t_stack *s);//101== 5
-// int	rr(t_stack *s);//1100= 12
-// int					rra(t_stack *s);//110 == 6
-// int					rrb(t_stack *s);//111 == 7
-// int	rrr(t_stack *s);//1110 == 13
-
-
-void				init_stack(t_stack *s, int res[], int len);
+void	ss(t_stack *s);
+void	rr(t_stack *s);
+void	rrr(t_stack *s);
 
 //mergesort
 void	mergesort_atop(t_stack *s, unsigned int start, unsigned int end);
@@ -117,9 +108,14 @@ void	mergesort_btop(t_stack *s, unsigned int start, unsigned int end);
 void	mergesort_abot(t_stack *s, unsigned int start, unsigned int end);
 void	mergesort_bbot(t_stack *s, unsigned int start, unsigned int end);
 
-
-
-void	execute(t_stack *s, char *act);
+//execute
+void	ft_bzero(void *s, size_t n);
+t_act	*init_act();
+t_act	*add_act(t_act *act);
+void	add_act_len(t_act *act,char *newact);
+void	execute(t_stack *s, char *newact);
+void	print_final(t_stack *s);
+void	optimization(t_act *act);
 
 //shortsort
 void	sort_short(t_stack *s, int size, char ab);
@@ -140,8 +136,8 @@ void	sort_four_x4xx(t_stack *s, int val[], char ab);
 void	sort_four_xx4x(t_stack *s, int val[], char ab);
 void	sort_four_xxx4(t_stack *s, int val[], char ab);
 
-void    print_queue(t_stack *s, char ab);
-void    print_queue_ab(t_stack *s);
+void	print_queue(t_stack *s, char ab);
+void	print_queue_ab(t_stack *s);
 
 int		pri_all_sort(t_stack *s, int len);
 int		pri_sort(t_stack *s, int len, char ab);

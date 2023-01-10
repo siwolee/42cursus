@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_merge.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 20:14:57 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/09 00:53:18 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/10 20:41:14 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	mergesort_atop(t_stack *s, unsigned int start, unsigned int end)
 {
-	int mb;//mostbig
+	int mb;
 	int len;
 	int move;
 	int	i;
@@ -26,46 +26,33 @@ void	mergesort_atop(t_stack *s, unsigned int start, unsigned int end)
 	mb = 4;
 	if (len & 1)
 		mb = 3;
-
 	if (len <= 4)
 	{
 		sort_short(s, len, ATOP);
-		// print_mb(mb, end - mb + 1);
-		return ; //if not atop, move to atop too
+		return ;
 	}
 	move = (len - mb) >> 1;
-	// printf("%smergesort ATOP : start %d, end %d, len %d, mb %d, move %d\n\033[0m", C_PINK, start, end, len, mb, move);
 	i = 0;
 	now = s->atop;
 	if (pri_sort(s, len, ATOP))
 		return ;
 	while (i < len)
 	{
-		if (now == NULL)
-		{
-			// pri_callerr("merge_a_top");
-		}
 		next = now->next;
 		if (now->val > end - mb)
 		{
-			// printf("\n%d : mb---- >> ra\n", now->val);//mb
-			execute(s, "5"); //ra
+			execute(s, "5");
 		}
-		else if (move >= 4 && now->val < start + move) //s
+		else if (move >= 4 && now->val < start + move)
+			execute(s, "46");
+		else
 		{
-			// printf("\n%d : s----- >> pb, rb\n", now->val);
-			execute(s, "46");//pb, rb BBOT
-		}
-		else //b
-		{
-			// printf("\n%d : b----- >> pb\n", now->val);
-			execute(s, "4");//pb
+			execute(s, "4");
 		}
 		now = next;
 		i++;
 	}
 	sort_short(s, mb, ABOT);
-	// print_mb(mb, end - mb + 1);
 	if (move >= 4)
 	{
 		mergesort_btop(s, start + move, end - mb); //b
@@ -77,7 +64,7 @@ void	mergesort_atop(t_stack *s, unsigned int start, unsigned int end)
 
 void	mergesort_btop(t_stack *s, unsigned int start, unsigned int end)
 {
-	int mb;//mostbig
+	int mb;
 	int len;
 	int move;
 	int	i;
@@ -90,40 +77,32 @@ void	mergesort_btop(t_stack *s, unsigned int start, unsigned int end)
 	if (len <= 4)
 	{
 		sort_short(s, len, BTOP);
-		// print_mb(mb, end - mb + 1);
 		return ;
 	}
 	move = (len - mb) >> 1;
-	// printf("%smergesort BTOP : start %d, end %d, len %d, mb %d, move %d\n\033[0m", C_PINK, start, end, len, mb, move);
 	i = 0;
 	now = s->btop;
 	while (i < len)
 	{
-		if (now == NULL)
-		{
-			// pri_callerr("merge_b_top");
-		}
 		next = now->next;
 		if (now->val > end - mb)
 		{
-			// printf("\n%d : mb---- >> ra\n", now->val);//mb
-			execute(s, "3");//pa
+			execute(s, "3");
+			if (i > 0 && s->atop->val > s->atop->next->val)
+				execute(s, "1");
 		}
-		else if (move >= 4 && now->val < start + move) //s
+		else if (move >= 4 && now->val < start + move)
 		{
-			// printf("\n%d : s----- >> pb, rb\n", now->val);
-			execute(s, "6");//rbBBOT
+			execute(s, "6");
+			// if (i > 0 && s->btop->val < s->btop->next->val)
+			// 	execute(s, "2");
 		}
-		else //b
-		{
-			// printf("\n%d : b----- >> pb\n", now->val);
-			execute(s, "35");//pa, ra ABOT
-		}
+		else
+			execute(s, "35");
 		now = next;
 		i++;
 	}
 	sort_short(s, mb, ATOP);
-	// print_mb(mb, end - mb + 1);
 	if (move >= 4)
 	{
 		mergesort_abot(s, start + move, end - mb); //b
@@ -166,17 +145,17 @@ void	mergesort_abot(t_stack *s, unsigned int start, unsigned int end)
 		if (now->val > end - mb)
 		{
 			// printf("\n%d : mb---- >> ra\n", now->val);//mb
-			execute(s, "7");//rra
+			execute(s, "7");
+			if (i > 0 && s->atop->val > s->atop->next->val)
+				execute(s, "1");
 		}
 		else if (move >= 4 && now->val < start + move) //s
-		{
-			// printf("\n%d : s----- >> pb, rb\n", now->val);
-			execute(s, "746");//rra, pb, rb BBOT
-		}
+			execute(s, "746");
 		else //b
 		{
-			// printf("\n%d : b----- >> pb\n", now->val);
 			execute(s, "74");//rra, pb BTOP
+			// if (i > 0 && s->btop->val < s->btop->next->val)
+			// 	execute(s, "2");
 		}
 		now = next;
 		i++;
@@ -200,7 +179,6 @@ void	mergesort_bbot(t_stack *s, unsigned int start, unsigned int end)
 	int	i;
 	t_node	*now, *next;
 
-
 	len = end - start + 1;
 	mb = 4;
 	if (len & 1)
@@ -208,40 +186,30 @@ void	mergesort_bbot(t_stack *s, unsigned int start, unsigned int end)
 	if (len <= 4)
 	{
 		sort_short(s, len, BBOT);
-		// print_mb(mb, end - mb + 1);
 		return ;
 	}
 	move = (len - mb) >> 1;
-	// printf("%smergesoxrt BBOT : start %d, end %d, len %d, mb %d, move %d\n\033[0m", C_PINK, start, end, len, mb, move);
 	i = 0;
 	now = s->bbot;
 	while (i < len)
 	{
-		if (now == NULL)
-		{
-			// pri_callerr("merge_B_bottom");
-		}
 		next = now->prev;
 		if (now->val > end - mb)
 		{
-			// printf("\n%d : mb---- >> ra\n", now->val);//mb
-			execute(s, "83");//rrb, pa
+			execute(s, "83");
+			if (i > 0 && s->atop->val > s->atop->next->val)
+				execute(s, "1");
 		}
-		else if (move >= 4 && now->val < start + move) //s
+		else if (move >= 4 && now->val < start + move)
+			execute(s, "8");
+		else
 		{
-			// printf("\n%d : s----- >> pb, rb\n", now->val);
-			execute(s, "8");//rrb BTOP
-		}
-		else //b
-		{
-			// printf("\n%d : b----- >> pb\n", now->val);
-			execute(s, "835");//rrb, pa, ra ABOT
+			execute(s, "835");
 		}
 		now = next;
 		i++;
 	}
 	sort_short(s, mb, ATOP);
-	// print_mb(mb, end - mb + 1);
 	if (move >= 4)
 	{
 		mergesort_abot(s, start + move, end - mb); //b

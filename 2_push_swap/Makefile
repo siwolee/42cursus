@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+         #
+#    By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/01 16:34:39 by siwolee           #+#    #+#              #
-#    Updated: 2023/01/08 23:09:02 by siwolee          ###   ########.fr        #
+#    Updated: 2023/01/09 16:12:34 by siwolee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ CHK_OBJS = $(CHK_SRCS:.c=.o)
 all : $(NAME)
 
 $(NAME) : 
-	$(CC) $(CFLAGS) -o $(NAME) -I$(INC_DIR) $(SRCS) $(TEST_FILE)
+	$(CC) $(CFLAGS) -o $(NAME) -I$(INC_DIR) $(SRCS) $(MAIN_FILE)
 
 tt : $(TEST)
 

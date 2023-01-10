@@ -3,82 +3,132 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:14:10 by siwolee           #+#    #+#             */
-/*   Updated: 2022/12/18 23:17:20 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/10 15:45:24 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./push_swap.h"
 
-int	s(t_stack *a)
+static void	swap_pre(t_pre_val *a, t_pre_val *b)
 {
-	int	temp;
+	int	tval;
+	int tidx;
 
-	if (!a->top || !a->top->down)
-		return (0);
-	temp = a->top->val;
-	a->top->val = a->top->down->val;
-	a->top->down->val = temp;
-	printf("s%s\n", NAME_(a));
-	return (1);
+	tval = a->val;
+	a->val = b->val;
+	b->val = tval;
+	tidx = a->idx;
+	a->idx = b->idx;
+	b->idx = tidx;
 }
 
-int	p(t_stack *a, t_stack *b)
+void	pre_quick_sort(t_pre_val *data, int start, int end)
 {
-	t_node	*node;
+	// int	*res;
+	int	i;
+	int	j;
+	int	pivot;
 
-	if (!b->top)
-		return (0);
-	node = b->top;
-	b->top = b->top->down;
-	if (b->top)
-		b->top->up = 0;
-	node->down = a->top;
-	if (a->top)
+	// res = ft_calloc(end, sizeof(int));
+	pivot = start;
+	i = start + 1;
+	j = end - 1;
+	if (start >= end)
+		return ;
+	while (i <= j)
 	{
-		a->top->up = node;
-		node->down = a->top;
+		while (i <= end && data[i].val <= data[pivot].val)
+		{
+			i++;
+		}
+		while (j > start && data[j].val >= data[pivot].val)
+		{
+			j--;
+		}
+		if (i > j)
+		{
+			swap_pre(data + j, data + pivot);
+		}
+		else
+		{
+			swap_pre(data + i, data + j);
+		}
 	}
-	a->top = node;
-	node->up = 0;
-	if (!a->bot)
-		a->bot = node;
-	printf("p%s\n", NAME_(a));
-	return (1);
+	pre_quick_sort(data, start, j - 1);
+    pre_quick_sort(data, j + 1, end);
 }
 
-int r(t_stack *a)
+// void	indexing(t_pre_val pre[], int res[], int len)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (i < len)
+// 	{
+// 		res[i] = 0;
+// 		i++;
+// 	}
+// 	i = 0;
+// 	while (i < len)
+// 	{
+// 		if (res[pre[i].idx] != 0)
+// 			exit(0);
+// 		res[pre[i].idx] = i + 1;
+// 		i++;
+// 	}
+// 	free(pre);
+// }
+
+void	init_stack(t_stack *s, int res[], int len)
 {
+	int i;
 	t_node	*node;
-	
-	if (!a->top)
-		return (0);
-	node = a->top;
-	a->top = a->top->down;
-	a->top->up = 0;
-	node->up = a->bot;
-	a->bot->down = node;
-	node->down = 0;
-	a->bot = node;
-	printf("r%s\n", NAME_(a));
-	return (1);
+	t_node	*next;
+
+	if (res == NULL)
+	{
+		s->atop = NULL;
+		s->abot = NULL;
+		s->asize = 0;
+		return ;
+	}
+	s->btop = s->bbot = 0;
+	s->bsize = 0;
+	node = newnode(res[0]);
+	s->atop = node;
+	i = 1;
+	while (i < len)
+	{
+		next = newnode(res[i]);
+		node->next = next;
+		next->prev = node;
+		node = node->next;
+		i++;
+	}
+	s->asize = len;
+	s->abot = next;
 }
 
-int rr(t_stack *a)
+void	init_index(t_pre_val *pre, int *res, int len)
 {
-	t_node	*node;
-	
-	if (!a->bot)
-		return (0);
-	node = a->bot;
-	a->bot = a->bot->up;
-	a->bot->down = 0;
-	node->down = a->top;
-	a->top->up = node;
-	node->up = 0;
-	a->top = node;
-	printf("rr%s\n", NAME_(a));
-	return (1);
+	int arr[2147483647] = {0,};
+	int 	i;
+
+	while (pre)
+	{
+		arr[pre->val] = pre->idx;
+		pre++;
+	}
+	 i = 0;
+	while (i < 2147483647 && arr[i] < len)
+	{
+		if (arr[i] != 0)
+		{
+			res[arr[i]] = i + 1;
+		}
+		i++;
+	}
 }

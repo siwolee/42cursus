@@ -8,10 +8,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Tue Jan  3 16:32:29 2023
+# Make data base, printed on Tue Jan 10 15:05:06 2023
 
 # Variables
 
+ 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
@@ -22,9 +23,10 @@ MAIN_FILE = main.c
 VSCODE_LOG_NATIVE = false
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
+# makefile (from `Makefile', line 34)
+CHK_SRCS = $(wildcard $(CHK_SRCS_DIR)/*.c)
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
- 
 # automatic
 @F = $(notdir $@)
 # makefile
@@ -37,6 +39,8 @@ VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupp
 _ = /usr/bin/make
 # makefile (from `Makefile', line 27)
 CFLAGS = -Wall -Werror -Wextra -g3
+# makefile (from `Makefile', line 33)
+CHK_FILE = $(CHK_DIR)/chker.c
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
 # environment
@@ -44,15 +48,13 @@ VSCODE_VERBOSE_LOGGING = true
 # makefile (from `Makefile', line 22)
 OBJS = $(SRCS:.c=.o)
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cv240036rj/T/vscode-ipc-924f4cff-2acb-40c2-8876-0d68c21c2eba.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cv240036rj/T/vscode-ipc-24da6f1b-7381-4226-ab38-ede7a3a1b1ae.sock
 # environment
 VSCODE_CWD = /
 # environment
 PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/siwolee/localBin
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
-# environment
-LaunchInstanceID = A58C493C-625C-4859-85FB-131E331EC0BF
 # makefile (from `Makefile', line 20)
 SRCS_DIR = ./srcs
 # environment
@@ -62,7 +64,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.nLs27MLt87/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.kuSRV2lCHl/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -103,6 +105,8 @@ SRCS = $(wildcard $(SRCS_DIR)/*.c)
 SHLVL = 1
 # makefile (from `Makefile', line 26)
 CC = gcc
+# makefile (from `Makefile', line 30)
+CHK_DIR = ./chk
 # default
 MAKE_VERSION := 3.81
 # environment
@@ -127,24 +131,28 @@ TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n000cv240036rj/T/
 VSCODE_IPC_HOOK = /Users/siwolee/Library/Application Support/Code/1.67.2-main.sock
 # makefile
 MAKEFLAGS = Rrqp
+# makefile (from `Makefile', line 35)
+CHK_OBJS = $(CHK_SRCS:.c=.o)
 # environment
 MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000001.Electron
+XPC_SERVICE_NAME = com.microsoft.VSCode.1140
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
 __CF_USER_TEXT_ENCODING = 0x19B11:0x0:0x0
-# environment
-COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
 <F = $(notdir $<)
+# makefile (from `Makefile', line 29)
+CHK = chker
+# makefile (from `Makefile', line 32)
+CHK_SRCS_DIR = $(CHK_DIR)/srcs
 # makefile (from `Makefile', line 18)
 TEST_FILE = test.c
 # environment
@@ -153,13 +161,12 @@ EDITOR = /usr/bin/vim
 PAGER = less
 # environment
 LC_ALL = C
-# environment
-SECURITYSESSIONID = 186a6
 # automatic
 ^F = $(notdir $^)
- 
 # default
 SUFFIXES := 
+# makefile (from `Makefile', line 31)
+CHK_INC = $(CHK_DIR)/include
 # default
 .INCLUDE_DIRS = /usr/local/include
 # environment
@@ -167,20 +174,21 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 5021
+VSCODE_PID = 1411
 # variable set hash-table stats:
-# Load=77/1024=8%, Rehash=0, Collisions=6/122=5%
+# Load=81/1024=8%, Rehash=0, Collisions=4/117=3%
 
 # Pattern-specific Variable Values
 
+ 
 # No pattern-specific variable values.
 
 # Directories
 
-# . (device 16777225, inode 882918): 15 files, no impossibilities.
-# ./srcs (device 16777225, inode 1045709): 16 files, no impossibilities.
+# . (device 16777225, inode 882918): 24 files, no impossibilities.
+# ./srcs (device 16777225, inode 1045709): 11 files, no impossibilities.
 
-# 31 files, no impossibilities in 2 directories.
+# 35 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
@@ -190,19 +198,15 @@ VSCODE_PID = 5021
 
 # Not a target:
 srcs/temp.c:
-#  Implicit rule search has been done.
-#  Last modified 2023-01-02 13:39:42
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-srcs/sort_merge.o: srcs/get_next_line.c srcs/get_next_line_utils.c srcs/operate.c srcs/operater_.c srcs/pretreat.c srcs/sort_merge.c srcs/temp.c
 #  Implicit rule search has not been done.
-#  Last modified 2023-01-03 16:30:29
-#  File has been updated.
-#  Successfully updated.
-#  commands to execute (from `Makefile', line 40):
+#  Modification time never checked.
+#  File has not been updated.
+
+srcs/sort_merge.o: srcs/check.c srcs/ft_atoi.c srcs/operate.c srcs/operater_.c srcs/pretreat.c srcs/sanantest.c srcs/sort_merge.c srcs/sort_short.c srcs/temp.c
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 47):
 	$(CC) $(CFLAGS) $(CDEBUG) -I$(INC_DIR) -c $< -o $@
 	
 
@@ -212,23 +216,12 @@ all: push_swap
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/9=0%
+#  Successfully updated.
 
 .PHONY: fclean clean test all re
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-
-# Not a target:
-srcs/get_next_line.c:
-#  Implicit rule search has been done.
-#  Last modified 2023-01-03 15:51:34
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 .SUFFIXES:
@@ -239,72 +232,83 @@ srcs/get_next_line.c:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2023-01-03 16:32:22
+#  Last modified 2023-01-09 16:12:34
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+srcs/ft_atoi.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+srcs/sanantest.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 test:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 37):
+#  commands to execute (from `Makefile', line 50):
 	$(CC) $(CFLAGS) -o $(TEST) -I$(INC_DIR) $(SRCS) $(TEST_FILE)
 	
 
 # Not a target:
 srcs/operater_.c:
-#  Implicit rule search has been done.
-#  Last modified 2023-01-02 13:39:42
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+srcs/check.o: srcs/check.c srcs/ft_atoi.c srcs/operate.c srcs/operater_.c srcs/pretreat.c srcs/sanantest.c srcs/sort_merge.c srcs/sort_short.c srcs/temp.c
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 47):
+	$(CC) $(CFLAGS) $(CDEBUG) -I$(INC_DIR) -c $< -o $@
+	
 
 # Not a target:
 srcs/sort_merge.c:
-#  Implicit rule search has been done.
-#  Last modified 2023-01-02 16:22:26
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 fclean: clean
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
+#  commands to execute (from `Makefile', line 61):
+	rm -rf $(NAME) $(TEST) $(CHK)
+	
+
+srcs/sort_short.o: srcs/check.c srcs/ft_atoi.c srcs/operate.c srcs/operater_.c srcs/pretreat.c srcs/sanantest.c srcs/sort_merge.c srcs/sort_short.c srcs/temp.c
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 #  commands to execute (from `Makefile', line 47):
-	rm -rf $(NAME) $(TEST)
-	
-
-srcs/get_next_line_utils.o: srcs/get_next_line.c srcs/get_next_line_utils.c srcs/operate.c srcs/operater_.c srcs/pretreat.c srcs/sort_merge.c srcs/temp.c
-#  Implicit rule search has not been done.
-#  Last modified 2023-01-03 16:30:29
-#  File has been updated.
-#  Successfully updated.
-#  commands to execute (from `Makefile', line 40):
 	$(CC) $(CFLAGS) $(CDEBUG) -I$(INC_DIR) -c $< -o $@
 	
 
-srcs/pretreat.o: srcs/get_next_line.c srcs/get_next_line_utils.c srcs/operate.c srcs/operater_.c srcs/pretreat.c srcs/sort_merge.c srcs/temp.c
+srcs/pretreat.o: srcs/check.c srcs/ft_atoi.c srcs/operate.c srcs/operater_.c srcs/pretreat.c srcs/sanantest.c srcs/sort_merge.c srcs/sort_short.c srcs/temp.c
 #  Implicit rule search has not been done.
-#  Last modified 2023-01-03 16:30:29
-#  File has been updated.
-#  Successfully updated.
-#  commands to execute (from `Makefile', line 40):
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 47):
 	$(CC) $(CFLAGS) $(CDEBUG) -I$(INC_DIR) -c $< -o $@
 	
 
-srcs/operate.o: srcs/get_next_line.c srcs/get_next_line_utils.c srcs/operate.c srcs/operater_.c srcs/pretreat.c srcs/sort_merge.c srcs/temp.c
+srcs/operate.o: srcs/check.c srcs/ft_atoi.c srcs/operate.c srcs/operater_.c srcs/pretreat.c srcs/sanantest.c srcs/sort_merge.c srcs/sort_short.c srcs/temp.c
 #  Implicit rule search has not been done.
-#  Last modified 2023-01-03 16:30:29
-#  File has been updated.
-#  Successfully updated.
-#  commands to execute (from `Makefile', line 40):
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 47):
 	$(CC) $(CFLAGS) $(CDEBUG) -I$(INC_DIR) -c $< -o $@
 	
 
@@ -313,6 +317,14 @@ srcs/operate.o: srcs/get_next_line.c srcs/get_next_line_utils.c srcs/operate.c s
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+
+chker:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 55):
+	$(CC) $(CFLAGS) -o $(CHK) -I$(CHK_INC) $(CHK_SRCS) $(CHK_FILE)	
+	
 
 re: fclean all
 #  Phony target (prerequisite of .PHONY).
@@ -325,75 +337,49 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 44):
+#  commands to execute (from `Makefile', line 58):
 	rm -rf $(OBJS)
 	
 
-srcs/temp.o: srcs/get_next_line.c srcs/get_next_line_utils.c srcs/operate.c srcs/operater_.c srcs/pretreat.c srcs/sort_merge.c srcs/temp.c
+srcs/temp.o: srcs/check.c srcs/ft_atoi.c srcs/operate.c srcs/operater_.c srcs/pretreat.c srcs/sanantest.c srcs/sort_merge.c srcs/sort_short.c srcs/temp.c
 #  Implicit rule search has not been done.
-#  Last modified 2023-01-03 16:30:29
-#  File has been updated.
-#  Successfully updated.
-#  commands to execute (from `Makefile', line 40):
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 47):
 	$(CC) $(CFLAGS) $(CDEBUG) -I$(INC_DIR) -c $< -o $@
 	
 
-push_swap: srcs/get_next_line.o srcs/get_next_line_utils.o srcs/operate.o srcs/operater_.o srcs/pretreat.o srcs/sort_merge.o srcs/temp.o
+push_swap:
 #  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  File does not exist.
+#  Last modified 2023-01-09 15:59:38
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := push_swap
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := srcs/get_next_line.o srcs/get_next_line_utils.o srcs/operate.o srcs/operater_.o srcs/pretreat.o srcs/sort_merge.o srcs/temp.o
-# automatic
-# | := 
-# automatic
-# < := srcs/get_next_line.o
-# automatic
-# ^ := srcs/get_next_line.o srcs/get_next_line_utils.o srcs/operate.o srcs/operater_.o srcs/pretreat.o srcs/sort_merge.o srcs/temp.o
-# automatic
-# ? := srcs/get_next_line.o srcs/get_next_line_utils.o srcs/operate.o srcs/operater_.o srcs/pretreat.o srcs/sort_merge.o srcs/temp.o
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=5/17=29%
-#  commands to execute (from `Makefile', line 32):
-	$(CC) $(CFLAGS) $(OBJS) $(MAIN_FILE) -o $(NAME)
+#  Successfully updated.
+#  commands to execute (from `Makefile', line 42):
+	$(CC) $(CFLAGS) -o $(NAME) -I$(INC_DIR) $(SRCS) $(MAIN_FILE)
 	
 
 # Not a target:
-srcs/get_next_line_utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2023-01-03 15:51:31
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-srcs/get_next_line.o: srcs/get_next_line.c srcs/get_next_line_utils.c srcs/operate.c srcs/operater_.c srcs/pretreat.c srcs/sort_merge.c srcs/temp.c
+srcs/check.c:
 #  Implicit rule search has not been done.
-#  Last modified 2023-01-03 16:30:29
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 40):
-	$(CC) $(CFLAGS) $(CDEBUG) -I$(INC_DIR) -c $< -o $@
-	
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+srcs/sort_short.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+check: push_swap chker
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 srcs/pretreat.c:
-#  Implicit rule search has been done.
-#  Last modified 2023-01-02 13:39:42
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 tt: test
 #  Implicit rule search has not been done.
@@ -402,24 +388,36 @@ tt: test
 
 # Not a target:
 srcs/operate.c:
-#  Implicit rule search has been done.
-#  Last modified 2023-01-03 16:15:29
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-srcs/operater_.o: srcs/get_next_line.c srcs/get_next_line_utils.c srcs/operate.c srcs/operater_.c srcs/pretreat.c srcs/sort_merge.c srcs/temp.c
 #  Implicit rule search has not been done.
-#  Last modified 2023-01-03 16:30:29
-#  File has been updated.
-#  Successfully updated.
-#  commands to execute (from `Makefile', line 40):
+#  Modification time never checked.
+#  File has not been updated.
+
+srcs/ft_atoi.o: srcs/check.c srcs/ft_atoi.c srcs/operate.c srcs/operater_.c srcs/pretreat.c srcs/sanantest.c srcs/sort_merge.c srcs/sort_short.c srcs/temp.c
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 47):
+	$(CC) $(CFLAGS) $(CDEBUG) -I$(INC_DIR) -c $< -o $@
+	
+
+srcs/sanantest.o: srcs/check.c srcs/ft_atoi.c srcs/operate.c srcs/operater_.c srcs/pretreat.c srcs/sanantest.c srcs/sort_merge.c srcs/sort_short.c srcs/temp.c
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 47):
+	$(CC) $(CFLAGS) $(CDEBUG) -I$(INC_DIR) -c $< -o $@
+	
+
+srcs/operater_.o: srcs/check.c srcs/ft_atoi.c srcs/operate.c srcs/operater_.c srcs/pretreat.c srcs/sanantest.c srcs/sort_merge.c srcs/sort_short.c srcs/temp.c
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 47):
 	$(CC) $(CFLAGS) $(CDEBUG) -I$(INC_DIR) -c $< -o $@
 	
 
 # files hash-table stats:
-# Load=25/1024=2%, Rehash=0, Collisions=0/105=0%
+# Load=31/1024=3%, Rehash=0, Collisions=0/137=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -428,10 +426,9 @@ srcs/operater_.o: srcs/get_next_line.c srcs/get_next_line_utils.c srcs/operate.c
 
 # # of strings in strcache: 1
 # # of strcache buffers: 1
- 
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue Jan  3 16:32:29 2023
+# Finished Make data base on Tue Jan 10 15:05:06 2023
 
  
