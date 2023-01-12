@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:37:00 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/10 20:47:49 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/11 13:57:26 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,11 @@
 # define RR 92
 # define RRR 93
 # define PASS 94
-# define END '~'
 
-# define ATOP 100
-# define BTOP 101
-# define ABOT 102
-# define BBOT 103
+# define ATOP 101
+# define BTOP 102
+# define ABOT 103
+# define BBOT 104
 
 # define ACTMAX 5
 
@@ -107,6 +106,13 @@ void	mergesort_atop(t_stack *s, unsigned int start, unsigned int end);
 void	mergesort_btop(t_stack *s, unsigned int start, unsigned int end);
 void	mergesort_abot(t_stack *s, unsigned int start, unsigned int end);
 void	mergesort_bbot(t_stack *s, unsigned int start, unsigned int end);
+
+void	merge_sort(t_stack *s, char ab, int len, unsigned int pivot);
+int	sort_big(t_stack *s, char ab);
+int	sort_small(t_stack *s, char ab);
+t_node	*get_top(t_stack *s, char ab);
+char	get_big_ab(char ab);
+char	get_small_ab(char ab);
 
 //execute
 void	ft_bzero(void *s, size_t n);
