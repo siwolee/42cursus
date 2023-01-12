@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   merge2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 10:00:28 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/11 13:58:51 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/12 20:36:39 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
-t_node	*get_top(t_stack *s, char ab)
-{
-	if (ab == ATOP)
-		return (s->atop);
-	else if (ab == BTOP)
-		return (s->btop);
-	else if (ab == ABOT)
-		return (s->abot);
-	else
-		return (s->bbot);
-}
 
 char	get_big_ab(char ab)
 {
@@ -51,38 +39,44 @@ char	get_small_ab(char ab)
 void	merge_sort(t_stack *s, char ab, int len, unsigned int pivot)
 {
 	t_node		*node;
+	t_node		*next;
 	int		cnt[3];
 
+	// printf("%smergesort %d : len%d pivot%d%s\n", C_PINK, ab, len, pivot, C_RS);
+	// print_queue_ab(s);
 	if (len <= 3)
 		return (sort_short(s, len, ab));
 	node = get_top(s, ab);
 	ft_bzero(cnt, sizeof(int) * 3);
-	while (node && cnt[4] < len)
+	while (node && cnt[2] < len)
 	{
+		if (ab <= BTOP)
+			next = node->next;
+		else
+			next = node->prev;
+		// printf("%d ", node->val);
 		if (node->val > pivot)
 			sort_big(s, ab) && cnt[0]++;
 		else
 			sort_small(s, ab) && cnt[1]++;
-		if (ab <= BTOP)
-			node = node->next;
-		else
-			node = node->prev;
-		cnt[3]++;
+		node = next;
+		cnt[2]++;
 	}
-	mergesort(s, get_big_ab(ab), cnt[0], pivot + pivot >> 2);
-	mergesort(s, get_small_ab(ab), cnt[1], pivot >> 2);
+	merge_sort(s, get_big_ab(ab), cnt[0], pivot + (cnt[0] >> 1));
+	merge_sort(s, get_small_ab(ab), cnt[1], pivot - (cnt[1] >> 1));
 }
 
 int	sort_big(t_stack *s, char ab)
 {
-	if (ab == ATOP)
-		execute(s, "4");
-	else if (ab == BTOP)
-		execute(s, "3");
-	else if (ab == ABOT)
-		execute(s, "74");
-	else
-		execute(s, "83");
+	if (ab == ABOT)
+		rra(s);
+	else if (ab == BBOT)
+		rrb(s);
+	if (ab == ATOP || ab == ABOT)
+		pb(s);
+	else if (ab == BTOP || ab == BBOT)
+		pa(s);
+	return (1);
 }
 
 int	sort_small(t_stack *s, char ab)
@@ -95,4 +89,5 @@ int	sort_small(t_stack *s, char ab)
 		execute(s, "746");
 	else
 		execute(s, "835");
+	return (1);
 }

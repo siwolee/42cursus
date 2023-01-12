@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 18:17:10 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/10 20:46:29 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/12 20:36:10 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,6 @@ void	ft_bzero(void *s, size_t n)
 		s++;
 	}
 }
-
-// t_act	*init_act(t_act *act)
-// {
-// 	t_act	*next;
-
-// 	next = malloc(sizeof(t_act));
-// 	if (!next)
-// 		pri_callerr("malloc");
-// 	ft_bzero(next->arr, ACTMAX);
-// 	next->next = NULL;
-// 	if (act == NULL)
-// 		act = next;
-// 	else
-// 		act->next = next;
-// 	return (next);
-// }
 
 t_act	*init_act()
 {
@@ -64,7 +48,7 @@ t_act	*add_act(t_act *act)
 	return (next);
 }
 
-void	add_act_len(t_act *act,char *newact)
+void	add_act_len(t_act *act,char newact)
 {
 	static int	len;
 	int			i;
@@ -72,24 +56,44 @@ void	add_act_len(t_act *act,char *newact)
 	i = 0;
 	while (act->next)
 		act = act->next;
-	while (len < ACTMAX && newact[i] != 0)
+	if (len == ACTMAX)
 	{
-		act->arr[len] = newact[i];
-		i++;
-		len++;
-		if (len == ACTMAX)
-		{
-			act = add_act(act);
-			len = 0;
-		}
+		act = add_act(act);
+		len = 0;
 	}
-	if (newact[i] == 0)
-	{
+	act->arr[len] = newact;
+	len++;
+	if (len < ACTMAX)
 		act->arr[len] = 0;
-	}
 }
 
+// void	add_act_len(t_act *act,char newact)
+// {
+// 	static int	len;
+// 	int			i;
+
+// 	i = 0;
+// 	while (act->next)
+// 		act = act->next;
+// 	while (len < ACTMAX && newact[i] != 0)
+// 	{
+// 		act->arr[len] = newact[i];
+// 		i++;
+// 		len++;
+// 		if (len == ACTMAX)
+// 		{
+// 			act = add_act(act);
+// 			len = 0;
+// 		}
+// 	}
+// 	if (newact[i] == 0)
+// 	{
+// 		act->arr[len] = 0;
+// 	}
+// }
+
 //실제 실행 및 프린트 함수
+
 void	print_final(t_stack *s)
 {
 	int	i;
@@ -134,13 +138,11 @@ void	print_final(t_stack *s)
 		}
 		act = act->next;
 	}
-	printf("total cnt : %d\n", cnt);
+	// printf("total cnt : %d\n", cnt);
 }
 
 void	execute(t_stack *s, char *newact)
 {
-
-	add_act_len(s->act, newact);
 	while (*newact != 0)
 	{
 		if (*newact == '1')
@@ -218,9 +220,8 @@ void	optimization(t_act *act)
 			else
 				b = &(act->arr[i + 1]);
 			if (b == 0)
-				break;
+				break ;
 			chk_double(a, b);
-			
 			i++;
 			cnt++;
 		}
@@ -252,4 +253,16 @@ void	chk_double(char *a, char *b)
 		*a = PASS;
 		*b = PASS;
 	}
+}
+
+t_node	*get_top(t_stack *s, char ab)
+{
+	if (ab == ATOP)
+		return (s->atop);
+	else if (ab == BTOP)
+		return (s->btop);
+	else if (ab == ABOT)
+		return (s->abot);
+	else
+		return (s->bbot);
 }

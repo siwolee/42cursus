@@ -1,35 +1,20 @@
+➜  2_push_swap git:(main) ./test 5 4 3 2 1
+##########################
+|          5 |           |
+|          4 |           |
+|          3 |           |
+|          2 |           |
+|          1 |           |
+##########################
+  a size = 5 |  b size = 0
+  top5 bot1 |  top0 bot0
+##########################
+
+ra
+ra
 ra
 pb
-ra
-ra
 pb
-rb
-ra
-pb
-rb
-pb
-pb
-rb
-pb
-pb
-pb
-rb
-pb
-rb
-pb
-rb
-pb
-rb
-pb
-rb
-pb
-pb
-pb
-pb
-rra
-rra
-sa
-ra
 rra
 pb
 rra
@@ -37,51 +22,31 @@ rra
 sa
 pa
 pa
+pa
+sa
+##########################
+|          1 |           |
+|          2 |           |
+|          3 |           |
+|          4 |           |
+|          5 |           |
+##########################
+  a size = 5 |  b size = 0
+  top1 bot5 |  top0 bot1
+##########################
+
+total cnt : 14
+GOOD
 ra
-pa
 ra
-pa
 ra
-pa
-ra
-pa
-pa
-pa
-pa
 pb
 pb
+rra
+pb
+rra
+rra
 sa
 pa
 pa
 sa
-rra
-rra
-rra
-sa
-pa
-ra
-pa
-pa
-pa
-pa
-ra
-pa
-ra
-pa
-ra
-pa
-pb
-pb
-sa
-pa
-pa
-pb
-sa
-pa
-rra
-rra
-rra
-sa
-pb
-rra
-pa

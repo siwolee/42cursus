@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:44:38 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/10 19:35:48 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/12 19:41:03 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ss(t_stack *s)
 	temp = s->btop->val;
 	s->btop->val = s->btop->next->val;
 	s->btop->next->val = temp;
+	add_act_len(s->act, SS);
 }
 
 void	sa(t_stack *s)
@@ -37,6 +38,7 @@ void	sa(t_stack *s)
 	temp = s->atop->val;
 	s->atop->val = s->atop->next->val;
 	s->atop->next->val = temp;
+	add_act_len(s->act, SA);
 }
 
 void	sb(t_stack *s)
@@ -48,6 +50,7 @@ void	sb(t_stack *s)
 	temp = s->btop->val;
 	s->btop->val = s->btop->next->val;
 	s->btop->next->val = temp;
+	add_act_len(s->act, SB);
 }
 
 void	pa(t_stack *s)
@@ -72,8 +75,10 @@ void	pa(t_stack *s)
 		s->abot = s->atop;
 	if (s->asize == 0)
 		s->abot = 0;
+	add_act_len(s->act, PA);
 	return ;
 }
+
 void	pb(t_stack *s)
 {
 	t_node	*temp;
@@ -96,6 +101,7 @@ void	pb(t_stack *s)
 		s->abot = s->atop;
 	if (s->bsize == 0)
 		s->bbot = 0;
+	add_act_len(s->act, PB);
 }
 
 void	rr(t_stack *s)
@@ -116,6 +122,7 @@ void	rr(t_stack *s)
 	s->atop = s->atop->next;
 	s->atop->prev = 0;
 	s->abot->next = 0;
+	add_act_len(s->act, RR);
 }
 
 void	ra(t_stack *s)
@@ -129,6 +136,7 @@ void	ra(t_stack *s)
 	s->atop = s->atop->next;
 	s->atop->prev = 0;
 	s->abot->next = 0;
+	add_act_len(s->act, RA);
 	return ;
 }
 
@@ -145,6 +153,7 @@ void	rb(t_stack *s)
 	s->btop = s->btop->next;
 	s->btop->prev = 0;
 	s->bbot->next = 0;
+	add_act_len(s->act, RB);
 }
 
 void	rrr(t_stack *s)
@@ -169,6 +178,7 @@ void	rrr(t_stack *s)
 	s->btop->prev = s->bbot;
 	s->btop = s->bbot;
 	s->bbot = temp;
+	add_act_len(s->act, RRR);
 	return ;
 }
 
@@ -185,6 +195,7 @@ void	rra(t_stack *s)
 	s->atop->prev = s->abot;
 	s->atop = s->abot;
 	s->abot = temp;
+	add_act_len(s->act, RRA);
 	return ;
 }
 void	rrb(t_stack *s)
@@ -200,4 +211,5 @@ void	rrb(t_stack *s)
 	s->btop->prev = s->bbot;
 	s->btop = s->bbot;
 	s->bbot = temp;
+	add_act_len(s->act, RRB);
 }

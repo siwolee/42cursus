@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 20:14:57 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/10 20:41:14 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/12 21:55:16 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	mergesort_atop(t_stack *s, unsigned int start, unsigned int end)
 
 	len = end - start + 1;
 	mb = 4;
+	printf("%smergesort ATOP : start %d, end %d, len %d, mb %d\n\033[0m", C_PINK, start, end, len, mb);
+	print_queue_ab(s);
 	if (len & 1)
 		mb = 3;
 	if (len <= 4)
@@ -71,7 +73,9 @@ void	mergesort_btop(t_stack *s, unsigned int start, unsigned int end)
 	t_node	*now, *next;
 
 	len = end - start + 1;
-	mb = 4;
+	mb = 4;	
+	printf("%smergesort BTOP : start %d, end %d, len %d, mb %d\n\033[0m", C_PINK, start, end, len, mb);
+	print_queue_ab(s);
 	if (len & 1)
 		mb = 3;
 	if (len <= 4)
@@ -132,9 +136,10 @@ void	mergesort_abot(t_stack *s, unsigned int start, unsigned int end)
 		return ;
 	}
 	move = (len - mb) >> 1;
-	// printf("%smergesort ABOT : start %d, end %d, len %d, mb %d, move %d\n\033[0m", C_PINK, start, end, len, mb, move);
 	i = 0;
 	now = s->abot;
+	printf("%smergesort ABOT : start %d, end %d, len %d, mb %d\n\033[0m", C_PINK, start, end, len, mb);
+	print_queue_ab(s);
 	while (i < len)
 	{
 		if (now == NULL)
@@ -183,6 +188,8 @@ void	mergesort_bbot(t_stack *s, unsigned int start, unsigned int end)
 	mb = 4;
 	if (len & 1)
 		mb = 3;
+	printf("%smergesort BBOT : start %d, end %d, len %d, mb %d\n\033[0m", C_PINK, start, end, len, mb);
+	print_queue_ab(s);
 	if (len <= 4)
 	{
 		sort_short(s, len, BBOT);
@@ -217,6 +224,8 @@ void	mergesort_bbot(t_stack *s, unsigned int start, unsigned int end)
 	}
 	else
 		mergesort_abot(s, start, end - mb); //b
+	// printf("%smergesort ABOT : start %d, end %d, len %d, mb %d, move %d\n\033[0m", C_PINK, start, end, len, mb, move);
+	// print_queue_ab(s);
 }
 
 // void	get_mostbig(t_node *n, int len, int pivot[])

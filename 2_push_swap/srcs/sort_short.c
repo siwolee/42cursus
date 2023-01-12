@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 11:32:05 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/10 19:35:58 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/12 21:52:55 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,206 +16,193 @@ void	sort_short(t_stack *s, int size, char ab)
 {
 	if (ab == ATOP && pri_sort(s, size, ab))
 		return ;
-	// printf("\033[31msort_short :: %d\n%s", size, C_RS);
 	if (size == 2)
 		sort_two(s, ab);
-	if (size == 3)
-	{
+	else if (size == 3)
 		sort_three(s, ab);
-		return ;
-	}
-	if (size == 4)
-		return (sort_four(s, ab));
+	else if (size == 4)
+		(sort_four(s, ab));
+
+	printf("\033[31msort_short :: %d\n%s", size, C_RS);
+	print_queue_ab(s);
 }
 
 void	sort_two(t_stack *s, char ab)
 {
-	// printf("%ssort two: %d\n%s", C_PINK, ab, C_RS);
 	if (ab == ATOP)
-	{
-		if (s->atop->val > s->atop->next->val)
-			execute(s, "1");
-	}
-	else if (ab == ABOT)
-	{
-		if (s->abot->val < s->abot->prev->val)
-			return (execute(s, "771"));
-		else
-		{
-			return (execute(s, "77"));
-		}
-	}
+		return (sort_two_atop(s, s->atop->val, s->atop->next->val));
 	else if (ab == BTOP)
-	{
-		if (s->btop->val > s->btop->next->val)
-			return (execute(s, "33"));
-		else
-			return (execute(s, "331"));
-	}
-	else if (ab == BBOT)
-	{
-		if (s->bbot->val < s->bbot->prev->val)
-			return (execute(s, "8833"));
-		else
-			return (execute(s, "8383"));
-	}
+		return (sort_two_btop(s, s->btop->val, s->btop->next->val));
+	else if (ab == ABOT)
+		return (sort_two_abot(s, s->abot->val, s->abot->prev->val));
+	else
+		return (sort_two_bbot(s, s->bbot->val, s->bbot->prev->val));
 }
-void	sort_four(t_stack *s, char ab)
+
+void	sort_two_atop(t_stack *s, unsigned int a, unsigned int b)
+{
+	if (a > b)
+		sa(s);
+}
+
+void	sort_two_btop(t_stack *s, unsigned int a, unsigned int b)
+{
+	pa(s);
+	pa(s);
+	if (b > a)
+		sa(s);
+}
+
+void	sort_two_abot(t_stack *s, unsigned int a, unsigned int b)
+{
+	rra(s);
+	rra(s);
+	if (b > a)
+		sa(s);
+}
+
+void	sort_two_bbot(t_stack *s, unsigned int a, unsigned int b)
+{
+	rrb(s);
+	rrb(s);
+	if (a > b)
+		sb(s);
+	pa(s);
+	pa(s);
+}
+
+void	get_max_idx(t_stack *s, unsigned int val[4], char ab)
 {
 	t_node *a;
-	int	val[4];
-	int max[2];
+	unsigned int max;
 	int i;
 
-	max[0] = 0;
-	if (ab == ATOP)
-		a = s->atop;
-	else if (ab == BTOP)
-		a = s->btop;
-	else if (ab == ABOT)
-		a = s->abot;
-	else if (ab == BBOT)
-		a = s->bbot;
-	else
-	{
-		// pri_callerr("sort_four");
-		return ;
-	}
-	i = -1;
+	i = 0;
+	a = get_top(s, ab);
+	max = a->val;
 	while (++i < 4)
 	{
-		val[i] = a->val;
-		if (max[0] < val[i])
-		{
-			max[1] = i;
-			max[0] = val[i];
-		}
 		if (ab <= BTOP)
 			a = a->next;
 		else
 			a = a->prev;
+		if (max < a->val)
+		{
+			val[0] = i;
+			val[i] = max;
+			max = a->val;
+		}
+		else
+			val[i] = a->val;
 	}
-	// printf("\033[31msort_four :: %d\n%s", max[1], C_RS);
-	if (max[1] == 0)
-		return (sort_four_4xxx(s, val, ab));
-	if (max[1] == 1)
-		return (sort_four_x4xx(s, val, ab));
-	if (max[1] == 2)
-		return (sort_four_xx4x(s, val, ab));
+	printf("get_max_idx%d %d %d %d\n", val[0], val[1], val[2], val[3]);
+}
+
+void	sort_four(t_stack *s, char ab)
+{
+	unsigned int	val[4];
+
+	get_max_idx(s, val, ab);
+	if (ab == ATOP)
+		return (sort_four_atop(s, val));
+	else if (ab == BTOP)
+		return (sort_four_btop(s, val));
+	else if (ab == ABOT)
+		return (sort_four_abot(s, val));
 	else
-		return (sort_four_xxx4(s, val, ab));
+		return (sort_four_bbot(s, val));
 }
 
-void	sort_four_4xxx(t_stack *s, int val[], char ab)
+void	sort_four_atop(t_stack *s, unsigned int val[])
 {
-	if (ab == ATOP)
+	unsigned int	i;
+
+	i = 0;
+	if (val[0] == 3)
+		return (sort_three_atop(s, val[1], val[2], val[3]));
+	while (i < 4 && i >= 0)
 	{
-		if (val[1] < val[3])
-		{
-			execute(s, "54447");
-			compare_three(s, val[3], val[2], val[1], BTOP);
-		}
+		if (val[0] == i)
+			ra(s);
 		else
-		{
-			execute(s, "45553");
-			compare_three(s, val[3], val[2], val[1], ABOT);
-		}
+			pb(s);
+		i++;
 	}
-	else if (ab == BTOP)
-	{
-		execute(s, "3");
-		compare_three(s, val[1], val[2], val[3], ab);
-	}
-	else if (ab == ABOT)
-	{
-		execute(s, "7");
-		compare_three(s, val[1], val[2], val[3], ab);
-	}
-	else //ab == BBOT)
-	{
-		execute(s, "83");
-		compare_three(s, val[1], val[2], val[3], ab);
-	}
+	sort_three_btop(s, val[3], val[2], val[1]);
+	rra(s);
 }
 
-void	sort_four_x4xx(t_stack *s, int val[], char ab)
+void	sort_four_btop(t_stack *s, unsigned int val[])
 {
-	if (ab == ATOP)
+	unsigned int	i;
+
+	i = 0;
+	if (val[0] == 3)
 	{
-		if (val[0] < val[3])
-		{
-			execute(s, "45447");
-			compare_three(s, val[3], val[2], val[0], BTOP);
-		}
+		pa(s);
+		return (sort_three_btop(s, val[1], val[2], val[3]));
+	}
+	while (i < 4 && i >= 0)
+	{
+		if (val[0] == i)
+			pa(s);
 		else
-		{
-			execute(s, "54553");
-			compare_three(s, val[3], val[2], val[0], ABOT);
-		}
+			rb(s);
+		i++;
 	}
-	else if (ab == BTOP)
-	{
-		execute(s, "23");
-		compare_three(s, val[0], val[2], val[3], ab);
-	}
-	else if (ab == ABOT)
-	{
-		execute(s, "7715");
-		compare_three(s, val[0], val[2], val[3], ab);
-	}
-	else //ab == BBOT)
-	{
-		execute(s, "8836");
-		compare_three(s, val[0], val[2], val[3], ab);
-		
-	}
-}
-void	sort_four_xx4x(t_stack *s, int val[], char ab)
-{
-	if (ab == ATOP)
-	{
-		execute(s, "44133");
-		compare_three(s, val[0], val[1], val[3], ab);
-	}
-	else if (ab == BTOP)
-	{
-		execute(s, "6238");
-		compare_three(s, val[0], val[1], val[3], ab);
-	}
-	else if (ab == ABOT)
-	{
-		execute(s, "7474774");
-		compare_three(s, val[3], val[1], val[0], BTOP);
-	}
-	else //ab == BBOT)
-	{
-		execute(s, "88838");
-		compare_three(s, val[3], val[1], val[0], BTOP);
-	}
+	rrb(s);
+	rrb(s);
+	rrb(s);
+	return (sort_three_btop(s, val[1], val[2], val[3]));
 }
 
-void	sort_four_xxx4(t_stack *s, int val[], char ab)
+void	sort_four_abot(t_stack *s, unsigned int val[])
 {
-	if (ab == ATOP)
+	unsigned int	i;
+
+	i = 0;
+	if (val[0] == 3)
 	{
-		compare_three(s, val[0], val[1], val[2], ab);
+		rra(s);
+		rra(s);
+		rra(s);
+		rra(s);
+		return (sort_three_atop(s, val[3], val[2], val[1]));
 	}
-	else if (ab == BTOP)
+	while (i < 4 && i >= 0)
 	{
-		execute(s, "6663");
-		compare_three(s, val[2], val[1], val[0], BBOT);
+		rra(s);
+		if (val[0] != i)
+			pb(s);
+		i++;
 	}
-	else if (ab == ABOT)
-	{
-		execute(s, "7774447");
-		compare_three(s, val[0], val[1], val[2], BTOP);
-	}
-	else //ab == BBOT)
-	{
-		execute(s, "88883");
-		compare_three(s, val[2], val[1], val[0], BTOP);
-	}
+	sort_three_btop(s, val[3], val[2], val[1]);
 }
+
+void	sort_four_bbot(t_stack *s, unsigned int val[])
+{
+	unsigned int	i;
+
+	i = 0;
+	if (val[0] == 3)
+	{
+		rrb(s);
+		pa(s);
+		rrb(s);
+		rrb(s);
+		rrb(s);
+		return (sort_three_btop(s, val[3], val[2], val[1]));
+	}
+	while (i < 4 && i >= 0)
+	{
+		rrb(s);
+		if (val[0] == i)
+			pa(s);
+		i++;
+	}
+	sort_three_btop(s, val[3], val[2], val[1]);
+}
+
 
 void	sort_three(t_stack *s, char ab)
 {
@@ -223,19 +210,7 @@ void	sort_three(t_stack *s, char ab)
 	t_node *b;
 	t_node *c;
 
-	if (ab == ATOP)
-		a = s->atop;
-	else if (ab == BTOP)
-		a = s->btop;
-	else if (ab == ABOT)
-		a = s->abot;
-	else if (ab == BBOT)
-		a = s->bbot;
-	else
-	{
-		// printf("error on chk_three\n");
-		return ;
-	}
+	a = get_top(s, ab);
 	if (ab <= BTOP)
 	{
 		b = a->next;
@@ -246,151 +221,126 @@ void	sort_three(t_stack *s, char ab)
 		b = a->prev;
 		c = b->prev;
 	}
-	return (compare_three(s, a->val, b->val, c->val, ab));
+	return (sort_three_ab(s, a->val, b->val, c->val, ab));
 }
 
-void	compare_three(t_stack *s, int a, int b, int c, char ab)
+void	sort_three_ab(t_stack *s, int a, int b, int c, char ab)
 {
-	if (a < b)
-	{
-		if (c < a)
-			return (sort_three_231(s, ab));
-		else if (b < c)
-			return (sort_three_123(s, ab));
-		else //(a < c && c < b)
-			return (sort_three_132(s, ab));
-	}
-	else//(b < a)
-		if (a < c)
-			return (sort_three_213(s, ab));
-		else if (c < b)
-			return (sort_three_321(s, ab));
-		else //(b < c && c < a)
-			return (sort_three_312(s, ab));
-}
-
-void	sort_three_123(t_stack *s, char ab)
-{
-	// printf("\033[31msort_3 :: 123\n%s", C_RS);
 	if (ab == ATOP)
+		sort_three_atop(s, a, b, c);
+	else if (ab == BTOP)
+		sort_three_btop(s, a, b, c);
+	else if (ab == ABOT)
 	{
+		rra(s);
+		rra(s);
+		rra(s);
+		sort_three_atop(s, c, b, a);
+	}
+	else
+	{
+		rrb(s);
+		rrb(s);
+		rrb(s);
+		sort_three_btop(s, c, b, a);
+	}
+}
+
+void	sort_three_atop(t_stack *s, unsigned int a, unsigned int b, unsigned int c)
+{
+	if (a < b && b < c)
 		return ;
-	}
-	else if (ab == ABOT)
-	{
-		return (execute(s, "747713"));
-	}
-	else if (ab == BTOP)
-	{
-		return (execute(s, "623383"));
-	}
-	else if (ab == BBOT)
-	{
-		return (execute(s, "888333"));//ok
-	}
+	if (s->atop->val > s->atop->next->val)
+		sa(s);
+	if (c < a || c < b)
+		ra(s);
+	if (s->atop->val > s->atop->next->val)
+		sa(s);
+	if (c < a || c < b)
+		rra(s);
+	if (s->atop->val > s->atop->next->val)
+		sa(s);
 }
 
-void	sort_three_132(t_stack *s, char ab)
+void	sort_three_btop(t_stack *s, unsigned int a, unsigned int b, unsigned int c)
 {
-	// printf("\033[31msort_3 :: 132\n%s", C_RS);
-	if (ab == ATOP)
-	{
-		return (execute(s, "413"));
-	}
-	else if (ab == BTOP)//ok
-	{
-		return (execute(s, "63383"));
-	}
-	else if (ab == ABOT) //ok
-	{
-		return (execute(s, "771473"));
-	}
-	else if (ab == BBOT)
-	{
-		return (execute(s, "883833"));
-	}
+	if (b > a)
+		sb(s);
+	pa(s);
+	if (s->btop->val < s->btop->next->val)
+		sb(s);
+	pa(s);
+	if (s->atop->val > s->atop->next->val)
+		sa(s);
+	pa(s);
+	if (s->atop->val > s->atop->next->val)
+		sa(s);
+	c = 0;
 }
 
-void	sort_three_213(t_stack *s, char ab)
-{
-	// printf("\033[31msort_3 :: 213\n%s", C_RS);
-	if (ab == ATOP)
-	{
-		return (execute(s, "1"));
-	}
-	else if (ab == BTOP)
-	{
-		return (execute(s, "32313"));
-	}
-	else if (ab == ABOT) 
-	{
-		return (execute(s, "774713"));
-	}
-	else if (ab == BBOT)
-	{
-		return (execute(s, "8388313"));
-	}
-}
+// void	get_max_idx_5(t_stack *s, unsigned int val[5], char ab)
+// {
+// 	t_node *a;
+// 	unsigned int max[2];
+// 	int i;
 
-void	sort_three_231(t_stack *s, char ab)
-{
-	// printf("\033[31msort_3 :: 231\n%s", C_RS);
-	if (ab == ATOP)
-	{
-		return (execute(s, "5171"));
-	}
-	else if (ab == BTOP)
-	{
-		return (execute(s, "3313"));
-	}
-	else if (ab == ABOT) //ok
-	{
-		return (execute(s, "7717"));
-	}
-	else if (ab == BBOT)
-	{
-		return (execute(s, "883383"));
-	}
-}
+// 	max[0] = 0;
+// 	a = get_top(s, ab);
+// 	i = 0;
+// 	while (++i < 5)
+// 	{
+// 		val[i] = a->val;
+// 		if (max[0] < val[i])
+// 		{
+// 			max[1] = i;
+// 			max[0] = val[i];
+// 		}
+// 		if (ab <= BTOP)
+// 			a = a->next;
+// 		else
+// 			a = a->prev;
+// 	}
+// 	val[5] = max[1];
+// }
 
-void	sort_three_312(t_stack *s, char ab)
-{
-	// printf("\033[31msort_3 :: 312\n%s", C_RS);
-	if (ab == ATOP)
-	{
-		return (execute(s, "455377"));
-	}
-	else if (ab == BTOP)
-	{
-		return (execute(s, "3331"));
-	}
-	else if (ab == ABOT)
-	{
-		return (execute(s, "77473"));
-	}
-	else if (ab == BBOT)
-	{
-		return (execute(s, "838833"));
-	}
-}
+// void	sort_five(t_stack *s, char ab)
+// {
+// 	unsigned int	val[5];
 
-void	sort_three_321(t_stack *s, char ab)
-{
-	// printf("\033[31msort_3 :: 321\n%s", C_RS);
-	if (ab == ATOP)
-	{
-		return (execute(s, "415317"));
-	}
-	else if (ab == BTOP)
-	{
-		return (execute(s, "333"));
-	}
-	else if (ab == ABOT)
-	{
-		return (execute(s, "777"));
-	}
-	else if (ab == BBOT)
-	{
-		return (execute(s, "838383"));
-	}
-}
+// 	get_max_idx_5(s, val, ab);
+// 	if (ab == ATOP)
+// 	{
+// 		while (i < 3 && i >= 0)
+// 		{
+// 			rrb(s);
+// 			if (val[4] == i)
+// 				pa(s);
+// 		}
+// 		return (sort__atop(s, val));
+// 	}
+// 	else if (ab == BTOP)
+// 		return (sort_four_btop(s, val));
+// 	else if (ab == ABOT)
+// 		return (sort_four_abot(s, val));
+// 	else
+// 		return (sort_four_bbot(s, val));
+// }
+
+// void	sort_five_atop(t_stack s, unsigned int val[], char ab);
+// {
+// 	unsigned int i;
+
+// 	if (val[5] == 4)
+// 	{
+// 		get_max_idx_4(s, val, ab);
+// 		return (sort_four_atop(s, val))
+// 	}
+// 	i = 0;
+// 	while (i < 5)
+// 	{
+// 		rb(s);
+// 		if (val[4] == i)
+// 			ra(s);
+// 	}
+// 	return (sort__atop(s, val));
+// }

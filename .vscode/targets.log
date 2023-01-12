@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Tue Jan 10 15:05:06 2023
+# Make data base, printed on Thu Jan 12 12:47:24 2023
 
 # Variables
 
@@ -39,7 +39,7 @@ MAKEFILE_LIST :=
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cv240036rj/T/vscode-ipc-84fa7c4a-8eb1-48e7-8bc8-111c66e12dc5.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cv240036rj/T/vscode-ipc-dc76f8db-3f07-4f0a-b217-69c5fd6f99d1.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -53,7 +53,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.kuSRV2lCHl/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.eZBOmOXRiJ/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -113,7 +113,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.1140
+XPC_SERVICE_NAME = com.microsoft.VSCode.1016
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -141,13 +141,12 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 1411
+VSCODE_PID = 73427
 # variable set hash-table stats:
 # Load=64/1024=6%, Rehash=0, Collisions=2/85=2%
 
 # Pattern-specific Variable Values
 
- 
 # No pattern-specific variable values.
 
 # Directories
@@ -186,6 +185,7 @@ Makefile:
 #  Failed to be updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+ 
 
 # Not a target:
 makefile:
@@ -226,6 +226,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Tue Jan 10 15:05:06 2023
+# Finished Make data base on Thu Jan 12 12:47:24 2023
 
  

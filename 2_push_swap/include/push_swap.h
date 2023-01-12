@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:37:00 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/11 13:57:26 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/12 19:06:24 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define ABOT 103
 # define BBOT 104
 
-# define ACTMAX 5
+# define ACTMAX 1000
 
 # define C_PINK "\033[38;5;9m"
 # define C_CYAN "\033[38;5;51m"
@@ -118,7 +118,7 @@ char	get_small_ab(char ab);
 void	ft_bzero(void *s, size_t n);
 t_act	*init_act();
 t_act	*add_act(t_act *act);
-void	add_act_len(t_act *act,char *newact);
+void	add_act_len(t_act *act,char newact);
 void	execute(t_stack *s, char *newact);
 void	print_final(t_stack *s);
 void	optimization(t_act *act);
@@ -127,25 +127,45 @@ void	optimization(t_act *act);
 void	sort_short(t_stack *s, int size, char ab);
 void	sort_two(t_stack *s, char ab);
 
-void	sort_three(t_stack *s, char ab);
-void	compare_three(t_stack *s, int a, int b, int c, char ab);
-void	sort_three_123(t_stack *s, char ab);
-void	sort_three_132(t_stack *s, char ab);
-void	sort_three_213(t_stack *s, char ab);
-void	sort_three_231(t_stack *s, char ab);
-void	sort_three_312(t_stack *s, char ab);
-void	sort_three_321(t_stack *s, char ab);
+void	sort_two(t_stack *s, char ab);
+void	sort_two_atop(t_stack *s, unsigned int a, unsigned int b);
+void	sort_two_btop(t_stack *s, unsigned int a, unsigned int b);
+void	sort_two_abot(t_stack *s, unsigned int a, unsigned int b);
+void	sort_two_bbot(t_stack *s, unsigned int a, unsigned int b);
 
+void	get_max_idx(t_stack *s, unsigned int val[4], char ab);
 void	sort_four(t_stack *s, char ab);
-void	sort_four_4xxx(t_stack *s, int val[], char ab);
-void	sort_four_x4xx(t_stack *s, int val[], char ab);
-void	sort_four_xx4x(t_stack *s, int val[], char ab);
-void	sort_four_xxx4(t_stack *s, int val[], char ab);
+void	sort_four_atop(t_stack *s, unsigned int val[]);
+void	sort_four_btop(t_stack *s, unsigned int val[]);
+void	sort_four_abot(t_stack *s, unsigned int val[]);
+void	sort_four_bbot(t_stack *s, unsigned int val[]);
+
+void	sort_three(t_stack *s, char ab);
+void	sort_three_ab(t_stack *s, int a, int b, int c, char ab);
+void	sort_three_atop(t_stack *s, unsigned int a, unsigned int b, unsigned int c);
+void	sort_three_btop(t_stack *s, unsigned int a, unsigned int b, unsigned int c);
+
+// void	sort_three(t_stack *s, char ab);
+// void	compare_three(t_stack *s, int a, int b, int c, char ab);
+// void	sort_three_123(t_stack *s, char ab);
+// void	sort_three_132(t_stack *s, char ab);
+// void	sort_three_213(t_stack *s, char ab);
+// void	sort_three_231(t_stack *s, char ab);
+// void	sort_three_312(t_stack *s, char ab);
+// void	sort_three_321(t_stack *s, char ab);
+
+// void	sort_four(t_stack *s, char ab);
+// void	sort_four_4xxx(t_stack *s, int val[], char ab);
+// void	sort_four_x4xx(t_stack *s, int val[], char ab);
+// void	sort_four_xx4x(t_stack *s, int val[], char ab);
+// void	sort_four_xxx4(t_stack *s, int val[], char ab);
 
 void	print_queue(t_stack *s, char ab);
 void	print_queue_ab(t_stack *s);
 
 int		pri_all_sort(t_stack *s, int len);
 int		pri_sort(t_stack *s, int len, char ab);
+
+void	chk_double(char *a, char *b);
 
 #endif

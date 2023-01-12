@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:55:06 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/11 13:57:33 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/12 21:53:21 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,19 @@
 int	main(int ac, char **av)
 {
 	t_stack	s;
-	int		len;
+	unsigned int		len;
 
 	len = ac - 1;
 	if (ac <= 2)
 		return (0);
 	pretreat(&s, av + 1, ac - 1);
 	// print_queue_ab(&s);
-	// mergesort_atop(&s, 1, len);
-	merge_sort(&s, ATOP, ac - 1, (ac -1) >> 2);
-	// optimization(s.act);
+	mergesort_atop(&s, 1, len);
+	// merge_sort(&s, ATOP, len, len >> 1);
+	optimization(s.act);
 	print_final(&s);
-	// print_queue_ab(&s);
+	print_queue_ab(&s);
+	
 	pri_all_sort(&s, ac - 1);
 	free_stack(&s);
 }
