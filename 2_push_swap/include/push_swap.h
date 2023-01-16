@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:37:00 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/12 19:06:24 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/16 13:23:58 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,17 +102,27 @@ void	rr(t_stack *s);
 void	rrr(t_stack *s);
 
 //mergesort
-void	mergesort_atop(t_stack *s, unsigned int start, unsigned int end);
-void	mergesort_btop(t_stack *s, unsigned int start, unsigned int end);
-void	mergesort_abot(t_stack *s, unsigned int start, unsigned int end);
-void	mergesort_bbot(t_stack *s, unsigned int start, unsigned int end);
+// void	mergesort_atop(t_stack *s, unsigned int start, unsigned int end);
+// void	mergesort_btop(t_stack *s, unsigned int start, unsigned int end);
+// void	mergesort_abot(t_stack *s, unsigned int start, unsigned int end);
+// void	mergesort_bbot(t_stack *s, unsigned int start, unsigned int end);
 
-void	merge_sort(t_stack *s, char ab, int len, unsigned int pivot);
-int	sort_big(t_stack *s, char ab);
-int	sort_small(t_stack *s, char ab);
-t_node	*get_top(t_stack *s, char ab);
+// void	merge_sort(t_stack *s, char ab, int len, unsigned int pivot);
+// int	sort_big(t_stack *s, char ab);
+// int	sort_small(t_stack *s, char ab);
+t_node	*get_top(t_stack *s, char ab, int len);
+// char	get_big_ab(char ab);
+// char	get_small_ab(char ab);
+
+void sort_merge(t_stack *s, int len, unsigned int pivot[], char ab);
+char	get_mostbig_ab(char ab);
 char	get_big_ab(char ab);
 char	get_small_ab(char ab);
+void	sort_merge_mostbig(t_stack *s, char ab, int *cnt);
+void	sort_merge_big(t_stack *s, char ab, int *cnt);
+void	sort_merge_small(t_stack *s, char ab, int *cnt);
+void	get_pivot(unsigned int len, unsigned int pivot[], t_node *now);
+
 
 //execute
 void	ft_bzero(void *s, size_t n);
@@ -124,6 +134,12 @@ void	print_final(t_stack *s);
 void	optimization(t_act *act);
 
 //shortsort
+// void	sort_short_equal(t_stack *s, int size, char ab);
+// void	sort_three_equalsize_a(t_stack *s);
+// void	sort_three_equalsize_b(t_stack *s);
+void	sort_four_eqaulsize_a(t_stack *s, unsigned int val[]);
+void	sort_four_eqaulsize_b(t_stack *s, unsigned int val[]);
+
 void	sort_short(t_stack *s, int size, char ab);
 void	sort_two(t_stack *s, char ab);
 
@@ -141,9 +157,9 @@ void	sort_four_abot(t_stack *s, unsigned int val[]);
 void	sort_four_bbot(t_stack *s, unsigned int val[]);
 
 void	sort_three(t_stack *s, char ab);
-void	sort_three_ab(t_stack *s, int a, int b, int c, char ab);
-void	sort_three_atop(t_stack *s, unsigned int a, unsigned int b, unsigned int c);
-void	sort_three_btop(t_stack *s, unsigned int a, unsigned int b, unsigned int c);
+void	sort_three_ab(t_stack *s, t_node *a, char ab);
+void	sort_three_atop(t_stack *s, unsigned int a);
+void	sort_three_btop(t_stack *s, unsigned int a);
 
 // void	sort_three(t_stack *s, char ab);
 // void	compare_three(t_stack *s, int a, int b, int c, char ab);
@@ -167,5 +183,8 @@ int		pri_all_sort(t_stack *s, int len);
 int		pri_sort(t_stack *s, int len, char ab);
 
 void	chk_double(char *a, char *b);
+
+void sort_merge4(t_stack *s, unsigned int start, unsigned int end, char ab);
+
 
 #endif

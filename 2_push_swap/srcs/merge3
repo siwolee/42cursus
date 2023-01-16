@@ -1,0 +1,163 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   merge3.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/22 20:14:57 by siwolee           #+#    #+#             */
+/*   Updated: 2023/01/15 13:14:30 by siwolee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/push_swap.h"
+
+
+void	get_pivot(unsigned int len, unsigned int pivot[], t_node *now)
+{
+	unsigned int i;
+	unsigned int max;
+	unsigned int mb;
+
+	mb = 4;
+	if (len & 1)
+		mb = 3;
+	if (pivot[0] == 0)
+	{
+		pivot[0] = len - mb;
+		pivot[1] = (len - mb) >> 1;
+		return ;
+	}
+	i = 0;
+	max = 0;
+	while (i < len)
+	{
+		if (max < now->val)
+			max = now->val;
+		now = now->next;
+		i++;
+	}
+	max -= mb;
+	len -= mb;
+	pivot[0] = max;
+	pivot[1] = max - (len >> 1);
+}
+
+void sort_merge(t_stack *s, int len, unsigned int pivot[], char ab)
+{
+	int		cnt[3];
+	t_node	*now;
+	t_node	*next;
+	int		i;
+
+	if (len <= 4)
+		return (sort_short(s, len, ab));
+	if (pri_sort(s, len, ab))
+		return ;
+	now = get_top(s, ab);
+	get_pivot(len, pivot, now);
+	i = 0;
+	while (++i <= len)
+	{
+		next = now->next;
+		if (now->val > pivot[0])
+			sort_merge_mostbig(s, ab, cnt);
+		else if (now->val > pivot[1])
+			sort_merge_big(s, ab, cnt + 1);
+		else
+			sort_merge_small(s, ab, cnt + 2);
+		now = next;
+	}
+	sort_short(s, cnt[0], get_mostbig_ab(ab));
+	sort_merge(s, cnt[1], pivot, get_big_ab(ab));
+	sort_merge(s, cnt[2], pivot, get_small_ab(ab));
+}
+
+//avot short sort ㄷㅏ시?
+//mb.. bot만 있음
+char	get_mostbig_ab(char ab)
+{
+	if (ab == ATOP)
+		return (BBOT);
+	else if (ab == BTOP)
+		return (ABOT);
+	else if (ab == ABOT)
+		return (BBOT);
+	else
+		return (ABOT);
+}
+
+char	get_big_ab(char ab)
+{
+	if (ab == ATOP)
+		return (BTOP);
+	else if (ab == BTOP)
+		return (ATOP);
+	else if (ab == ABOT)
+		return (ATOP);
+	else
+		return (ATOP);
+}
+
+char	get_small_ab(char ab)
+{
+	if (ab == ATOP)
+		return (ABOT);
+	else if (ab == BTOP)
+		return (BBOT);
+	else if (ab == ABOT)
+		return (BTOP);
+	else
+		return (BTOP);
+}
+
+void	sort_merge_mostbig(t_stack *s, char ab, int *cnt)
+{
+	*cnt = *cnt + 1;
+	if (ab == ABOT)
+		rra(s);
+	else if (ab == BBOT)
+		rrb(s);
+	if (ab == ATOP || ab == ABOT)
+	{
+		pb(s);
+		rb(s);
+	}
+	else
+	{
+		pa(s);
+		ra(s);
+	}
+}
+
+void	sort_merge_big(t_stack *s, char ab, int *cnt)
+{
+	*cnt = *cnt + 1;
+	if (ab == ATOP)
+		pb(s);
+	else if (ab == BTOP)
+		pa(s);
+	else if (ab == ABOT)
+		rra(s);
+	else
+	{
+		rrb(s);
+		pa(s);
+	}
+}
+
+void	sort_merge_small(t_stack *s, char ab, int *cnt)
+{
+	*cnt = *cnt + 1;
+	if (ab == ATOP)
+		ra(s);
+	else if (ab == BTOP)
+		rb(s);
+	else if (ab == ABOT)
+	{
+		rra(s);
+		pb(s);
+	}
+	else
+		rrb(s);
+}

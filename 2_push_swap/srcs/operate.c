@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 18:17:10 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/12 20:36:10 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/13 01:03:04 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,16 +253,4 @@ void	chk_double(char *a, char *b)
 		*a = PASS;
 		*b = PASS;
 	}
-}
-
-t_node	*get_top(t_stack *s, char ab)
-{
-	if (ab == ATOP)
-		return (s->atop);
-	else if (ab == BTOP)
-		return (s->btop);
-	else if (ab == ABOT)
-		return (s->abot);
-	else
-		return (s->bbot);
 }
