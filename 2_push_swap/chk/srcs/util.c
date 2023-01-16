@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 22:35:54 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/09 00:52:29 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/16 23:07:04 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,11 @@ int	chk_execute(t_stack *s, int fd)
 		else if (x[0] == 'r' && x[1] == 'r' && x[2] == 'b' && x[3] == '\n')
 			rrb(s);
 		else if (x[0] == 's' && x[1] == 's' && x[2] == '\n')
-			execute(s, "91");
+			ss(s);
 		else if (x[0] == 'r' && x[1] == 'r' && x[2] == '\n')
-			execute(s, "92");
+			rr(s);
 		else if (x[0] == 'r' && x[1] == 'r' && x[2] == 'r' && x[3] == '\n')
-			execute(s, "93");
-		// else
-		// {
-		// 	free (x);
-		// 	return (1);
-		// }
+			rrr(s);
 		free(x);
 	}
 	return (0);

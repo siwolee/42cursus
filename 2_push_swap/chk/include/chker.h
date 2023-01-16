@@ -27,6 +27,13 @@
 # define BTOP 101
 # define ABOT 102
 # define BBOT 103
+# define ACTMAX 6000
+
+typedef struct s_act
+{
+	char			arr[ACTMAX];
+	struct s_act	*next;
+}					t_act;
 
 typedef struct s_node
 {
@@ -53,7 +60,6 @@ void	init_stack(t_stack *s, int res[], int len);
 void    print_queue_ab(t_stack *s); // delete
 
 //operater_
-void	s_(t_stack *s, int ab);
 void	sa(t_stack *s);
 void	sb(t_stack *s);				
 void	pa(t_stack *s);				
@@ -62,9 +68,11 @@ void	ra(t_stack *s);
 void	rb(t_stack *s);
 void	rra(t_stack *s);
 void	rrb(t_stack *s);
-void	rr_(t_stack *s, int ab);
+void	ss(t_stack *s);
+void	rr(t_stack *s);
+void	rrr(t_stack *s);
 
-void	execute(t_stack *s, char *act);
+void	execute(t_stack *s, char *newact);
 
 int		chk_execute(t_stack *s, int fd);
 int		chk_sort(t_stack *s, int len);

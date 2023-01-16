@@ -7,10 +7,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
  
-make: *** No rule to make target `all'.  Stop.
 
-
-# Make data base, printed on Thu Jan 12 12:47:24 2023
+# Make data base, printed on Mon Jan 16 16:29:03 2023
 
 # Variables
 
@@ -39,7 +37,7 @@ MAKEFILE_LIST :=
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cv240036rj/T/vscode-ipc-dc76f8db-3f07-4f0a-b217-69c5fd6f99d1.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cv240036rj/T/vscode-ipc-0a8b1543-2e6c-4228-a665-5da0ce6db636.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -47,13 +45,15 @@ PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/usr/local/
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
+LaunchInstanceID = 5C71C97A-9376-41DA-8847-1A1FFF18E928
+# environment
 VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.eZBOmOXRiJ/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.xZ2mvHUMtV/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -113,13 +113,15 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.1016
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x1000004a.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
 __CF_USER_TEXT_ENCODING = 0x19B11:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
@@ -130,6 +132,8 @@ EDITOR = /usr/bin/vim
 PAGER = less
 # environment
 LC_ALL = C
+# environment
+SECURITYSESSIONID = 188f7
 # automatic
 ^F = $(notdir $^)
 # default
@@ -141,9 +145,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 73427
+VSCODE_PID = 13072
 # variable set hash-table stats:
-# Load=64/1024=6%, Rehash=0, Collisions=2/85=2%
+# Load=67/1024=7%, Rehash=0, Collisions=2/88=2%
 
 # Pattern-specific Variable Values
 
@@ -151,7 +155,7 @@ VSCODE_PID = 73427
 
 # Directories
 
-# . (device 16777225, inode 475285): 12 files, no impossibilities.
+# . (device 16777226, inode 475285): 12 files, no impossibilities.
 
 # 12 files, no impossibilities in 1 directories.
 
@@ -185,7 +189,6 @@ Makefile:
 #  Failed to be updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
- 
 
 # Not a target:
 makefile:
@@ -226,6 +229,8 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Thu Jan 12 12:47:24 2023
+# Finished Make data base on Mon Jan 16 16:29:03 2023
 
  
+make: *** No rule to make target `all'.  Stop.
+

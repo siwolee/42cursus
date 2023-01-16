@@ -3,36 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   operater_.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:44:38 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/08 22:57:35 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/16 22:53:13 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "chker.h"
 
-void	s_(t_stack *s, int ab)
+void	ss(t_stack *s)
 {
 	unsigned int	temp;
 
-	if (ab == 0)
-	{
-		if (!s->atop || !s->atop->next)
-			return ;
-		temp = s->atop->val;
-		s->atop->val = s->atop->next->val;
-		s->atop->next->val = temp;
-		printf("sa\n");
-		return ;
-	}
+	if (!s->atop || !s->atop->next)
+		return (sb(s));
 	if (!s->btop || !s->btop->next)
-		return ;
+		return (sa(s));
+	temp = s->atop->val;
+	s->atop->val = s->atop->next->val;
+	s->atop->next->val = temp;
 	temp = s->btop->val;
 	s->btop->val = s->btop->next->val;
 	s->btop->next->val = temp;
-	printf("sb\n");
 }
 
 void	sa(t_stack *s)
@@ -44,7 +37,6 @@ void	sa(t_stack *s)
 	temp = s->atop->val;
 	s->atop->val = s->atop->next->val;
 	s->atop->next->val = temp;
-	printf("sa\n");
 }
 
 void	sb(t_stack *s)
@@ -56,7 +48,6 @@ void	sb(t_stack *s)
 	temp = s->btop->val;
 	s->btop->val = s->btop->next->val;
 	s->btop->next->val = temp;
-	printf("sb\n");
 }
 
 void	pa(t_stack *s)
@@ -73,7 +64,6 @@ void	pa(t_stack *s)
 	s->btop = temp;
 	if (s->btop)
 		s->btop->prev = 0;
-	printf("pa\n");
 	s->asize++;
 	s->bsize--;
 	if (s->bsize == 1)
@@ -84,6 +74,7 @@ void	pa(t_stack *s)
 		s->abot = 0;
 	return ;
 }
+
 void	pb(t_stack *s)
 {
 	t_node	*temp;
@@ -106,7 +97,26 @@ void	pb(t_stack *s)
 		s->abot = s->atop;
 	if (s->bsize == 0)
 		s->bbot = 0;
-	printf("pb\n");
+}
+
+void	rr(t_stack *s)
+{
+	if (!s->btop || s->bsize < 2)
+		return (ra(s));
+	if (s->asize < 2 || !s->atop)
+		return (rb(s));
+	if (s->bbot)
+		s->bbot->next = s->btop;
+	s->btop->prev = s->bbot;
+	s->bbot = s->btop;
+	s->btop = s->btop->next;
+	s->btop->prev = 0;
+	s->bbot->next = 0;
+	s->atop->prev = s->abot;
+	s->abot = s->atop;
+	s->atop = s->atop->next;
+	s->atop->prev = 0;
+	s->abot->next = 0;
 }
 
 void	ra(t_stack *s)
@@ -120,7 +130,6 @@ void	ra(t_stack *s)
 	s->atop = s->atop->next;
 	s->atop->prev = 0;
 	s->abot->next = 0;
-	printf("ra\n");
 	return ;
 }
 
@@ -137,7 +146,31 @@ void	rb(t_stack *s)
 	s->btop = s->btop->next;
 	s->btop->prev = 0;
 	s->bbot->next = 0;
-	printf("rb\n");
+}
+
+void	rrr(t_stack *s)
+{
+	t_node	*temp;
+
+	if (s->bsize < 2 || !s->btop || !s->bbot)
+		return (rra(s));
+	if (s->asize < 2|| !s->atop || !s->abot)
+		return (rrb(s));
+	temp = s->abot->prev;
+	s->abot->prev->next = 0;
+	s->abot->prev = 0;
+	s->abot->next = s->atop;
+	s->atop->prev = s->abot;
+	s->atop = s->abot;
+	s->abot = temp;
+	temp = s->bbot->prev;
+	s->bbot->prev->next = 0;
+	s->bbot->prev = 0;
+	s->bbot->next = s->btop;
+	s->btop->prev = s->bbot;
+	s->btop = s->bbot;
+	s->bbot = temp;
+	return ;
 }
 
 void	rra(t_stack *s)
@@ -153,7 +186,6 @@ void	rra(t_stack *s)
 	s->atop->prev = s->abot;
 	s->atop = s->abot;
 	s->abot = temp;
-	printf("rra\n");
 	return ;
 }
 void	rrb(t_stack *s)
@@ -169,5 +201,4 @@ void	rrb(t_stack *s)
 	s->btop->prev = s->bbot;
 	s->btop = s->bbot;
 	s->bbot = temp;
-	printf("rrb\n");
 }

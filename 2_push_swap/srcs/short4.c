@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   short4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 20:58:43 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/16 13:49:22 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/16 21:38:13 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	sort_four_atop(t_stack *s, unsigned int val[])
 
 	i = 0;
 	if (val[0] == 3)
-		return (sort_three_atop(s, val[1]));
+		return (sort_three(s, ATOP));
 	while (i < 4 && i >= 0)
 	{
 		if (val[0] == i)
@@ -56,10 +56,10 @@ void	sort_four_btop(t_stack *s, unsigned int val[])
 	unsigned int	i;
 
 	i = 0;
-	if (val[0] == 3)
+	if (val[0] == 0)
 	{
 		pa(s);
-		return (sort_three_btop(s, val[1]));
+		return (sort_three(s, BTOP));
 	}
 	while (i < 4 && i >= 0)
 	{
@@ -73,7 +73,7 @@ void	sort_four_btop(t_stack *s, unsigned int val[])
 	rrb(s);
 	rrb(s);
 	// print_queue_ab(s);
-	return (sort_three_btop(s, val[1]));
+	return (sort_three(s, BTOP));
 }
 
 void	sort_four_abot(t_stack *s, unsigned int val[])
@@ -81,14 +81,13 @@ void	sort_four_abot(t_stack *s, unsigned int val[])
 	unsigned int	i;
 
 	i = 0;
-	if (val[0] == 3)
+	if (val[0] == 0)
 	{
 		rra(s);
 		rra(s);
 		rra(s);
 		rra(s);
-		// print_queue_ab(s);
-		return (sort_three_atop(s, val[3]));
+		return (sort_three(s, ATOP));
 	}
 	while (i < 4 && i >= 0)
 	{
@@ -98,7 +97,7 @@ void	sort_four_abot(t_stack *s, unsigned int val[])
 		i++;
 	}
 	// print_queue_ab(s);
-	sort_three_btop(s, val[3]);
+	sort_three(s, BTOP);
 }
 
 void	sort_four_bbot(t_stack *s, unsigned int val[])
@@ -106,7 +105,7 @@ void	sort_four_bbot(t_stack *s, unsigned int val[])
 	unsigned int	i;
 
 	i = 0;
-	if (val[0] == 3)
+	if (val[0] == 0)
 	{
 		rrb(s);
 		pa(s);
@@ -114,7 +113,7 @@ void	sort_four_bbot(t_stack *s, unsigned int val[])
 		rrb(s);
 		rrb(s);
 		// print_queue_ab(s);
-		return (sort_three_btop(s, val[3]));
+		return (sort_three(s, BTOP));
 	}
 	while (i < 4 && i >= 0)
 	{
@@ -124,5 +123,5 @@ void	sort_four_bbot(t_stack *s, unsigned int val[])
 		i++;
 	}
 	// print_queue_ab(s);
-	sort_three_btop(s, val[3]);
+	sort_three(s, BTOP);
 }

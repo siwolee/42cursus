@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   merge2.c                                           :+:      :+:    :+:   */
+/*   merge2                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 10:00:28 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/12 20:36:39 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/16 16:29:03 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,30 +64,4 @@ void	merge_sort(t_stack *s, char ab, int len, unsigned int pivot)
 	}
 	merge_sort(s, get_big_ab(ab), cnt[0], pivot + (cnt[0] >> 1));
 	merge_sort(s, get_small_ab(ab), cnt[1], pivot - (cnt[1] >> 1));
-}
-
-int	sort_big(t_stack *s, char ab)
-{
-	if (ab == ABOT)
-		rra(s);
-	else if (ab == BBOT)
-		rrb(s);
-	if (ab == ATOP || ab == ABOT)
-		pb(s);
-	else if (ab == BTOP || ab == BBOT)
-		pa(s);
-	return (1);
-}
-
-int	sort_small(t_stack *s, char ab)
-{
-	if (ab == ATOP)
-		execute(s, "46");
-	else if (ab == BTOP)
-		execute(s, "35");
-	else if (ab == ABOT)
-		execute(s, "746");
-	else
-		execute(s, "835");
-	return (1);
 }

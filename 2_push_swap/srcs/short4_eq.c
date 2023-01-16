@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   short4_eq.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 20:04:55 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/16 13:49:35 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/16 20:29:21 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	get_max_idx(t_stack *s, unsigned int val[4], char ab)
 	unsigned int temp;
 
 	i = -1;
-	a = get_top(s, ab, -1);
+	// temp = s->bsize;
+	// if (ab & 1)
+	// 	temp = s->asize;
+	a = get_top(s, &ab, 4);
 	val[0] = 0;
 	max[0] = 0;
 	while (++i < 4)

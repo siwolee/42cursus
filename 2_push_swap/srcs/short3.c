@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   short3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 20:09:30 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/16 13:44:13 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/16 22:32:00 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sort_three(t_stack *s, char ab)
 		execute(s, "777");
 	if (ab == BBOT)
 		execute(s, "888");
-	if (ab & 1)
+	if (ab == ATOP || ab == ABOT)
 	{
 		a = s->atop;
 		ab = ATOP;
@@ -41,6 +41,8 @@ void	sort_three_ab(t_stack *s, t_node *a, char ab)
 	{
 		if (a->val > a->next->next->val)
 			val = 1;
+		else
+			val = 3;
 	}
 	else
 	{

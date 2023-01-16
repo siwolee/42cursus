@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:37:00 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/16 13:23:58 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/16 19:51:27 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	rrr(t_stack *s);
 // void	merge_sort(t_stack *s, char ab, int len, unsigned int pivot);
 // int	sort_big(t_stack *s, char ab);
 // int	sort_small(t_stack *s, char ab);
-t_node	*get_top(t_stack *s, char ab, int len);
+t_node	*get_top(t_stack *s, char *ab, int len);
 // char	get_big_ab(char ab);
 // char	get_small_ab(char ab);
 

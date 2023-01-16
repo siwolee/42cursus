@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   short2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 20:04:55 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/16 13:17:57 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/16 20:07:35 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	sort_two_btop(t_stack *s, unsigned int a, unsigned int b)
 void	sort_two_abot(t_stack *s, unsigned int a, unsigned int b)
 {
 	if (s->asize == 2)
-		return (sort_two_atop(s, a, b));
+		return (sort_two_atop(s, b, a));
 	rra(s);
 	rra(s);
 	if (b > a)
@@ -51,7 +51,7 @@ void	sort_two_abot(t_stack *s, unsigned int a, unsigned int b)
 void	sort_two_bbot(t_stack *s, unsigned int a, unsigned int b)
 {
 	if (s->bsize == 2)
-		return (sort_two_btop(s, a, b));
+		return (sort_two_btop(s, b, a));
 	rrb(s);
 	rrb(s);
 	if (a > b)

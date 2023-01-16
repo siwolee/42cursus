@@ -3,73 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   operate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 18:17:10 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/08 23:58:27 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/16 22:51:44 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "chker.h"
+#include "../include/chker.h"
 #include <stdarg.h>
 
-// void	add_act(char *act,char *newact)
-// {
-// 	static int	len;
-// 	int			i;
-
-// 	i = 0;
-// 	while (len < ACTMAX && new*act != 0)
-// 	{
-// 		act[len] = new*act;
-// 		len++;
-// 		i++;
-// 	}
-// 	if (len == ACTMAX)
-// 	{
-// 		newact(act);
-// 		len = 0;
-// 	}
-// 	if (new*act == 0)
-// 	{
-// 		act[len] = 0;
-// 	}
-// }
-
-//실제 실행 및 프린트 함수
-void	execute(t_stack *s, char *act)
+void	execute(t_stack *s, char *newact)
 {
-	static int cnt;
-
-	// if (!s)
-	// {
-	// 	printf("total cnt : %d\n", cnt);
-	// 	return ;
-	// }
-	while (*act != 0)
+	while (*newact != 0)
 	{
-		cnt++;
-		if (*act == '1')
+		if (*newact == '1')
 			sa(s);
-		else if (*act == '2')
+		else if (*newact == '2')
 			sb(s);
-		else if (*act == '3')
+		else if (*newact == '3')
 			pa(s);
-		else if (*act == '4')
+		else if (*newact == '4')
 			pb(s);
-		else if (*act == '5')
+		else if (*newact == '5')
 			ra(s);
-		else if (*act == '6')
+		else if (*newact == '6')
 			rb(s);
-		else if (*act == '7')
+		else if (*newact == '7')
 			rra(s);
-		else if (*act == '8')
+		else if (*newact == '8')
 			rrb(s);
-		else
-		{
-			cnt--;
-			return ;
-		}
-		act++;
+		newact++;
 	}
 }
