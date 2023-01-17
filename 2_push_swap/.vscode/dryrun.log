@@ -1,5 +1,18 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/siwolee/42c/2_push_swap'
-gcc -Wall -Werror -Wextra -g3 -o push_swap -Iinclude ./srcs/check.o ./srcs/merge4.o ./srcs/operate.o ./srcs/operater_.o ./srcs/pretreat.o ./srcs/sanantest.o ./srcs/short2.o ./srcs/short3.o ./srcs/short4.o ./srcs/short4_eq.o ./srcs/sort_short.o ./srcs/stack.o ./srcs/temp.o main.c
+gcc -Wall -Werror -Wextra -g3  -Iinclude -c srcs/check.c -o srcs/check.o
+gcc -Wall -Werror -Wextra -g3  -Iinclude -c srcs/check.c -o srcs/merge4.o
+gcc -Wall -Werror -Wextra -g3  -Iinclude -c srcs/check.c -o srcs/operate.o
+gcc -Wall -Werror -Wextra -g3  -Iinclude -c srcs/check.c -o srcs/operater_.o
+gcc -Wall -Werror -Wextra -g3  -Iinclude -c srcs/check.c -o srcs/pretreat.o
+gcc -Wall -Werror -Wextra -g3  -Iinclude -c srcs/check.c -o srcs/sanantest.o
+gcc -Wall -Werror -Wextra -g3  -Iinclude -c srcs/check.c -o srcs/short2.o
+gcc -Wall -Werror -Wextra -g3  -Iinclude -c srcs/check.c -o srcs/short3.o
+gcc -Wall -Werror -Wextra -g3  -Iinclude -c srcs/check.c -o srcs/short4.o
+gcc -Wall -Werror -Wextra -g3  -Iinclude -c srcs/check.c -o srcs/short4_eq.o
+gcc -Wall -Werror -Wextra -g3  -Iinclude -c srcs/check.c -o srcs/sort_short.o
+gcc -Wall -Werror -Wextra -g3  -Iinclude -c srcs/check.c -o srcs/stack.o
+gcc -Wall -Werror -Wextra -g3  -Iinclude -c srcs/check.c -o srcs/temp.o
+gcc -Wall -Werror -Wextra -g3 -o push_swap -Iinclude ./srcs/check.o ./srcs/merge4.o ./srcs/operate.o ./srcs/operater_.o ./srcs/pretreat.o ./srcs/sanantest.o ./srcs/short2.o ./srcs/short3.o ./srcs/short4.o ./srcs/short4_eq.o ./srcs/sort_short.o ./srcs/stack.o ./srcs/temp.o 
 make: Leaving directory `/Users/siwolee/42c/2_push_swap'
  
