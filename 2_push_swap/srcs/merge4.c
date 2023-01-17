@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 20:14:57 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/16 22:39:35 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/17 16:00:35 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,8 @@ char	get_small_ab(char ab)
 		return (ABOT);
 }
 
-void	sort_merge_mostbig(t_stack *s, char ab, int *cnt)
+void	sort_merge_mostbig(t_stack *s, char ab)
 {
-	*cnt = *cnt + 1;
-	// printf("%d, ",s->atop->val);
 	if (ab == ATOP)
 		ra(s);
 	else if(ab == ABOT)
@@ -57,10 +55,8 @@ void	sort_merge_mostbig(t_stack *s, char ab, int *cnt)
 	}
 }
 
-void	sort_merge_big(t_stack *s, char ab, int *cnt)
+void	sort_merge_big(t_stack *s, char ab)
 {
-	*cnt = *cnt + 1;
-	// printf("%d, ",s->atop->val);
 	if (ab == ATOP)
 	{
 		pb(s);
@@ -81,10 +77,8 @@ void	sort_merge_big(t_stack *s, char ab, int *cnt)
 		rrb(s);
 }
 
-void	sort_merge_small(t_stack *s, char ab, int *cnt)
+void	sort_merge_small(t_stack *s, char ab)
 {
-	*cnt = *cnt + 1;
-	// printf("%d, ",s->atop->val);
 	if (ab == ATOP)
 	{
 		pb(s);
@@ -126,22 +120,18 @@ t_node	*get_top(t_stack *s, char *ab, int len)
 		return (s->bbot);
 }
 
-void sort_merge4(t_stack *s, unsigned int start, unsigned int end, char ab)
+void sort_merge(t_stack *s, unsigned int start, unsigned int end, char ab)
 {
-	int	i;
-	int cnt[3] = {0, };
-	unsigned int pivot[2];
-	t_node	*now;
-	int len;
-	
+	int				i;
+	unsigned int 	pivot[2];
+	t_node			*now;
+	int 			len;
+
 	len = end - start + 1;
 	pivot[0] = (unsigned int) (len / 3);
 	pivot[1] = pivot[0] * 2 + start;
 	pivot[0] += start;
 
-	// static int temp;
-	// printf("s%d e%d pivot : %d , %d && size = %d, depth %d\n", start, end, pivot[0], pivot[1], len, ++temp);
-	// print_queue_ab(s);
 	if (len <= 4)
 		return (sort_short(s, len, ab));
 	i = 0;
@@ -149,20 +139,20 @@ void sort_merge4(t_stack *s, unsigned int start, unsigned int end, char ab)
 	{
 		now = get_top(s, &ab, len);
 		if (len > 6 && now->val <= pivot[0])
-			sort_merge_small(s, ab, cnt + 0);
+			sort_merge_small(s, ab);
 		else if (now->val <= pivot[1])
-			sort_merge_big(s, ab, cnt + 1);
+			sort_merge_big(s, ab);
 		else 
-			sort_merge_mostbig(s, ab, cnt + 2);
+			sort_merge_mostbig(s, ab);
 		i++;
 	}
-	sort_merge4(s, pivot[1] + 1, end, get_mostbig_ab(ab));
+	sort_merge(s, pivot[1] + 1, end, get_mostbig_ab(ab));
 	if (len > 6)
 	{
-		sort_merge4(s, pivot[0] + 1, pivot[1], get_big_ab(ab));
-		sort_merge4(s, start, pivot[0], get_small_ab(ab));
+		sort_merge(s, pivot[0] + 1, pivot[1], get_big_ab(ab));
+		sort_merge(s, start, pivot[0], get_small_ab(ab));
 	}
 	else
-		sort_merge4(s, start, pivot[1], get_big_ab(ab));
+		sort_merge(s, start, pivot[1], get_big_ab(ab));
 }
 

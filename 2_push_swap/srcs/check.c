@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 21:33:33 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/10 15:56:24 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/17 13:31:11 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	pri_all_sort(t_stack *s, int len)
 	while (n->next)
 	{
 		n = n->next;
-		if (bf >= n->val)
+		if (!(n->val == bf + 1))
 		{
 			printf("error-> %d %d \n", bf, n->val);
 			return (1);

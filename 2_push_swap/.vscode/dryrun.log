@@ -1,5 +1,5 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/siwolee/42c/2_push_swap'
-gcc -Wall -Werror -Wextra -g3 -o push_swap -Iinclude ./srcs/check.c ./srcs/merge4.c ./srcs/operate.c ./srcs/operater_.c ./srcs/pretreat.c ./srcs/sanantest.c ./srcs/short2.c ./srcs/short3.c ./srcs/short4.c ./srcs/short4_eq.c ./srcs/sort_short.c ./srcs/stack.c ./srcs/temp.c main.c
+gcc -Wall -Werror -Wextra -g3 -o push_swap -Iinclude ./srcs/check.o ./srcs/merge4.o ./srcs/operate.o ./srcs/operater_.o ./srcs/pretreat.o ./srcs/sanantest.o ./srcs/short2.o ./srcs/short3.o ./srcs/short4.o ./srcs/short4_eq.o ./srcs/sort_short.o ./srcs/stack.o ./srcs/temp.o main.c
 make: Leaving directory `/Users/siwolee/42c/2_push_swap'
  

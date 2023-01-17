@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 18:17:10 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/13 01:03:04 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/17 13:30:18 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,33 +66,6 @@ void	add_act_len(t_act *act,char newact)
 	if (len < ACTMAX)
 		act->arr[len] = 0;
 }
-
-// void	add_act_len(t_act *act,char newact)
-// {
-// 	static int	len;
-// 	int			i;
-
-// 	i = 0;
-// 	while (act->next)
-// 		act = act->next;
-// 	while (len < ACTMAX && newact[i] != 0)
-// 	{
-// 		act->arr[len] = newact[i];
-// 		i++;
-// 		len++;
-// 		if (len == ACTMAX)
-// 		{
-// 			act = add_act(act);
-// 			len = 0;
-// 		}
-// 	}
-// 	if (newact[i] == 0)
-// 	{
-// 		act->arr[len] = 0;
-// 	}
-// }
-
-//실제 실행 및 프린트 함수
 
 void	print_final(t_stack *s)
 {
