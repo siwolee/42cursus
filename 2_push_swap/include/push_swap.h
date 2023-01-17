@@ -6,16 +6,16 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:37:00 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/17 16:01:12 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/17 21:13:06 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+# include "./ansi_color.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "./ansi_color.h"
 
 # define SA '1'
 # define SB '2'
@@ -36,7 +36,7 @@
 # define ABOT 103
 # define BBOT 104
 
-# define ACTMAX 6000
+# define ACTMAX 200000
 
 typedef struct s_act
 {
@@ -68,8 +68,15 @@ typedef struct s_pre_val
 	int				idx;
 }					t_pre_val;
 
+typedef struct s_pivot
+{
+	unsigned int	len;
+	unsigned int	pivot1;
+	unsigned int	pivot2;
+}					t_pivot;
+
 //temporary
-void				pri_callerr(char *name);
+void				call_err(char *name);
 void				print_mb(int mb, int min);
 void				print_queue(t_stack *s, char ab);
 void				print_queue_ab(t_stack *s);
@@ -78,6 +85,9 @@ void				print_queue_ab(t_stack *s);
 int					ft_atoi(const char *str);
 int					pretreat(t_stack *s, char **av, int len);
 int					indexing(t_pre_val *pre, int i, int val);
+
+//aftertreat
+void				print_exec(char c);
 
 //stack
 t_node				*newnode(int val);
@@ -99,19 +109,19 @@ void				rrr(t_stack *s);
 
 //mergesort
 t_node				*get_top(t_stack *s, char *ab, int len);
-void				sort_merge(t_stack *s, unsigned int start, unsigned int end, char ab);
+void				sort_merge(t_stack *s, unsigned int start, unsigned int end,
+						char ab);
+t_pivot				*new_pivot(unsigned int start, unsigned int end);
 char				get_mostbig_ab(char ab);
 char				get_big_ab(char ab);
 char				get_small_ab(char ab);
 void				sort_merge_big(t_stack *s, char ab);
 void				sort_merge_small(t_stack *s, char ab);
 void				sort_merge_mostbig(t_stack *s, char ab);
-void				get_pivot(unsigned int len, unsigned int pivot[],
-						t_node *now);
 
 //execute
 void				ft_bzero(void *s, size_t n);
-t_act				*init_act();
+t_act				*init_act(void);
 t_act				*add_act(t_act *act);
 void				add_act_len(t_act *act, char newact);
 void				execute(t_stack *s, char *newact);
@@ -120,7 +130,7 @@ void				optimization(t_act *act);
 void				chk_double(char *a, char *b);
 
 //shortsort
-void				sort_short(t_stack *s, int size, char ab);
+void				sort_short(t_stack *s, t_pivot *p, char ab);
 void				sort_two(t_stack *s, char ab);
 
 void				sort_two(t_stack *s, char ab);
@@ -129,21 +139,23 @@ void				sort_two_btop(t_stack *s, unsigned int a, unsigned int b);
 void				sort_two_abot(t_stack *s, unsigned int a, unsigned int b);
 void				sort_two_bbot(t_stack *s, unsigned int a, unsigned int b);
 
-void				sort_four_eqaulsize_a(t_stack *s, unsigned int val[]);
-void				sort_four_eqaulsize_b(t_stack *s, unsigned int val[]);
-void				get_max_idx(t_stack *s, unsigned int val[4], char ab);
+unsigned int		get_max_idx(t_stack *s, char ab);
+
 void				sort_four(t_stack *s, char ab);
-void				sort_four_atop(t_stack *s, unsigned int val[]);
-void				sort_four_btop(t_stack *s, unsigned int val[]);
-void				sort_four_abot(t_stack *s, unsigned int val[]);
-void				sort_four_bbot(t_stack *s, unsigned int val[]);
+
+void				sort_four_eqaulsize_a(t_stack *s, unsigned int max_idx);
+void				sort_four_eqaulsize_b(t_stack *s, unsigned int max_idx);
+void				sort_four_atop(t_stack *s, unsigned int max_idx);
+void				sort_four_btop(t_stack *s, unsigned int max_idx);
+void				sort_four_abot(t_stack *s, unsigned int max_idx);
+void				sort_four_bbot(t_stack *s, unsigned int max_idx);
 
 void				sort_three(t_stack *s, char ab);
 void				sort_three_ab(t_stack *s, t_node *a, char ab);
 void				sort_three_atop(t_stack *s, unsigned int a);
 void				sort_three_btop(t_stack *s, unsigned int a);
 
-int					pri_all_sort(t_stack *s, int len);
-int					pri_sort(t_stack *s, int len, char ab);
+int					chk_sorted_final(t_stack *s, int len);
+int					chk_sorted(t_stack *s, int len);
 
 #endif

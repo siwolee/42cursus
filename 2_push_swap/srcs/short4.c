@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 20:58:43 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/16 21:38:13 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/17 21:13:42 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	sort_four(t_stack *s, char ab)
 {
-	unsigned int	val[4];
+	int	val;
 
-	get_max_idx(s, val, ab);
+	val = get_max_idx(s, ab);
 	if (ab & 1 && s->asize == 4)
 		return (sort_four_eqaulsize_a(s, val));
 	else if (!(ab & 1) && s->bsize == 4)
@@ -31,39 +31,38 @@ void	sort_four(t_stack *s, char ab)
 		return (sort_four_bbot(s, val));
 }
 
-void	sort_four_atop(t_stack *s, unsigned int val[])
+void	sort_four_atop(t_stack *s, unsigned int max_idx)
 {
 	unsigned int	i;
 
 	i = 0;
-	if (val[0] == 3)
+	if (max_idx == 3)
 		return (sort_three(s, ATOP));
 	while (i < 4 && i >= 0)
 	{
-		if (val[0] == i)
+		if (max_idx == i)
 			ra(s);
 		else
 			pb(s);
 		i++;
 	}
 	rra(s);
-	// print_queue_ab(s);
 	sort_three(s, BTOP);
 }
 
-void	sort_four_btop(t_stack *s, unsigned int val[])
+void	sort_four_btop(t_stack *s, unsigned int max_idx)
 {
 	unsigned int	i;
 
 	i = 0;
-	if (val[0] == 0)
+	if (max_idx == 0)
 	{
 		pa(s);
 		return (sort_three(s, BTOP));
 	}
 	while (i < 4 && i >= 0)
 	{
-		if (val[0] == i)
+		if (max_idx == i)
 			pa(s);
 		else
 			rb(s);
@@ -72,16 +71,15 @@ void	sort_four_btop(t_stack *s, unsigned int val[])
 	rrb(s);
 	rrb(s);
 	rrb(s);
-	// print_queue_ab(s);
 	return (sort_three(s, BTOP));
 }
 
-void	sort_four_abot(t_stack *s, unsigned int val[])
+void	sort_four_abot(t_stack *s, unsigned int max_idx)
 {
 	unsigned int	i;
 
 	i = 0;
-	if (val[0] == 0)
+	if (max_idx == 0)
 	{
 		rra(s);
 		rra(s);
@@ -92,36 +90,33 @@ void	sort_four_abot(t_stack *s, unsigned int val[])
 	while (i < 4 && i >= 0)
 	{
 		rra(s);
-		if (val[0] != i)
+		if (max_idx != i)
 			pb(s);
 		i++;
 	}
-	// print_queue_ab(s);
 	sort_three(s, BTOP);
 }
 
-void	sort_four_bbot(t_stack *s, unsigned int val[])
+void	sort_four_bbot(t_stack *s, unsigned int max_idx)
 {
 	unsigned int	i;
 
 	i = 0;
-	if (val[0] == 0)
+	if (max_idx == 0)
 	{
 		rrb(s);
 		pa(s);
 		rrb(s);
 		rrb(s);
 		rrb(s);
-		// print_queue_ab(s);
 		return (sort_three(s, BTOP));
 	}
 	while (i < 4 && i >= 0)
 	{
 		rrb(s);
-		if (val[0] == i)
+		if (max_idx == i)
 			pa(s);
 		i++;
 	}
-	// print_queue_ab(s);
 	sort_three(s, BTOP);
 }

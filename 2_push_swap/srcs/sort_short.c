@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 11:32:05 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/16 21:59:23 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/17 19:46:27 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,17 @@ void	sort_one(t_stack *s, char ab)
 	}
 }
 
-void	sort_short(t_stack *s, int size, char ab)
+void	sort_short(t_stack *s, t_pivot *p, char ab)
 {
-	// printf("\033[31msort_short :: %d\n%s", size, C_RS);
-	// print_queue_ab(s);
-	if (ab == ATOP && pri_sort(s, size, ab))
-		return ;
-	if (size == 2)
+	if (ab == ATOP && chk_sorted(s, p->len))
+		return (free(p));
+	if (p->len == 2)
 		sort_two(s, ab);
-	else if (size == 3)
+	else if (p->len == 3)
 		sort_three(s, ab);
-	else if (size == 4)
+	else if (p->len == 4)
 		(sort_four(s, ab));
-	else if (size == 1)
+	else if (p->len == 1)
 		sort_one(s, ab);
+	free(p);
 }

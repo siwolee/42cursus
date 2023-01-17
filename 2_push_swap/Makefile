@@ -6,22 +6,25 @@
 #    By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/01 16:34:39 by siwolee           #+#    #+#              #
-#    Updated: 2023/01/17 16:10:21 by siwolee          ###   ########.fr        #
+#    Updated: 2023/01/17 18:06:34 by siwolee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = push_swap
-MAIN_FILE = main.c
 
 TEST = test
-TEST_FILE = test.c
+TEST_SRC = test.c
+TEST_OBJ =  $(TEST_SRCS:.c=.o)
 
 SRCS_DIR = ./srcs
 SRCS = $(wildcard $(SRCS_DIR)/*.c)
 OBJS = $(SRCS:.c=.o)
 
 INC_DIR = include
+
+MAIN_SRC = $(SRC_DIR)/main.c
+MAIN_OBJ =  $(MAIN_SRCS:.c=.o)
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -g3
@@ -38,13 +41,10 @@ CHK_OBJS = $(CHK_SRCS:.c=.o)
 
 all : $(NAME)
 
-$(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) -I$(INC_DIR) $(OBJS) $(MAIN_OBJS)
+$(NAME) : 
+	$(CC) $(CFLAGS) -o $(NAME) -I$(INC_DIR) $(SRCS)
 
 tt : $(TEST)
-
-$(OBJS) : $(SRCS) $(MAIN_SRCS)
-	$(CC) $(CFLAGS) $(CDEBUG) -I$(INC_DIR) -c $< -o $@
 
 $(TEST) : 
 	$(CC) $(CFLAGS) -o $(TEST) -I$(INC_DIR) $(SRCS) $(TEST_FILE)

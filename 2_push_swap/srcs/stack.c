@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:56:42 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/10 19:01:03 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/17 21:03:13 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	init_stack(t_stack *s, t_pre_val *pre, int len)
 
 	if (pre == NULL)
 		return (1);
-	s->btop = s->bbot = 0;
+	s->btop = 0;
+	s->bbot = 0;
 	s->bsize = 0;
 	node = newnode(pre[0].idx);
 	s->atop = node;

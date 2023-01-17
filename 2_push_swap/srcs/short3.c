@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 20:09:30 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/16 22:32:00 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/17 17:54:23 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	sort_three(t_stack *s, char ab)
 {
-	t_node *a;
+	t_node	*a;
 
 	if (ab == ABOT)
 		execute(s, "777");
@@ -84,7 +84,7 @@ void	sort_three_atop(t_stack *s, unsigned int a)
 void	sort_three_btop(t_stack *s, unsigned int a)
 {
 	if (s->bsize == 3 && a == 3)
-			rrb(s);
+		rrb(s);
 	else if (a == 2 || (a == 3 && s->btop->val < s->btop->next->val))
 		sb(s);
 	pa(s);
