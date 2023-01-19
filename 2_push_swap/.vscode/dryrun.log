@@ -1,5 +1,6 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/siwolee/42c/2_push_swap'
-gcc -Wall -Werror -Wextra -g3 -o push_swap -Iinclude ./srcs/aftertreat.c ./srcs/check.c ./srcs/get_ab.c ./srcs/main.c ./srcs/merge.c ./srcs/merge_sort.c ./srcs/operate.c ./srcs/operater_1.c ./srcs/operater_2.c ./srcs/pretreat.c ./srcs/sanantest.c ./srcs/short2.c ./srcs/short3.c ./srcs/short4.c ./srcs/short4_eq.c ./srcs/sort_short.c ./srcs/stack.c
 make: Leaving directory `/Users/siwolee/42c/2_push_swap'
  
+Makefile:81: *** missing separator.  Stop.
+
