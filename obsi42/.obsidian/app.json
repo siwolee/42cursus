@@ -1,4 +1,6 @@
 {
   "promptDelete": false,
-  "vimMode": true
+  "vimMode": true,
+  "defaultViewMode": "preview",
+  "tabSize": 6
 }

@@ -1,3 +1,8 @@
+[[gcc compiler]]
+
+
+
+
 https://jaeseokim.dev/C/C-vscode-debugger-사용하기/
 여기서  나온  makefile을 공부하고, 가지고 있는 makefile의 개념을 정립하고자 한다.
 https://www.tuwlab.com/ece/27193 참고

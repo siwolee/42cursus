@@ -4,6 +4,8 @@
 2. [[printf]]
 3. [[Bone2beRoot]]
 4. [[push_swap]]
+5. [[pipex]]
+6. 
 
 [[obsidian - markdown]]
 
@@ -14,3 +16,7 @@
 # C / C\#\#
 [[가변인자 인수의 사용]]
 [[Makefile bonus]]
+
+
+# 관련  읽어볼만한 글
+- [x] [[c 언어 코드 최적화]]

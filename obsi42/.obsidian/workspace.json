@@ -8,24 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "e94f5206fc6f169c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "variable.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "fba51a81bcde6a37",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "gcc compiler.md",
+                "file": "inbox/pipex.md",
                 "mode": "source",
                 "source": false
               }
@@ -121,7 +109,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "variable.md",
+                "file": "inbox/pipex.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -138,7 +126,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "variable.md",
+                "file": "inbox/pipex.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -161,7 +149,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "variable.md"
+                "file": "inbox/pipex.md"
               }
             }
           }
@@ -169,7 +157,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -181,17 +170,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "e94f5206fc6f169c",
+  "active": "fba51a81bcde6a37",
   "lastOpenFiles": [
-    "To search list.md",
-    "Pasted image 20230102175151.png",
-    "QMK keyboard.md",
-    "push_swap.md",
-    "Project.md",
-    "inbox/Makefile bonus.md",
-    "gcc compiler.md",
+    "❤️‍🔥 Project.md",
+    "inbox/push_swap.md",
+    "inbox/gcc compiler.md",
+    "OS.md",
     "Debugging.md",
-    "variable.md",
-    "printf.md"
+    "inbox/obsidian - markdown.md",
+    "inbox/c 언어 코드 최적화.md",
+    "inbox/가변인자 인수의 사용.md",
+    "inbox/Void type Assign.md",
+    "inbox/vim useful command.md"
   ]
 }
