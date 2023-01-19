@@ -6,11 +6,11 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 20:04:55 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/17 21:02:39 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/19 19:19:57 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 void	sort_two(t_stack *s, char ab)
 {

@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:37:00 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/19 19:09:35 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/19 19:47:48 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_stack
 	t_node			*bbot;
 	int				asize;
 	int				bsize;
+	char			**split;
 }					t_stack;
 
 typedef struct s_pre_val
@@ -76,12 +77,16 @@ typedef struct s_pivot
 }					t_pivot;
 
 //temporary
+int					ft_printf(const char *buf, ...);
+size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
 void				call_err(char *name);
 void				print_mb(int mb, int min);
 void				print_queue(t_stack *s, char ab);
 void				print_queue_ab(t_stack *s);
 
 //pretreat
+int					chk_split(char **av);
+char				**ft_split(char const *s, char c, t_stack *stack);
 int					ft_atoi(const char *str);
 int					pretreat(t_stack *s, char **av, int len);
 int					indexing(t_pre_val *pre, int i, int val);

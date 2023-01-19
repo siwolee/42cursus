@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:36:45 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/17 21:02:32 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/19 20:01:10 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,22 @@ int	pretreat(t_stack *s, char **av, int len)
 	i = 0;
 	pre = malloc(sizeof(t_pre_val) * len);
 	if (!pre)
-		exit(1);
-	while (i < len)
+		call_err("");
+	if (chk_split(av))
+		av = ft_split(*av, ' ', s);
+	while (av[i])
 	{
 		val = ft_atoi(av[i]);
 		if (val == 0 && av[i][0] != 0)
 		{
-			return (1);
+			call_err("Error");
 		}
 		pre[i].val = val;
 		pre[i].idx = 1;
-		if (indexing(pre, i, val))
-			return (1);
+		indexing(pre, i, val);
 		i++;
 	}
-	if (init_stack(s, pre, len))
-		return (1);
+	init_stack(s, pre, i);
 	free(pre);
 	return (0);
 }
@@ -59,7 +59,7 @@ int	indexing(t_pre_val *pre, int i, int val)
 		}
 		else
 		{
-			return (1);
+			call_err("Error");
 		}
 		e++;
 	}
@@ -90,4 +90,33 @@ int	ft_atoi(const char *str)
 	}
 	re *= sign;
 	return (re);
+}
+
+int	chk_split(char **av)
+{
+	int	i;
+	int	e;
+	int	flag;
+
+	flag = 0;
+	e = 0;
+	while (av[e] != 0)
+	{
+		i = -1;
+		while (av[e][++i] != 0)
+		{
+			if (av[e][i] == ' ')
+			{
+				flag++;
+				continue ;
+			}
+			else if (av[e][i] >= '0' && av[e][i] <= '9')
+				continue ;
+			else if (av[e][i] == '-' || av[e][i] == '+')
+				continue ;
+			call_err("Error");
+		}
+		e++;
+	}
+	return (flag);
 }

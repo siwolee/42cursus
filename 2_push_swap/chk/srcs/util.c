@@ -6,11 +6,11 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 22:35:54 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/17 18:17:54 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/19 19:50:23 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "chker.h"
+#include "../include/chker.h"
 
 int	chk_execute(t_stack *s, int fd)
 {

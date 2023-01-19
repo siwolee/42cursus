@@ -6,11 +6,11 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 20:04:55 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/17 21:13:13 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/19 19:19:48 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 unsigned int	get_max_idx(t_stack *s, char ab)
 {

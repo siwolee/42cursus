@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:56:42 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/17 21:03:13 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/19 19:40:32 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_node	*newnode(int val)
 
 	new = malloc(sizeof(t_node));
 	if (!new)
-		return (0);
+		call_err("");
 	new->val = val;
 	new->next = 0;
 	new->prev = 0;
@@ -31,8 +31,6 @@ int	init_stack(t_stack *s, t_pre_val *pre, int len)
 	t_node	*node;
 	t_node	*next;
 
-	if (pre == NULL)
-		return (1);
 	s->btop = 0;
 	s->bbot = 0;
 	s->bsize = 0;
@@ -50,6 +48,7 @@ int	init_stack(t_stack *s, t_pre_val *pre, int len)
 	s->asize = len;
 	s->abot = next;
 	s->act = init_act();
+	s->split = NULL;
 	return (0);
 }
 
@@ -79,4 +78,5 @@ void	free_stack(t_stack *s)
 		free(s->act);
 		s->act = next_act;
 	}
+	free(s->split);
 }

@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:00:08 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/17 18:09:12 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/19 19:15:36 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,27 @@ void	print_final(t_stack *s)
 void	print_exec(char c)
 {
 	if (c == SS)
-		printf("ss\n");
+		ft_printf("ss\n");
 	else if (c == RR)
-		printf("rr\n");
+		ft_printf("rr\n");
 	else if (c == RRR)
-		printf("rrr\n");
+		ft_printf("rrr\n");
 	if (c == '1')
-		printf("sa\n");
+		ft_printf("sa\n");
 	else if (c == '2')
-		printf("sb\n");
+		ft_printf("sb\n");
 	else if (c == '3')
-		printf("pa\n");
+		ft_printf("pa\n");
 	else if (c == '4')
-		printf("pb\n");
+		ft_printf("pb\n");
 	else if (c == '5')
-		printf("ra\n");
+		ft_printf("ra\n");
 	else if (c == '6')
-		printf("rb\n");
+		ft_printf("rb\n");
 	else if (c == '7')
-		printf("rra\n");
+		ft_printf("rra\n");
 	else if (c == '8')
-		printf("rrb\n");
+		ft_printf("rrb\n");
 }
 
 void	execute(t_stack *s, char *newact)

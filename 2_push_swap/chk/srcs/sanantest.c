@@ -1,4 +1,4 @@
-#include "chker.h"
+#include "../include/chker.h"
 
 void    print_queue(t_stack *s, char ab) // delete
 {

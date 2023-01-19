@@ -6,11 +6,10 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:45:58 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/19 19:13:50 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/19 19:35:51 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stdlib.h"
 #include "../include/push_swap.h"
 
 static int	toward_c(char *str, char c)
@@ -77,7 +76,7 @@ static int	new_word(char **res, char *s, char c)
 	return (len);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c, t_stack *stack)
 {
 	int		cnt;
 	int		i;
@@ -102,5 +101,6 @@ char	**ft_split(char const *s, char c)
 		}
 	}
 	res[total_cnt] = 0;
+	stack->split = res;
 	return (res);
 }

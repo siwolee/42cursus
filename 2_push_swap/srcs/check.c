@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 21:33:33 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/17 21:01:30 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/19 19:15:10 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	print_mb(int mb, int min)
 	static int	cnt;
 
 	cnt += mb;
-	printf("^^^^ mbcnt : %d, min: %d ^^^^^^^^^^^\n", cnt, min);
+	ft_printf("^^^^ mbcnt : %d, min: %d ^^^^^^^^^^^\n", cnt, min);
 }
 
 void	call_err(char *name)
 {
-	printf("%sError exit : %s\n%s", C_RED, name, C_RS);
+	ft_printf("%s\n", name);
 	exit(0);
 }
 
@@ -42,13 +42,13 @@ int	chk_sorted_final(t_stack *s, int len)
 		n = n->next;
 		if (!(n->val == bf + 1))
 		{
-			printf("error-> %d %d \n", bf, n->val);
+			ft_printf("error-> %d %d \n", bf, n->val);
 			return (1);
 		}
 		bf = n->val;
 		i++;
 	}
-	printf("GOOD\n");
+	ft_printf("GOOD\n");
 	if (i == len)
 		return (0);
 	else

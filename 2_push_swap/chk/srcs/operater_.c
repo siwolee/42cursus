@@ -6,11 +6,11 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:44:38 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/16 22:53:13 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/19 19:50:07 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "chker.h"
+#include "../include/chker.h"
 
 void	ss(t_stack *s)
 {

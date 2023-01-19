@@ -6,11 +6,11 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 21:50:10 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/16 22:43:16 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/19 19:49:50 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "chker.h"
+#include "../include/chker.h"
 
 int main(int ac, char **av)
 {

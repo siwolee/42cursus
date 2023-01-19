@@ -6,12 +6,11 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 18:17:10 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/16 22:51:44 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/19 19:50:02 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/chker.h"
-#include <stdarg.h>
 
 void	execute(t_stack *s, char *newact)
 {

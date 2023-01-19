@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pretreat.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:36:45 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/08 23:01:09 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/19 19:50:12 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "chker.h"
+#include "../include/chker.h"
 
 void	atoi_arr(int len, char **av, int *res)
 {

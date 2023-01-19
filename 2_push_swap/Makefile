@@ -6,7 +6,7 @@
 #    By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/01 16:34:39 by siwolee           #+#    #+#              #
-#    Updated: 2023/01/19 19:09:30 by siwolee          ###   ########.fr        #
+#    Updated: 2023/01/19 19:15:52 by siwolee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,7 @@ CHK_SRCS = \
 CHK_OBJS = $(CHK_SRCS:.c=.o)
 
 all : $(NAME) $(LIBFT_PRINTF)
-r 3
+
 $(NAME) : $(LIBFT_PRINTF)
 	$(CC) $(CFLAGS) -L./printf -lftprintf -o $(NAME) $(SRCS) $(MAIN)
 
