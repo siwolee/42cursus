@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pretreat.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:36:45 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/19 20:01:10 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/20 14:16:27 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	indexing(t_pre_val *pre, int i, int val)
 int	ft_atoi(const char *str)
 {
 	int		sign;
-	int		re;
+	long long		re;
 	size_t	i;
 
 	sign = 1;
@@ -85,11 +85,22 @@ int	ft_atoi(const char *str)
 	}
 	while (str[i] >= '0' && str[i] <= '9' && str[i])
 	{
-		re = re * 10 + str[i] - '0';
+		re = chk_int(re, str[i], sign);
 		i++;
 	}
-	re *= sign;
-	return (re);
+	return ((int)re);
+}
+
+long long chk_int(long long re, char c, int sign)
+{
+	long long res;
+
+	res = re * 10 + (c - '0') * sign;
+	if (res > 2147483647 || res < -2147483648)
+		call_err("Error");
+	else
+		return (res);
+	return (0);
 }
 
 int	chk_split(char **av)

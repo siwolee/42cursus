@@ -3,10 +3,8 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-// # include "../libft/libft.h"
 # include <stdio.h>
 # include "get_next_line.h"
-# include <fcntl.h>
 
 # define SA 1
 # define SB 2
@@ -27,7 +25,7 @@
 # define BTOP 101
 # define ABOT 102
 # define BBOT 103
-# define ACTMAX 6000
+# define ACTMAX 200000
 
 typedef struct s_act
 {
@@ -37,20 +35,28 @@ typedef struct s_act
 
 typedef struct s_node
 {
-	int	val;
+	unsigned int	val;
 	struct s_node	*next;
 	struct s_node	*prev;
 }					t_node;
 
 typedef struct s_stack
 {
+	t_act			*act;
 	t_node			*atop;
 	t_node			*abot;
 	t_node			*btop;
 	t_node			*bbot;
 	int				asize;
 	int				bsize;
+	char			**split;
 }					t_stack;
+
+typedef struct s_pre_val
+{
+	int				val;
+	int				idx;
+}					t_pre_val;
 
 
 int		ft_atoi(const char *str);

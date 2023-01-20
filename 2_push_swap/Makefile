@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/01 16:34:39 by siwolee           #+#    #+#              #
-#    Updated: 2023/01/19 19:15:52 by siwolee          ###   ########.fr        #
+#    Updated: 2023/01/20 11:37:53 by siwolee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,7 +100,7 @@ $(CHK) :
 	$(CC) $(CFLAGS) -o $(CHK) -I$(CHK_INC) $(CHK_SRCS) $(CHK_FILE)	
 
 clean :
-	rm -rf $(OBJS) $(PRITNF_OBJS)
+	rm -rf $(PRINTF_OBJS)
 
 fclean : clean
 	rm -rf $(NAME) $(TEST) $(CHK) $(LIBFT_PRINTF)

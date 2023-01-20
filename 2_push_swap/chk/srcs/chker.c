@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chker.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 21:50:10 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/19 19:49:50 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/20 14:20:27 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,10 @@ int main(int ac, char **av)
 
 	if (ac <= 2)
 		return (0);
-	res = malloc(sizeof(int) * (ac -1));
-	if (!res)
-		return (0);
-	atoi_arr(ac -1, av + 1, res);
-	init_stack(&s, res, ac -1);
+	pretreat(&s, av + 1, ac - 1);
+	chk_execute(&s, fd);
 	print_queue_ab(&s);
-	fd  = 0;
-	if (chk_execute(&s, fd))
-	{
-		printf("KO");
-		printf("error: exec\n");
-		return (1);
-	}
-	print_queue_ab(&s);
-	if (chk_sort(&s, ac - 1))
-	{
-		printf("KO\n");
-		printf("error: sort\n");
-		execute(NULL, NULL);
-		return (1);
-	}
-	free (res);
+	if (s.bsize || chk_sorted_final(s, s.size))
+		call_err("KO");
+	free_stack(res);
 }
