@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Fri Jan 20 18:30:30 2023
+# Make data base, printed on Sat Jan 21 02:13:02 2023
 
 # Variables
 
@@ -39,7 +39,7 @@ MAKEFILE_LIST :=
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cv240036rj/T/vscode-ipc-88901fb0-c404-42f1-9963-2c1a261a602e.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cv240036rj/T/vscode-ipc-11655267-95ec-4449-afe2-d4fd620b1fe8.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -47,13 +47,15 @@ PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/usr/local/
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
+LaunchInstanceID = 1FF987EC-DE5C-4C79-A05F-B105C8034412
+# environment
 VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.xlwkes8xij/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.nBc5ymARX5/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -113,13 +115,15 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.2148
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000006.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
 __CF_USER_TEXT_ENCODING = 0x19B11:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
@@ -130,6 +134,8 @@ EDITOR = /usr/bin/vim
 PAGER = less
 # environment
 LC_ALL = C
+# environment
+SECURITYSESSIONID = 186a6
 # automatic
 ^F = $(notdir $^)
 # default
@@ -141,9 +147,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 99577
+VSCODE_PID = 7210
 # variable set hash-table stats:
-# Load=64/1024=6%, Rehash=0, Collisions=2/85=2%
+# Load=67/1024=7%, Rehash=0, Collisions=2/88=2%
 
 # Pattern-specific Variable Values
 
@@ -225,6 +231,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Fri Jan 20 18:30:30 2023
+# Finished Make data base on Sat Jan 21 02:13:02 2023
 
  

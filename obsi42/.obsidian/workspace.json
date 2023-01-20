@@ -25,8 +25,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "inbox/SSH 여러 개 관리하기.md",
-                "mode": "preview",
+                "file": "so_long.md",
+                "mode": "source",
                 "source": false
               }
             }
@@ -122,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "inbox/SSH 여러 개 관리하기.md",
+                "file": "so_long.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "inbox/SSH 여러 개 관리하기.md",
+                "file": "so_long.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "inbox/SSH 여러 개 관리하기.md"
+                "file": "so_long.md"
               }
             }
           }
@@ -185,15 +185,15 @@
   },
   "active": "4a6b98a3b84c57df",
   "lastOpenFiles": [
+    "❤️‍🔥 Project.md",
+    "so_long.md",
+    "inbox/SSH 여러 개 관리하기.md",
     "inbox/Makefile bonus.md",
     "conflict-files-obsidian-git.md",
-    "❤️‍🔥 Project.md",
     "inbox/pipex.md",
     "inbox/push_swap.md",
     "inbox/gcc compiler.md",
     "OS.md",
-    "Debugging.md",
-    "inbox/obsidian - markdown.md",
-    "inbox/c 언어 코드 최적화.md"
+    "Debugging.md"
   ]
 }

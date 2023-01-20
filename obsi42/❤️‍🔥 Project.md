@@ -5,7 +5,7 @@
 3. [[Bone2beRoot]]
 4. [[push_swap]]
 5. [[pipex]]
-6. 
+6. [[so_long]]
 
 [[obsidian - markdown]]
 
