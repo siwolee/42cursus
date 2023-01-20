@@ -1,5 +1,16 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/siwolee/42c/2_push_swap'
+cc -Wall -Werror -Wextra -g3 -c printf/ft_calloc.c -o printf/ft_calloc.o
+cc -Wall -Werror -Wextra -g3 -c printf/ft_isalpha.c -o printf/ft_isalpha.o
+cc -Wall -Werror -Wextra -g3 -c printf/ft_strlcpy.c -o printf/ft_strlcpy.o
+cc -Wall -Werror -Wextra -g3 -c printf/ft_strlen.c -o printf/ft_strlen.o
+cc -Wall -Werror -Wextra -g3 -c printf/printf_format.c -o printf/printf_format.o
+cc -Wall -Werror -Wextra -g3 -c printf/printf_hex.c -o printf/printf_hex.o
+cc -Wall -Werror -Wextra -g3 -c printf/printf_num.c -o printf/printf_num.o
+cc -Wall -Werror -Wextra -g3 -c printf/printf_ptr.c -o printf/printf_ptr.o
+cc -Wall -Werror -Wextra -g3 -c printf/printf_str.c -o printf/printf_str.o
+cc -Wall -Werror -Wextra -g3 -c printf/printf_type.c -o printf/printf_type.o
+cc -Wall -Werror -Wextra -g3 -c printf/printf.c -o printf/printf.o
 ar crs ./printf/libftprintf.a printf/ft_calloc.o printf/ft_isalpha.o printf/ft_strlcpy.o printf/ft_strlen.o printf/printf_format.o printf/printf_hex.o printf/printf_num.o printf/printf_ptr.o printf/printf_str.o printf/printf_type.o printf/printf.o
 # rm -rf printf/ft_calloc.o printf/ft_isalpha.o printf/ft_strlcpy.o printf/ft_strlen.o printf/printf_format.o printf/printf_hex.o printf/printf_num.o printf/printf_ptr.o printf/printf_str.o printf/printf_type.o printf/printf.o
 cc -Wall -Werror -Wextra -g3 -L./printf -lftprintf -o push_swap srcs/aftertreat.c srcs/check.c srcs/get_ab.c srcs/merge_sort.c srcs/merge.c srcs/operate.c srcs/operater_double.c srcs/operater_r.c srcs/operater_sp.c srcs/pretreat.c srcs/short2.c srcs/short3.c srcs/short4_eq.c srcs/short4.c srcs/sort_short.c srcs/stack.c srcs/ft_split.c srcs/ft_strlcpy.c srcs/main.c

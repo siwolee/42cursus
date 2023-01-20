@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 21:50:10 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/19 19:49:50 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/20 14:33:27 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main(int ac, char **av)
 	int	*res;
 	t_stack	s;
 
-	if (ac <= 2)
+	if (ac < 2)
 		return (0);
 	res = malloc(sizeof(int) * (ac -1));
 	if (!res)
@@ -41,5 +41,5 @@ int main(int ac, char **av)
 		execute(NULL, NULL);
 		return (1);
 	}
-	free (res);
+	free_stack(&s);
 }
