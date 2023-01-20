@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_ab.c                                           :+:      :+:    :+:   */
+/*   printf_str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 18:27:49 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/17 21:01:33 by siwolee          ###   ########.fr       */
+/*   Created: 2022/12/04 16:40:32 by siwolee           #+#    #+#             */
+/*   Updated: 2023/01/20 16:04:12 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "ft_printf.h"
 
-char	get_mostbig_ab(char ab)
+int	ft_putchar(char c)
 {
-	if (ab == ATOP)
-		return (ABOT);
-	else
-		return (ATOP);
+	return (write(1, &c, 1));
 }
 
-char	get_big_ab(char ab)
+int	ft_putchar(char *format, char arg)
 {
-	if (ab == BTOP)
-		return (ABOT);
+	if (format)
+		return (print_format(format, &arg, 1));
 	else
-		return (BTOP);
+		return (write(1, &arg, 1));
 }
 
-char	get_small_ab(char ab)
+int	print_string(char *format, char *str)
 {
-	if (ab == ATOP || ab == ABOT)
-		return (BBOT);
-	else if (ab == BTOP)
-		return (BBOT);
-	else
-		return (ABOT);
+	if (!str)
+	{
+		return (write(1, "(null)", 6));
+	}
+	if (format)
+		return (print_format(format, str, ft_strlen(str)));
+	return (write(1, str, ft_strlen(str)));
 }
