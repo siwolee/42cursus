@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "inbox/SSH 여러 개 관리하기.md",
+                "file": "To search list.md",
                 "mode": "preview",
                 "source": false
               }
@@ -49,13 +49,14 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Debugging.md",
+                "file": "inbox/pipex.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -84,7 +85,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#include",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -101,7 +102,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -121,7 +123,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "inbox/SSH 여러 개 관리하기.md",
+                "file": "inbox/pipex.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -138,7 +140,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "inbox/SSH 여러 개 관리하기.md",
+                "file": "inbox/pipex.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -161,7 +163,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "inbox/SSH 여러 개 관리하기.md"
+                "file": "inbox/pipex.md"
               }
             }
           }
@@ -182,17 +184,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "fba51a81bcde6a37",
+  "active": "9b72e80c62d2e6c4",
   "lastOpenFiles": [
     "❤️‍🔥 Project.md",
-    "so_long.md",
     "inbox/SSH 여러 개 관리하기.md",
+    "Debugging.md",
+    "inbox/Bone2beRoot.md",
+    "so_long.md",
+    "To search list.md",
+    "QMK keyboard.md",
     "inbox/Makefile bonus.md",
     "conflict-files-obsidian-git.md",
-    "inbox/pipex.md",
-    "inbox/push_swap.md",
-    "inbox/gcc compiler.md",
-    "OS.md",
-    "Debugging.md"
+    "inbox/pipex.md"
   ]
 }
