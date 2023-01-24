@@ -16,7 +16,9 @@ https://bigpel66.oopy.io/library/42/inner-circle/8
 - 첫 매개변수가 here_doc일 때 확인
 
 # 🌈 허용 함수
-- open, close, read, write, malloc, free, perror, strerror, access, dup, dup2, execve, exit, fork, pipe, unlink, wait, waitpid 
+- open, close, read, write, malloc, free, 
+- perror, strerror, 
+- access, dup, dup2, execve, exit, fork, pipe, unlink, wait, waitpid 
 - ft_printf and any equivalent YOU coded
 
 한번 천천히 살펴보자
@@ -270,16 +272,18 @@ dup()의 경우에는 같은 entry를 참조하며, f_count값만 올라감.
 파일 디스크립터를 재할당하는 함수. 
 지정한 fd가 사용 중이라면, 사전에 열려 있던 파일을 닫아서 해제한 후에 해당 번호를 할당하게 된다
 ```c
-int dup2(int fd, int fd_i_want);
+int dup2(int fd1, int fd2);
 ```
 
 문제시 return -1
+fd1의 파일 디스크립터가 fd2의 파일 디스크립터로 복제됨
+fd2의 파일 디스크립터가 fd1과 같은 파일을 가리키게 됨
 
 ### 존재이유
 pipe 함수와 같이 사용시,
 프로세스 간에 0 1 인덱스를 fd로 사용시
 dup2(pidp_fd, 0);
-처럼 pipe 입출력 fd를  0, 1로 복제해두고 pipe의 파일을 이용하게 된다
+파일 디스크립터 0이 pipe_fd를 가리키게 됨
 
 
 ## pipe
@@ -303,3 +307,72 @@ pipe로 fd를 열게 됨 -> 이는 파일에 대한 게 아닌 운영체제로�
 fd를 사용하면, 여러 개의 프로세스에서 동일한 파일에 접근하여 통신이 가능.
 복제된 프로세스 사이에서는 메모리를 복제하기 때문에, 
 복제 이전에 pipe를 통해서 파일 디스크립터를 읽기/쓰기 용도로 연결한다면 그 파이프를 계속 쓸 수 있게 됨.
+
+## execve
+- unistd.h
+```c
+int execve(const char *file, char * const *argv, char * const *envp);
+```
+매개변수로 실행할 파일 경로, 매개변수,  환경변수(사용시, 미사용시 NULL)을 넘기게 된다.
+실행시 0 또는 -1(오류) 반환.
+
+```c
+int main(int ac, char **av)
+{
+	av++;
+	if (access("bunny.c", F_OK | X_OK) == -1)
+		return (1);
+	if (execve("/usr/bin/gcc", av, NULL) == -1)
+		{
+			printf("gcc failed\n");
+			return (1);
+		}
+	// if (execve("./bum", av + 2, NULL) == -1)
+	// {
+	// 	printf("exec failed\n");
+	// 	return (1);
+	// }
+	printf("sucess\n");
+	return (0);
+}
+➜  pipex git:(main) ./test gcc bunny.c -o bum
+➜  pipex git:(main) gcc exec.c -o test       
+➜  pipex git:(main) rm bum
+➜  pipex git:(main) gcc exec.c -o test
+➜  pipex git:(main) ./test gcc bunny.c -o bum
+➜  pipex git:(main) ./bum                    
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNXK0KXNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNKkl,'':ox0XXNNNNNNNNNNNNNNNNNN
+NNNNNNNNXOc.      .dKXNNNNNNNNNNNNNNNNNN
+NNNNNNNXx,.     .:xKXNNNNNNNNNNNNNNNNNNN
+NNNKOdc;.     .;kXNNNNNNNNNNNNNNNNNNNNNN
+X0d;.       .,dKNNNNNNNNNNXXKKKKOdodOXNN
+d,.         .'coodxxxxxdoc:,''''.   .dXN
+o.               .......            .dXN
+0c....                             'dXNN
+NX0OOx,                            .lOXN
+NNNNN0:.                           .:OXN
+NNX0x;.            ...........     .;OXN
+0o;..       .,clodxxkkOOO00Okdc..   .'lO
+k'   ..',;:okKNNNNNNNNNNNNNNNNXOdc'....o
+XOdlox0KKXXNNNNNNNNNNNNNNNNNNNNNNX0kxxOK
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+```
+처음에 안됐던 이유 : gcc 경로 앞에 \\ 를 안붙임 ㅎㅎ
+그리고 만들어진 파일을 바로 실행시켜볼려고 했는데 안됐다
+그리고 왜 gcc 실행하는데 gcc를 다시 실행인자로 넣어줘야 하는지...? 모르겠네용
+
+https://www.it-note.kr/157
+> execve(2)만 system call 함수이며, 나머지 execl(3), execlp(3), execle(3), execv(3), execvp(3), execvpe(3)는 wrapping 함수...
+
+뭔소리지?
+# System call 함수와 Libraray 함수의 특징
+1. 리턴 타입과 값의 차이
+	system call 함수는 대부분 int 반환으로, 오류는 -1 이고 정상이면 0 또는 1의 값을 리턴
+	오류 값 리턴시, errno라는 전역변수에 오류 코드 저장
+	상세 오류 내용에 대해서는 errno라는 전역변수에 오류 코드가 저장된다. 오류 내용을 문자열로 표시하기 위해서는 strerror(errno)를 통해서 확인할 수 있다 
+	*무슨 소린지 모르겠음*
+2. 

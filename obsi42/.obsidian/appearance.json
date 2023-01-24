@@ -1,6 +1,6 @@
 {
-  "accentColor": "#73e65c",
-  "cssTheme": "",
+  "accentColor": "",
+  "cssTheme": "Obsidian gruvbox",
   "theme": "obsidian",
   "interfaceFontFamily": "AppleMyungjo",
   "monospaceFontFamily": "Andale Mono",

@@ -1,0 +1,17 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/siwolee/42c/pipex'
+make: Leaving directory `/Users/siwolee/42c/pipex'
+ 
+make: *** No rule to make target `srcs/*.o', needed by `push_swap'.
+make: *** No rule to make target `printf/ft_calloc.o', needed by `libftprintf.a'.
+make: *** No rule to make target `printf/ft_isalpha.o', needed by `libftprintf.a'.
+make: *** No rule to make target `printf/ft_strlcpy.o', needed by `libftprintf.a'.
+make: *** No rule to make target `printf/ft_strlen.o', needed by `libftprintf.a'.
+make: *** No rule to make target `printf/printf_format.o', needed by `libftprintf.a'.
+make: *** No rule to make target `printf/printf_hex.o', needed by `libftprintf.a'.
+make: *** No rule to make target `printf/printf_num.o', needed by `libftprintf.a'.
+make: *** No rule to make target `printf/printf_ptr.o', needed by `libftprintf.a'.
+make: *** No rule to make target `printf/printf_str.o', needed by `libftprintf.a'.
+make: *** No rule to make target `printf/printf_type.o', needed by `libftprintf.a'.
+make: *** No rule to make target `printf/printf.o', needed by `libftprintf.a'.
+
