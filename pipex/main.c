@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/25 00:56:10 by siwolee           #+#    #+#             */
+/*   Updated: 2023/01/25 02:05:07 by siwolee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/wait.h>
@@ -6,77 +18,94 @@
 
 #define FD_READ 0
 #define FD_WRITE 1
-#define FD_STDIN 2
-#define FD_STDOUT 3
+#define FD_STDOUT 2
+#define FD_STDIN 3
 
-int	childproc(int fd[], int i, char *exec)
+int	childproc(int fd[], char *exec)
 {
-	char **arg;
+	char args;
 	char *path = "/usr/bin/";
-	char *c;
 
-	arg = malloc(sizeof (char *));
-	*arg = malloc(sizeof (char) * 20);
-	read(fd[FD_READ], *arg, 20);
-	dup2(fd[FD_READ], 0);
+	printf("child : start\n");
+	write(fd[FD_STDOUT], "child : check FD_STDOUT\n", 25);
+	while (read(fd[FD_READ], &c, 20) > 0)
+		;
+	printf("child : dup2 check : fd_stdout: %d\n", fd[FD_STDOUT]);
 	dup2(fd[FD_WRITE], 1);
-	close(fd[FD_READ]);
-	printf("child process end\n");
-	if (execve(exec, arg, &path))
-		return (1);
-	return (0);
+	return (execve(exec, &arg, &path));
+	// dup2(1, fd[FD_STDOUT]);
+	// write(1, "child process end\n", 19);
+	// write(fd[FD_STDOUT], "child process ...\n", 19);
+	// printf("child process end\n");
+	// return (0);
 }
 
 int parent_start_proc(int fd[], char *infile)
 {
-	int	status;
-	char *c;
+	char c;
 	int	fd_temp;
 
+	printf("parent : start\n");
 	if(access(infile, F_OK | R_OK) == -1)
 	{
 		printf("infile error\n");
 		return (1);
 	}
-	dup2(0, fd[FD_STDIN]);
-	dup2(1, fd[FD_STDOUT]);
+	printf("parent : infile ok\n");
+	if (dup2(0, fd[FD_STDIN]) == -1 || dup2(1, fd[FD_STDOUT]) == -1)
+	{
+		printf("fd dup2 error\n");
+		return (1);
+	}
+	printf("parent : dup ok\n");
 	fd_temp = open(infile, O_RDONLY);
 	if (fd_temp == -1)
 	{
 		printf("fd temp open error\n");
 		return (1);
 	}
-	dup2(fd[FD_WRITE], 1);
-	while (read(fd_temp, c, sizeof(char)) > 0)
+	printf("parent : temp ok\n");
+	// dup2(fd[FD_WRITE], 1);
+	while (read(fd_temp, &c, sizeof(char)) > 0)
 	{
-		write(1, c, 1);
+		write(fd[FD_WRITE], &c, 1);
 	}
-	dup2(1, fd[FD_STDOUT]);
-	printf("parent : start process\n");
+	printf("parent : temp ok\n");
+	printf("parent : start process ok\n");
 	return (0);
 }
 
 int parent_end_proc(int fd[], char *outfile, pid_t pid)
 {
 	int	status;
-	char *c;
+	char c;
+	int fd_temp;
 
-	printf("parent : end process\n");
-	if(access(outfile, F_OK) == -1)
-		fd[FD_READ] = open(outfile, O_CREAT);
-	else
-		fd[FD_READ] = open(outfile, O_RDWR);
-	if(fd[FD_READ] != -1 || access(outfile, F_OK | W_OK) == -1)
-		return (1);
-	waitpid(pid, &status, 0);
+	waitpid(pid, &status,0);
+	printf("parent : end process start. pid is%d\n", pid);
 	printf("Exit code : %d, signal : %d \n", WEXITSTATUS(status), WTERMSIG(status));
-	fd[FD_READ] = open(outfile, O_CREAT);
-	dup2(fd[FD_READ], 0);
-	while (read(1, c, sizeof(char)) > 0)
+	fd_temp = 20;
+	dup2(1, fd[FD_STDIN]);
+	if (access(outfile, F_OK | W_OK) == -1)
 	{
-		write(1, c, 1);
+		printf("parent_end : error access\n");
+		return (1);
 	}
+	fd_temp = open(outfile, O_RDWR | O_CREAT);
+	if(fd_temp == -1)
+	{
+		printf("parent_end : error file\n");
+		printf("fd id %d\n", fd_temp);
+		write(fd_temp, "check if fd write is wrong\n", 28);
+		return (1);
+	} 
+	while (read(fd[FD_READ], &c, sizeof(char)) > 0)
+	{
+		write(fd_temp, &c, 1);
+	}
+	close(fd_temp);
 	close(fd[FD_READ]);
+	close(fd[FD_WRITE]);
 	return (0);
 }
 
@@ -95,12 +124,22 @@ int main(int ac, char **av)
 	}
 	av++;
 	printf("piped\n");
-	parent_start_proc(fd, *av);
+	if (parent_start_proc(fd, *av) == 1)
+		printf("error\n");
+	else
+		printf("started\n");
+	fd[FD_STDOUT] = fd[1] + 1;
+	fd[FD_STDOUT] = dup2(1, fd[FD_STDOUT]);
+	write(fd[3], "parent : fd backup fine\n", 25);
+	printf("**************\nfirst fd is %d %d %d %d\n", fd[0], fd[1], fd[2], fd[3]);
 	pid = fork();
 	if (pid == -1)
+	{
+		printf("parent : fork error\n");
 		return (1);
+	}
 	else if(pid == 0)
-		childproc(fd, 0, av[2]);
+		childproc(fd, av[2]);
 	else
 		parent_end_proc(fd, av[ac -2], pid);
 }
