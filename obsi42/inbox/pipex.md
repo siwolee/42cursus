@@ -73,6 +73,20 @@ https://up-to-date-items.tistory.com/79
 자식 프로세스 : 0
 오류 : 부모 프로세스에 -1 반환
 
+### fork 후 malloc 된 메모리 찾기 > 해제됨
+(https://stackoverflow.com/posts/5429592/timeline)
+
+When you call `fork()`, a copy of the calling process is created. This child process is (almost) exactly the same as the parent, i.e. memory allocated by `malloc()` is preserved and you're free to read or modify it. The modifications will not be visible to the parent process, though, as the parent and child processes are completely separate.
+
+When you call `exec()` in the child, the child process is replaced by a new process. From execve(2):
+
+```kotlin
+execve() does not return on success, and the text, data, bss, and stack
+of the calling process are overwritten by that of the program loaded.
+```
+
+By overwriting the `data` segment, the `exec()` call effectively reclaims the memory that was allocated before by `malloc()`.
+
 
 ## wait
 - sys/wait.h
@@ -289,7 +303,7 @@ dup2(pidp_fd, 0);
 ## pipe
 - unistd.h
 ```c
-int pipe(int fd[2]);
+int pipe(int fd[2]); //fd[0] = IN fd[1] = OUT
 ```
 
 ### IPC (Inter Process Communication)
@@ -306,7 +320,9 @@ pipe로 fd를 열게 됨 -> 이는 파일에 대한 게 아닌 운영체제로�
 
 fd를 사용하면, 여러 개의 프로세스에서 동일한 파일에 접근하여 통신이 가능.
 복제된 프로세스 사이에서는 메모리를 복제하기 때문에, 
-복제 이전에 pipe를 통해서 파일 디스크립터를 읽기/쓰기 용도로 연결한다면 그 파이프를 계속 쓸 수 있게 됨.
+복제 이전에 pipe를 통해서 파일 디스크립터를 읽기/쓰기 용도로 연결한다면 그 파이프를 계속 쓸 수 있게 됨
+
+
 
 ## execve
 - unistd.h

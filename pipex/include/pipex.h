@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 00:12:04 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/29 18:46:22 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/30 20:00:20 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,17 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 #include <stdlib.h>
-// #include "./get_next_line_bonus.h"
+#include "../libft/include/libft.h"
 
-#define FD_RD 0
-#define FD_WR 1
-#define FD_OUT 2
-#define FD_IN 3
+#define STDIN 0
+#define STDOUT 1
+#define STDERR 2
+
+#define PIPE_IN 0
+#define PIPE_OUT 1
+#define STDIN_COPY 2
+#define STDOUT_COPY 3
+
 
 // #define BUFFER_SIZE 20
 

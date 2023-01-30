@@ -1,56 +1,41 @@
-#include <unistd.h>
-#include <stdio.h>
-#include <sys/wait.h>
-#include <fcntl.h>
+#include "./include/pipex.h"
 
-int main(int ac, char **av)
+int main(int ac, char **av, char *const *envp)
 {
-	int i;
-	int e;
-	int status;
-	pid_t pid[3];
-	int fd;
+	// int infile_fd;
+	// char *argv[] = {"grep", "a1", NULL};
+	
+	// if ((infile_fd = open("infile", O_RDONLY)) < 0)
+	// 	return (printf("error"));
+	// if ((dup2(infile_fd, STDIN)) < 0)
+	// 	return (printf("error"));
+	ac = 0;
+	av = 0;
+
+	int i = 0;
+	char **path;
+	char *testcmd;
+	char *cmd = "/grep";
+	
+	while (envp[i] && ft_strncmp(envp[i], "PATH", 4))
+	{
+		i++;
+	}
+	path = ft_split(envp[i] + 5, ':');
 
 	i = 0;
-	while (++i < ac)
+	while (path[i])
 	{
-		if (access(av[i] , F_OK | W_OK) < 0)
-		{
-			printf("cannot access file\n");
-			return (0);
-		}
-		printf("%s file check : OK \n", av[i]);
+		testcmd = ft_strjoin(path[i], cmd);
+		if (access(testcmd, F_OK | X_OK) != -1)
+			break;
+		free(testcmd);
+		testcmd = 0;
 		i++;
 	}
-	i = 0;
-	while (i < ac -1)
-	{
-		pid[i] = fork();
-		if (pid[i] == -1)
-		{
-			printf("fork %d canceled : return\n", i);
-			e = 0;
-			while (e < i)
-				waitpid(pid[e], &status, 0);
-		}
-		else if (pid[i] == 0)
-		{
-			fd = open(av[i + 1], O_RDWR);
-			write(fd, "write fine", 10);
-			close(fd);
-			printf("자식 프로세스가 완료되었습니다.\n");
-			return (i);
-		}
-		i++;
-	}
-	printf("부모 프로세스입니다\n");
-	e = 0;
-	while (e < i)
-	{
-		fd = waitpid(pid[e],&status, 0);
-		printf("기다렸습니다 : 자식 pid %d, %d번째\n", fd, e);
-		printf("Exit code : %d, signal : %d \n", WEXITSTATUS(status), WTERMSIG(status));
-		e++;
-	}
-	printf("정상 종료되었습니다.\n");
+	printf("%s\n",testcmd);
+	free(testcmd);
+
+
+	// execve("grep", argv, NULL);
 }

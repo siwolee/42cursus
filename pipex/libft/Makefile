@@ -15,7 +15,7 @@ OBJS = $(SRCS:.c=.o)
 
 INC = ./include
 
-CC = cc
+CC = gcc
 CFLAGS = -Wall -Werror -Wextra -g3
 
 AR = ar
