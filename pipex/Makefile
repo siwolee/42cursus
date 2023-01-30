@@ -3,69 +3,66 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/01 16:34:39 by siwolee           #+#    #+#              #
-#    Updated: 2023/01/24 15:02:56 by siwolee          ###   ########.fr        #
+#    Updated: 2023/01/29 00:41:07 by siwolee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
-
-TEST = test
-TEST_SRC = test.c
-TEST_OBJ =  $(TEST_SRCS:.c=.o)
+NAME = pipex
 
 SRCS_DIR = ./srcs
-MAIN = srcs/main.c
-SRCS = srcs/*.c
+# MAIN = main.c
+# MAIN_OBJ = main.o
+SRCS = $(wildcard ./srcs/*.c)
 OBJS = $(SRCS:.c=.o)
 
-BONUS = checker
-CHK_SRCS = srcs/main_chk.c
-CHK_OBJS = $(CHK_SRCS:.c=.o)
+LIBFT = libft.a
 
-LIBFT_PRINTF = libftprintf.a
-PRINTF_INC = printf/ft_printf.h
-PRINTF_SRCS =  \
-		printf/ft_calloc.c \
-		printf/ft_isalpha.c \
-		printf/ft_strlcpy.c \
-		printf/ft_strlen.c \
-		printf/printf_format.c \
-		printf/printf_hex.c \
-		printf/printf_num.c \
-		printf/printf_ptr.c \
-		printf/printf_str.c \
-		printf/printf_type.c \
-		printf/printf.c 
-PRINTF_OBJS = $(PRINTF_SRCS:.c=.o)
+LIBGNL = libgnl.a
+GNL_SRCS = get_next_line/get_next_line_bonus.c \
+			get_next_line/get_next_line_utils_bonus.c 
+GNL_OBJS = $(GNL_SRCS:.c=.o)
+
+# LIBFT_PRINTF = libftprintf.a
+# PRINTF_INC = printf/ft_printf.h
+# PRINTF_SRCS =  \
+# 		printf/ft_calloc.c \
+# 		printf/ft_isalpha.c \
+# 		printf/ft_strlcpy.c \
+# 		printf/ft_strlen.c \
+# 		printf/printf_format.c \
+# 		printf/printf_hex.c \
+# 		printf/printf_num.c \
+# 		printf/printf_ptr.c \
+# 		printf/printf_str.c \
+# 		printf/printf_type.c \
+# 		printf/printf.c 
+# PRINTF_OBJS = $(PRINTF_SRCS:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g3 --fsanitise=address
+CFLAGS = -Wall -Werror -Wextra -g3
 
-AR = ar
-ARFLAGS = crs
+# AR = ar
+# ARFLAGS = crs
 
 all : $(NAME)
 
-$(NAME) : $(OBJS) $(LIBFT_PRINTF)
-	@$(CC) $(CFLAGS) -L./ -lftprintf -o $(NAME) $(SRCS) $(MAIN)
+$(NAME) : $(OBJS) $(LIBGNL)
+	@$(CC) $(CFLAGS) -L./ -lgnl -o $(NAME) $(OBJS)
 	@printf "🥳  compiled $(NAME)\n"
 
-$(LIBFT_PRINTF) : $(PRINTF_OBJS)
-	@printf "🤨  compiling ft_printf_objs\n"
-	@$(AR) $(ARFLAGS) ./$(LIBFT_PRINTF) $(PRINTF_OBJS)
-	@printf "😀  compiled ft_printf\n"
+%.o : %.c
+	@$(CC) $(CFLAGS) -L./ -lft  -c $^ -o $@
+
+$(LIBGNL) : $(GNL_OBJS)
+	ar -crs -o $(LIBGNL) $(GNL_OBJS)
 
 %.o : %.c
 	@$(CC) $(CFLAGS) -c $^ -o $@
 
 bonus : $(NAME) $(CHK)
-	
-$(CHK) :
-	@$(CC) $(CFLAGS) -L./ -lftprintf -o $(CHK) $(CHK_SRCS) $(SRCS)
-	@printf "✅  checker compiled\n"
 
 clean :
 	@rm -rf $(PRINTF_OBJS) *.dSYM $(OBJS)
