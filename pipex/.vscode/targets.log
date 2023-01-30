@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `srcs/*.o', needed by `push_swap'.  Stop.
 
 
-# Make data base, printed on Wed Jan 25 00:55:40 2023
+# Make data base, printed on Mon Jan 30 18:44:35 2023
 
 # Variables
 
@@ -47,7 +47,7 @@ BONUS = checker
 # makefile (from `Makefile', line 22)
 OBJS = $(SRCS:.c=.o)
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cv240036rj/T/vscode-ipc-2c9df8de-2da2-4789-a7ce-5cd91d1389e2.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cv240036rj/T/vscode-ipc-f7b8cba3-6e38-4c60-a7ba-ce8123232636.sock
 # environment
 VSCODE_CWD = /
 # makefile (from `Makefile', line 16)
@@ -58,6 +58,8 @@ PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/usr/local/
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # makefile (from `Makefile', line 48)
 ARFLAGS = crs
+# environment
+LaunchInstanceID = 98BB1678-5F09-4149-BF78-BE1EF184CC45
 # makefile (from `Makefile', line 47)
 AR = ar
 # makefile (from `Makefile', line 19)
@@ -69,7 +71,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.EMnlYVN0My/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.BjM0GWcGXI/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -145,7 +147,7 @@ MFLAGS = -Rrqp
 # makefile (from `Makefile', line 20)
 MAIN = srcs/main.c
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.1220
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000008.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # makefile (from `Makefile', line 42)
@@ -154,6 +156,8 @@ PRINTF_OBJS = $(PRINTF_SRCS:.c=.o)
 +F = $(notdir $+)
 # environment
 __CF_USER_TEXT_ENCODING = 0x19B11:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
@@ -166,6 +170,8 @@ EDITOR = /usr/bin/vim
 PAGER = less
 # environment
 LC_ALL = C
+# environment
+SECURITYSESSIONID = 186bb
 # automatic
 ^F = $(notdir $^)
 # default
@@ -179,9 +185,9 @@ PRINTF_INC = printf/ft_printf.h
 # environment
 LANG = C
 # environment
-VSCODE_PID = 34248
+VSCODE_PID = 22126
 # variable set hash-table stats:
-# Load=83/1024=8%, Rehash=0, Collisions=6/118=5%
+# Load=86/1024=8%, Rehash=0, Collisions=6/121=5%
 
 # Pattern-specific Variable Values
 
@@ -190,7 +196,6 @@ VSCODE_PID = 34248
 # Directories
 
 # . (device 16777225, inode 1229507): 19 files, no impossibilities.
- 
 # srcs (device 0, inode 0): No files, 1 impossibilities.
 
 # 19 files, 1 impossibilities in 2 directories.
@@ -319,6 +324,7 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
+ 
 #  commands to execute (from `Makefile', line 71):
 	@rm -rf $(PRINTF_OBJS) *.dSYM $(OBJS)
 	@printf "🗑  cleaned\n"
@@ -388,6 +394,6 @@ printf/ft_strlcpy.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Wed Jan 25 00:55:40 2023
+# Finished Make data base on Mon Jan 30 18:44:35 2023
 
  
