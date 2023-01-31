@@ -1,1 +1,13 @@
-dsfadfwea1
+total 304$
+-rw-r--r--  1 haecho  staff    2168 Jan 29 00:41 Makefile$
+drwxr-xr-x  3 haecho  staff      96 Jan 31 14:00 a.out.dSYM$
+-rwxr-xr-x  1 haecho  staff    1079 Jan 25 08:54 bunny.c$
+drwxr-xr-x  3 haecho  staff      96 Jan 31 14:00 include$
+-rw-r--r--  1 haecho  staff      23 Jan 31 14:00 infile$
+drwxr-xr-x  5 haecho  staff     160 Jan 31 14:00 libft$
+-rw-r--r--  1 haecho  staff  127832 Jan 31 15:01 libft.a$
+-rw-r--r--  1 haecho  staff    3501 Jan 31 15:01 main.c$
+-rwxr-xr-x  1 haecho  staff       0 Jan 31 15:22 outfile$
+drwxr-xr-x  3 haecho  staff      96 Jan 31 14:00 srcs$
+-rw-r--r--  1 haecho  staff     684 Jan 31 15:01 test.c$
+-rw-r--r--  1 haecho  staff    3131 Jan 29 18:46 tnam_ex.c$
