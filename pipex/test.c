@@ -34,8 +34,5 @@ int main(int ac, char **av, char *const *envp)
 		i++;
 	}
 	printf("%s\n",testcmd);
-	free(testcmd);
-
-
-	// execve("grep", argv, NULL);
+	return (testcmd);
 }

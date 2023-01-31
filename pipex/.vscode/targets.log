@@ -10,10 +10,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `get_next_line/get_next_line_bonus.o', needed by `libgnl.a'.  Stop.
 
 
-# Make data base, printed on Mon Jan 30 20:12:38 2023
+# Make data base, printed on Tue Jan 31 14:40:12 2023
 
 # Variables
 
+ 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
@@ -43,7 +44,7 @@ VSCODE_VERBOSE_LOGGING = true
 # makefile (from `Makefile', line 19)
 OBJS = $(SRCS:.c=.o)
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cv240036rj/T/vscode-ipc-39e474d1-f9b7-4a08-9843-0e790f6119fa.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cv240036rj/T/vscode-ipc-76f9e80b-c545-4360-a9a6-dc83d6e8ecaa.sock
 # environment
 VSCODE_CWD = /
 # makefile (from `Makefile', line 26)
@@ -54,8 +55,6 @@ PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/usr/local/
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # makefile (from `Makefile', line 24)
 GNL_SRCS = get_next_line/get_next_line_bonus.c get_next_line/get_next_line_utils_bonus.c 
-# environment
-LaunchInstanceID = 98BB1678-5F09-4149-BF78-BE1EF184CC45
 # makefile (from `Makefile', line 15)
 SRCS_DIR = ./srcs
 # environment
@@ -65,7 +64,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.BjM0GWcGXI/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.Zv5bTUEz29/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -135,15 +134,13 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000008.Electron
+XPC_SERVICE_NAME = com.microsoft.VSCode.2136
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
 __CF_USER_TEXT_ENCODING = 0x19B11:0x0:0x0
-# environment
-COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
@@ -154,8 +151,6 @@ EDITOR = /usr/bin/vim
 PAGER = less
 # environment
 LC_ALL = C
-# environment
-SECURITYSESSIONID = 186bb
 # automatic
 ^F = $(notdir $^)
 # default
@@ -167,9 +162,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 22126
+VSCODE_PID = 66443
 # variable set hash-table stats:
-# Load=77/1024=8%, Rehash=0, Collisions=7/111=6%
+# Load=74/1024=7%, Rehash=0, Collisions=7/108=6%
 
 # Pattern-specific Variable Values
 
@@ -177,11 +172,11 @@ VSCODE_PID = 22126
 
 # Directories
 
-# . (device 16777225, inode 1229507): 15 files, no impossibilities.
+# . (device 16777225, inode 1229507): 16 files, no impossibilities.
 # ./srcs (device 16777225, inode 1274759): 3 files, no impossibilities.
 # get_next_line (device 0, inode 0): No files, 1 impossibilities.
 
-# 18 files, 1 impossibilities in 3 directories.
+# 19 files, 1 impossibilities in 3 directories.
 
 # Implicit Rules
 
@@ -314,6 +309,6 @@ pipex: libgnl.a
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Mon Jan 30 20:12:38 2023
+# Finished Make data base on Tue Jan 31 14:40:12 2023
 
  

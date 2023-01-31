@@ -1,8 +1,7 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/siwolee/42c/pipex'
+make: Leaving directory `/Users/siwolee/42c/pipex'
  
 make: *** No rule to make target `get_next_line/get_next_line_bonus.o', needed by `libgnl.a'.
 make: *** No rule to make target `get_next_line/get_next_line_utils_bonus.o', needed by `libgnl.a'.
 
-make: Leaving directory `/Users/siwolee/42c/pipex'
- 
