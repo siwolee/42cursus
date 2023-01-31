@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 23:43:53 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/30 22:25:08 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/31 14:29:40 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/pipex.h"
+
+void *init_file_fd(int ac, char **av, int file_fd[]);
+int call_exit(int i);
+
+
 char *check_executable(char *cmd, char *const *envp)
 {
 	int i = 0;
@@ -36,6 +41,8 @@ char *check_executable(char *cmd, char *const *envp)
 	return (testcmd);
 }
 
+
+// 바로 outfile fd로 쓰지 않고 pipe out
 int childproc(int fd[], int outfile_fd, char *const *envp)
 {
 	char *argv[] = {"grep", "a1", NULL};
@@ -67,37 +74,39 @@ int pipecheck(int fd[], char *name)
 
 int main(int ac, char **av, char **envp)
 {
-	int 	fd[4] = {5, 6, 7, 8};
+	int 	fd[4] = {5, 6, 7, 8}; //임의의 값을 넣고 있는데 사용하지 않는 포트를 어떻게 받을 것인가?
 	pid_t	pid;
 	int		file_fd[2];
+	int		i;
 
 	int status;
 
+	//infile[0], outfile[1] fd open 
 	init_file_fd(av, ac, *file_fd);
-	infile_fd = open("infile", O_RDONLY);
-	outfile_fd = open("outfile", O_WRONLY | O_TRUNC | O_CREAT | 0644);
 	//STD in/out backup
 	dup2(STDIN, fd[STDIN_COPY]);
 	dup2(STDOUT, fd[STDOUT_COPY]);
-	write(STDOUT, "stdout 1\n", 10);
-	write(fd[STDOUT_COPY], "stdout copy 1\n", 15);
-	printf("printf 1\n");
 	//stdin이 infile 가르킴 : infile을 stdin으로 받음
-	dup2(infile_fd, STDIN);
-	close(infile_fd);
+	dup2(file_fd[0], STDIN);
+	close(file_fd[0]);
+	//fd를 pipe[0][1]로 만듬 
 	if (pipe(fd) == -1)
 		return (printf("pipe error\n"));
-	pipecheck(fd, "parent\n");
-
-	pid = fork();
-	if (pid == -1)
-		return (printf("forkrerror\n"));
-	else if (pid == 0)
+	// pipecheck(fd, "parent\n");
+	i = 1;
+	while (i < ac)
 	{
-		pipecheck(fd , "child\n");
-		return (childproc(fd, outfile_fd, envp));
+		pid = fork();
+		if (pid == -1)
+			return (printf("forkrerror\n"));
+		else if (pid == 0)
+		{
+			// pipecheck(fd , "child\n");
+			return (childproc(fd, file_fd[1], envp));
+		}
+		waitpid(pid, &status, 0);
+
 	}
-	waitpid(pid, &status, 0);
 	close(fd[PIPE_OUT]);
 	close(fd[PIPE_IN]);
 	write(fd[STDOUT_COPY], "finished\n", 10);
@@ -105,9 +114,22 @@ int main(int ac, char **av, char **envp)
 }
 
 //infile, outfile 확인 및 fd 반환
-int *init_file_fd(int ac, char **av, int file_fd[])
+void *init_file_fd(int ac, char **av, int file_fd[])
 {
-	if (ac )
-	infile_fd = open("infile", O_RDONLY);
-	outfile_fd = open("outfile", O_WRONLY | O_TRUNC | O_CREAT | 0644);
+	if (ac < 3 || access(av[1], F_OK | X_OK) == -1)
+		call_exit(1);
+	file_fd[0] = open("infile", O_RDONLY);
+	if (file_fd[0] < 0)
+		call_exit(1);
+	file_fd[1] = open("outfile", O_WRONLY | O_TRUNC | O_CREAT | 0644);
+	if (file_fd[1] < 0)
+	{
+		close(file_fd[0]);
+		call_exit(0);
+	}
+}
+
+int call_exit(int i)
+{
+	exit(i);
 }
