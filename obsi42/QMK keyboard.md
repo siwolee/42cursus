@@ -1,5 +1,8 @@
-make lily58:original:avrdude-split-left
-/Users/haecho/qmk/keyboards/lily58/keymaps/original/config.h
+// make lily58:original:avrdude-split-left
+// make flash CONVERT_TO=rp2040 lily58:original:uf2-split-left-right
+qmk flash -kb lily58 -km default -e CONVERT_TO=rp2040
+
+left/Users/haecho/qmk/keyboards/lily58/keymaps/original/config.h
 
 
 wr

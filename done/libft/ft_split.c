@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haecho <haecho@student.42.fr>              +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:45:58 by siwolee           #+#    #+#             */
-/*   Updated: 2022/11/22 12:22:42 by haecho           ###   ########.fr       */
+/*   Updated: 2023/02/02 14:17:21 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,6 @@ char	**ft_split(char const *s, char c)
 			return (0);
 		}
 	}
-	res[total_cnt] = 0;
+	res[total_cnt] = NULL;
 	return (res);
 }

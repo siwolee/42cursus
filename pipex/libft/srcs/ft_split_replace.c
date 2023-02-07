@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_replace.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:45:58 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/31 14:59:01 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/01/31 22:34:20 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	get_total_cnt(char *s, char c)
 	return (cnt);
 }
 
-static int	new_word(char *res, char *s, char c, char replace_char)
+static int	new_word(char **res, char *s, char c, char replace_char)
 {
 	int	len;
 
@@ -69,12 +69,12 @@ static int	new_word(char *res, char *s, char c, char replace_char)
 	len = toward_c(s, c);
 	if (!len)
 		return (0);
-	res = (char *)malloc(sizeof(char) * (len + 2));
+	*res = (char *)malloc(sizeof(char) * (len + 2));
 	if (!res)
 		return (0);
 	ft_strlcpy(*res, s, len + 1);
-	res[len] = replace_char;
-	res[len + 1] = 0;
+	(*res)[len] = replace_char;
+	(*res)[len + 1] = 0;
 	return (len);
 }
 

@@ -9,7 +9,8 @@ SRCS = \
 		srcs/ft_putstr_fd.c srcs/ft_split.c srcs/ft_strchr.c srcs/ft_strdup.c srcs/ft_striteri.c \
 		srcs/ft_strjoin.c srcs/ft_strlcat.c srcs/ft_strlcpy.c srcs/ft_strlen.c srcs/ft_strmapi.c \
 		srcs/ft_strncmp.c srcs/ft_strnstr.c srcs/ft_strrchr.c srcs/ft_strtrim.c srcs/ft_substr.c \
-		srcs/ft_tolower.c srcs/ft_toupper.c srcs/get_next_line_utils.c srcs/get_next_line.c
+		srcs/ft_tolower.c srcs/ft_toupper.c srcs/get_next_line_utils.c srcs/get_next_line.c \
+		srcs/ft_split_replace.c
 
 OBJS = $(SRCS:.c=.o)
 
