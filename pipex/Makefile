@@ -3,26 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+         #
+#    By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/01 16:34:39 by siwolee           #+#    #+#              #
-#    Updated: 2023/02/02 23:51:44 by siwolee          ###   ########.fr        #
+#    Updated: 2023/02/09 23:12:22 by siwolee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-all :
-	cc -Wall -Werror -Wextra -g3 -L. -lft main.c -o tt
-
-test :
-	cc -Wall -Werror -Wextra -g3 -L. -lft test2.c -o tt
-	echo "" > outfile
-	./tt infile "grep a1" "cat -e" outfile
-	cat outfile
-
-fclean :
-	rm -rf tt
-
-re : fclean all
 
 
 
@@ -34,10 +21,28 @@ re : fclean all
 # SRCS = $(wildcard ./srcs/*.c)
 # OBJS = $(SRCS:.c=.o)
 
-# LIBFT = libft.a
+LIBFT = libft.a
+
+$(LIBFT) : 
+	cd libft; make; cp $(LIBFT) ../
+	cd ..
+
+all :
+	cc -Wall -Werror -Wextra -g3 -L. -lft main.c -o tt
+
+test : $(LIBFT)
+	rm -rf outfile
+	cc -Wall -Werror -Wextra -g3 -L. -lft test3.c -o tt
+	./tt infile "grep a1" "cat -e" outfile
+	cat outfile
+
+fclean :
+	rm -rf tt
+
+re : fclean all
 
 # LIBGNL = libgnl.a
-# GNL_SRCS = get_next_line/get_next_line_bonus.c \
+# GNL_SRCS = get_next_line/get_next_line_bonus.c 
 # 			get_next_line/get_next_line_utils_bonus.c 
 # GNL_OBJS = $(GNL_SRCS:.c=.o)
 
@@ -57,17 +62,17 @@ re : fclean all
 # # 		printf/printf.c 
 # # PRINTF_OBJS = $(PRINTF_SRCS:.c=.o)
 
-# CC = cc
-# CFLAGS = -Wall -Werror -Wextra -g3
+CC = cc
+CFLAGS = -Wall -Werror -Wextra -g3
 
-# # AR = ar
-# # ARFLAGS = crs
+AR = ar
+ARFLAGS = -cr
 
 # all : $(NAME)
 
 # $(NAME) : $(OBJS) $(LIBGNL)
 # 	@$(CC) $(CFLAGS) -L./ -lgnl -o $(NAME) $(OBJS)
-# 	@printf "🥳  compiled $(NAME)\n"
+# 	@printf "🥳 compiled $(NAME)\n"
 
 # %.o : %.c
 # 	@$(CC) $(CFLAGS) -L./ -lft  -c $^ -o $@

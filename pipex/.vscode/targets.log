@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Tue Jan 31 18:53:10 2023
+# Make data base, printed on Thu Feb  9 23:12:30 2023
 
 # Variables
 
@@ -32,30 +32,27 @@ SHELL = /bin/sh
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
-# makefile (from `Makefile', line 45)
+# makefile (from `Makefile', line 66)
 CFLAGS = -Wall -Werror -Wextra -g3
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
+ 
 # environment
 VSCODE_VERBOSE_LOGGING = true
-# makefile (from `Makefile', line 19)
-OBJS = $(SRCS:.c=.o)
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cv240036rj/T/vscode-ipc-030526ed-ca7a-4916-b7f0-4c852263f5b2.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cv240036rj/T/vscode-ipc-047f3c08-c31f-4103-8548-954221cf736c.sock
 # environment
 VSCODE_CWD = /
-# makefile (from `Makefile', line 26)
-GNL_OBJS = $(GNL_SRCS:.c=.o)
 # environment
 PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/siwolee/localBin
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
-# makefile (from `Makefile', line 24)
-GNL_SRCS = get_next_line/get_next_line_bonus.c get_next_line/get_next_line_utils_bonus.c 
+# makefile (from `Makefile', line 69)
+ARFLAGS = -cr
 # environment
-LaunchInstanceID = BE234E90-3CD8-4496-8B99-44AEF480149D
-# makefile (from `Makefile', line 15)
-SRCS_DIR = ./srcs
+LaunchInstanceID = 566153AC-22CE-424B-91D3-49FCF7685D1C
+# makefile (from `Makefile', line 68)
+AR = ar
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -63,7 +60,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.JWTZ9R8WM7/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.ztHo0FN2DE/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -94,24 +91,18 @@ XPC_FLAGS = 0x0
 MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
-# makefile (from `Makefile', line 18)
-SRCS = $(wildcard ./srcs/*.c)
 # environment
 SHLVL = 1
-# makefile (from `Makefile', line 21)
+# makefile (from `Makefile', line 24)
 LIBFT = libft.a
-# makefile (from `Makefile', line 44)
+# makefile (from `Makefile', line 65)
 CC = cc
 # default
 MAKE_VERSION := 3.81
 # environment
 USER = siwolee
-# makefile (from `Makefile', line 23)
-LIBGNL = libgnl.a
 # makefile
-.DEFAULT_GOAL := all
-# makefile (from `Makefile', line 13)
-NAME = pipex
+.DEFAULT_GOAL := libft.a
 # environment
 LESS = -R
 # automatic
@@ -133,7 +124,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000002.Electron
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000004.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -165,9 +156,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 6242
+VSCODE_PID = 9895
 # variable set hash-table stats:
-# Load=77/1024=8%, Rehash=0, Collisions=7/111=6%
+# Load=72/1024=7%, Rehash=0, Collisions=2/100=2%
 
 # Pattern-specific Variable Values
 
@@ -175,36 +166,45 @@ VSCODE_PID = 6242
 
 # Directories
 
-# . (device 16777225, inode 1229507): 15 files, no impossibilities.
-# ./srcs (device 16777225, inode 1274759): 3 files, no impossibilities.
-# get_next_line (device 0, inode 0): No files, 1 impossibilities.
+# . (device 16777225, inode 1229507): 21 files, no impossibilities.
 
-# 18 files, 1 impossibilities in 3 directories.
+# 21 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
-%.o: %.c
-#  commands to execute (from `Makefile', line 63):
-	@$(CC) $(CFLAGS) -c $^ -o $@
-	
-
-# 1 implicit rules, 0 (0.0%) terminal.
+# No implicit rules.
 
 # Files
 
-all: pipex
-#  Phony target (prerequisite of .PHONY).
+all:
 #  Command-line target.
 #  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `'
 #  File does not exist.
-#  File has not been updated.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := all
+# automatic
+# % := 
+# automatic
+# * := 
+ 
+# automatic
+# + := 
+# automatic
+# | := 
+# automatic
+# < := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-.PHONY: fclean clean test all re
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+# Load=8/32=25%, Rehash=0, Collisions=1/10=10%
+#  commands to execute (from `Makefile', line 31):
+	cc -Wall -Werror -Wextra -g3 -L. -lft main.c -o tt
+	
 
 # Not a target:
 .SUFFIXES:
@@ -215,39 +215,38 @@ all: pipex
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2023-01-30 18:46:00
+#  Last modified 2023-02-09 23:12:22
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-# Not a target:
-get_next_line/get_next_line_bonus.o:
-#  Implicit rule search has been done.
-#  File does not exist.
-#  File has not been updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-test:
-#  Phony target (prerequisite of .PHONY).
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has not been updated.
-
-bonus: pipex
+libft.a:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+#  commands to execute (from `Makefile', line 27):
+	cd libft; make; cp $(LIBFT) ../
+	cd ..
+	
 
-fclean: clean
-#  Phony target (prerequisite of .PHONY).
+test: libft.a
 #  Implicit rule search has not been done.
-#  File does not exist.
+#  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 72):
-	@rm -rf $(NAME) $(TEST) $(CHK) $(LIBFT_PRINTF)
-	@printf "🧽 fcleaned\n"
+#  commands to execute (from `Makefile', line 34):
+	rm -rf outfile
+	cc -Wall -Werror -Wextra -g3 -L. -lft test3.c -o tt
+	./tt infile "grep a1" "cat -e" outfile
+	cat outfile
+	
+
+fclean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 40):
+	rm -rf tt
 	
 
 # Not a target:
@@ -257,50 +256,12 @@ fclean: clean
 #  File has not been updated.
 
 re: fclean all
-#  Phony target (prerequisite of .PHONY).
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has not been updated.
-
-clean:
-#  Phony target (prerequisite of .PHONY).
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has not been updated.
-#  commands to execute (from `Makefile', line 68):
-	@rm -rf $(PRINTF_OBJS) *.dSYM $(OBJS)
-	@printf "🗑  cleaned\n"
-	
-
-libgnl.a: get_next_line/get_next_line_bonus.o get_next_line/get_next_line_utils_bonus.o
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has not been updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 60):
-	ar -crs -o $(LIBGNL) $(GNL_OBJS)
-	
-
-# Not a target:
-get_next_line/get_next_line_utils_bonus.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
-pipex: libgnl.a
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has not been updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 53):
-	@$(CC) $(CFLAGS) -L./ -lgnl -o $(NAME) $(OBJS)
-	@printf "🥳  compiled $(NAME)\n"
-	
-
 # files hash-table stats:
-# Load=14/1024=1%, Rehash=0, Collisions=1/42=2%
+# Load=8/1024=1%, Rehash=0, Collisions=0/25=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -312,8 +273,6 @@ pipex: libgnl.a
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue Jan 31 18:53:10 2023
+# Finished Make data base on Thu Feb  9 23:12:30 2023
 
  
-make: *** No rule to make target `get_next_line/get_next_line_bonus.o', needed by `libgnl.a'.  Stop.
-
