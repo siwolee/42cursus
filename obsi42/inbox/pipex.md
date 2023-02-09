@@ -21,7 +21,30 @@ https://bigpel66.oopy.io/library/42/inner-circle/8
 - access, dup, dup2, execve, exit, fork, pipe, unlink, wait, waitpid 
 - ft_printf and any equivalent YOU coded
 
-한번 천천히 살펴보자
+# 🌈 구현해야해용
+- [ ] 들어온 매개변수 갯수 검사 
+	- [ ] 멘데 : 4개 아니면 fail
+	- [ ] 보너스 : 4개 이상으로
+	- [ ] 히어독 : ?
+- [ ] 유효성 검사
+	- [ ] 인파일
+	- [ ] 명령어
+	- [ ] 아웃파일 _ o_creat
+- [x] pipe 2개
+	- [ ] 에러처리 필요
+- [ ] infile > pipe0으로 보내기
+- [ ] fork 명령어 갯수 + 1
+	- [ ] 명령어번호 따라서 = 0번읽기 / 1번쓰기 , 홀수는 1번읽기/0번쓰기
+	- [ ] 마지막 자식 명령어는 읽고 나서 아웃파일 fd에 쓰기
+ - [ ] waitpid : 마지막 child
+ - [ ] 히어독 어캄 << >>?
+ - [ ] 파이프라인 병렬 처리
+
+
+https://devraphy.tistory.com/339
+파이프라인 병렬 처리
+
+
 
 ### unistd.h (fcntl.h)
 open / close / read/ write 
@@ -284,7 +307,7 @@ dup()의 경우에는 같은 entry를 참조하며, f_count값만 올라감.
 ## dup2
 - unistd.h
 파일 디스크립터를 재할당하는 함수. 
-지정한 fd가 사용 중이라면, 사전에 열려 있던 파일을 닫아서 해제한 후에 해당 번호를 할당하게 된다
+지정한 fd가 사용 중이라면, 사전에 열려 있던 파일을 닫아서 해제한 후에 해당 번호를 할당하게 된다.
 ```c
 int dup2(int fd1, int fd2);
 ```

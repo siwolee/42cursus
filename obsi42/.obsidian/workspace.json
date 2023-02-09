@@ -37,7 +37,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "QMK keyboard.md",
+                "file": "inbox/pipex.md",
                 "mode": "source",
                 "source": false
               }
@@ -130,7 +130,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "9b97cdae57489b92",
@@ -146,7 +147,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "QMK keyboard.md",
+                "file": "inbox/pipex.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -163,7 +164,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "QMK keyboard.md",
+                "file": "inbox/pipex.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -186,7 +187,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "QMK keyboard.md"
+                "file": "inbox/pipex.md"
               }
             }
           }
@@ -210,14 +211,14 @@
   "active": "09515024cbee88dd",
   "lastOpenFiles": [
     "so_long.md",
-    "Davinci Resolve 자동화 문서입니당~!.md",
-    "❤️‍🔥 Project.md",
-    "inbox/pipex.md",
     "inbox/obsidian - markdown.md",
-    "inbox/Bone2beRoot.md",
-    "Pasted image 20230123174143.png",
-    "inbox/SSH 여러 개 관리하기.md",
+    "inbox/pipex.md",
+    "QMK keyboard.md",
     "To search list.md",
-    "Debugging.md"
+    "Pasted image 20230123174143.png",
+    "OS.md",
+    "Debugging.md",
+    "conflict-files-obsidian-git.md",
+    "Davinci Resolve 자동화 문서입니당~!.md"
   ]
 }
