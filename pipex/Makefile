@@ -6,7 +6,7 @@
 #    By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/01 16:34:39 by siwolee           #+#    #+#              #
-#    Updated: 2023/02/09 23:12:22 by siwolee          ###   ########.fr        #
+#    Updated: 2023/02/10 10:18:20 by siwolee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ test : $(LIBFT)
 
 fclean :
 	rm -rf tt
+
 
 re : fclean all
 

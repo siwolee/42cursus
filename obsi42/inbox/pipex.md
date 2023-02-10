@@ -23,8 +23,8 @@ https://bigpel66.oopy.io/library/42/inner-circle/8
 
 # 🌈 구현해야해용
 - [ ] 들어온 매개변수 갯수 검사 
-	- [ ] 멘데 : 4개 아니면 fail
-	- [ ] 보너스 : 4개 이상으로
+	- [x] 멘데 : 4개 아니면 fail
+	- [x] 보너스 : 4개 이상으로
 	- [ ] 히어독 : ?
 - [ ] 유효성 검사
 	- [ ] 인파일
@@ -40,6 +40,11 @@ https://bigpel66.oopy.io/library/42/inner-circle/8
  - [ ] 히어독 어캄 << >>?
  - [ ] 파이프라인 병렬 처리
 
+# 🌈 오류를 처리합니다
+- [ ] infile이 없을 경우
+- [ ] infile 권한이 없을 경우
+- [ ] outfile 권한이 없을 경우
+- [ ] 명령어 또는 
 
 https://devraphy.tistory.com/339
 파이프라인 병렬 처리
@@ -415,3 +420,92 @@ https://www.it-note.kr/157
 	상세 오류 내용에 대해서는 errno라는 전역변수에 오류 코드가 저장된다. 오류 내용을 문자열로 표시하기 위해서는 strerror(errno)를 통해서 확인할 수 있다 
 	*무슨 소린지 모르겠음*
 2. 
+
+
+
+
+
+# ERROR
+## pipe를  두개만 쓸 때, 파이프 재사용 시 stdin이 제대로 먹지 않음
+해결 : 파이프를 닫고 다시 열어준다.
+첫번째 / 두번째 / 마지막 커맨드에서는 필요가 없다. 
+중간 커맨드에서 포크뜨기 전에 이번에 out으로 재사용할 파이프를 닫고 다시 열어준다.
+
+## 중간 커맨드에서 stdin을 계속 받고 있음
+해당 파이프의 아웃이 닫혀있어야 stdin을 받지 않는다.....
+
+## 이미 존재하는 파일을 열 시, errno 13 (EACCES) 발생
+## 혹은 O_CREAT로 생성 시 권한이 제대로 설정되지 않음.
+https://wariua.github.io/man-pages-ko/open%282%29/
+`EACCES`
+파일에 요청한 접근 방식이 허용되지 않거나, `pathname` 경로 선두부의 한 디렉터리에 대해 탐색 권한이 거부되었거나, 파일이 아직 존재하지 않고 부모 디렉터리에 대한 쓰기 접근이 허용되지 않는다. ([path_resolution(7)](https://wariua.github.io/man-pages-ko/path_resolution(7)/)도 참고.)
+
+`EACCES`
+`O_CREAT`을 지정했는데, sysctl 항목 `protected_fifos`나 `protected_regular`가 켜져 있고, 파일이 이미 존재하며 FIFO 또는 정규 파일이고, 파일 소유자가 현재 사용자도 아니고 그 파일을 담은 디렉터리의 소유자도 아니며, 담은 디렉터리가 기타 또는 그룹이 쓰기 가능이면서 스티키이다. 자세한 내용은 [proc(5)](https://wariua.github.io/man-pages-ko/proc(5)/)의 `/proc/sys/fs/protected_fifos`와 `/proc/sys/fs/protected_regular` 설명을 보라.
+
+O_CREAT로 없던 파일을 제작 시, 뒤에 설정해준 모드를 통해서 권한이 설정된다. (모드가 없을 경우 O_CREAT 옵션은 무용지물하다. https://linux.die.net/man/2/open)
+그러나 666으로 모드를 넣어줬음에도 파일을 다시 열었을 때 권한 없음이 뜨고, 실제로도 파일 권한 설정이 411로 되어 있다..
+
+```c
+/tt infile "cat -e" "grep cs" "cat -e" outfile
+ac : 6
+errno : 13
+
+-r----x--x  1 siwolee  2022_seoul      64 Feb 10 00:47 outfile
+```
+
+일단 존재하는 파일을 chmod를 이용해서 666으로 권한을 설정해준 후 실행시키면 잘 열린다.
+그렇다면 O_CREAT의 문제라는 것인데...
+
+무슨 변수가 있을까?
+일단 실행권한을 줄 필요 없이 666으로만 진행하고, 몇 가지 다른 방식을 써 보기로 했다. 
+```c
+fd[0]= open("000", O_RDWR|O_TRUNC|O_CREAT, 666);
+fd[1]= open("001", O_RDWR|O_TRUNC|O_CREAT, 666);
+fd[2]= open("002", O_RDWR|O_TRUNC|O_CREAT, 666);
+fd[3]= open("003", O_RDWR|O_TRUNC|O_CREAT, 666);
+fd[4]= open("004", O_RDWR|O_TRUNC|O_CREAT, 666);
+fd[5]= open("005", O_RDWR|O_TRUNC|O_CREAT, 666);
+
+//result
+--w---x---  1 siwolee  2022_seoul      0 Feb 10 10:22 000
+--w---x---  1 siwolee  2022_seoul      0 Feb 10 10:22 001
+--w---x---  1 siwolee  2022_seoul      0 Feb 10 10:22 002
+--w---x---  1 siwolee  2022_seoul      0 Feb 10 10:22 003
+--w---x---  1 siwolee  2022_seoul      0 Feb 10 10:22 004
+--w---x---  1 siwolee  2022_seoul      0 Feb 10 10:22 005
+```
+엉뚱한 권한 - 210?
+여튼 여러개가 똑같이 들어가고 있으니 오류는 아니고 규칙이 있는 듯
+
+```c
+fd[0]= open("000", O_RDWR|O_TRUNC|O_CREAT, 666);
+fd[1]= open("001", O_RDWR|O_TRUNC|O_CREAT, 0666);
+fd[2]= open("002", O_RDWR|O_TRUNC|O_CREAT, 00666);
+
+--w---x---  1 siwolee  2022_seoul      0 Feb 10 10:26 000
+-rw-r--r--  1 siwolee  2022_seoul      0 Feb 10 10:26 001
+-rw-r--r--  1 siwolee  2022_seoul      0 Feb 10 10:26 002
+```
+앞에 0을 붙이니까 그나마 비슷하게 나왔다.
+
+```c
+fd[0]= open("000", O_RDWR|O_TRUNC|O_CREAT, 666);
+fd[1]= open("001", O_WRONLY|O_TRUNC|O_CREAT, 666);
+fd[2]= open("002", O_RDWR|O_TRUNC|O_CREAT, 0666);
+fd[3]= open("003", O_WRONLY|O_TRUNC|O_CREAT, 0666);
+fd[4]= open("004", O_RDWR|O_TRUNC|O_CREAT, 00666);
+fd[5]= open("005", O_WRONLY|O_TRUNC|O_CREAT, 00666);
+
+--w---x---  1 siwolee  2022_seoul      0 Feb 10 10:34 000
+--w---x---  1 siwolee  2022_seoul      0 Feb 10 10:34 001
+-rw-r--r--  1 siwolee  2022_seoul      0 Feb 10 10:34 002
+-rw-r--r--  1 siwolee  2022_seoul      0 Feb 10 10:34 003
+-rw-r--r--  1 siwolee  2022_seoul      0 Feb 10 10:34 004
+-rw-r--r--  1 siwolee  2022_seoul      0 Feb 10 10:34 005
+```
+
+일단 0666, 0644, 0664 다 시도해 봤을 때 클러스터 맥에서는 0644만 나온다.
+하지만 이 상태로도 실행은 문제 없이 되더라. 앞에 0을 빼먹지 마세요.
+아무래도 셀프 권한이 없는 건가? 싶어서 집 가서 시도해볼 예정.
+

@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 23:43:53 by siwolee           #+#    #+#             */
-/*   Updated: 2023/02/09 22:53:48 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/02/10 00:39:16 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,12 @@ int	child_proc(int fd_in, int fd_out, char **path, char **cmd, char *const *envp
 	printf("print.. in%d out%d %s\n",fd_in, fd_out, *cmd);
 	if (dup2(fd_in, STDIN_FILENO) == -1)
 		printf("dup in fail\n");
-	// else
-	// 	printf("dup in success\n");
+	else
+		printf(:)
 	close(fd_in);
 	if (dup2(fd_out, STDOUT_FILENO) == -1)
-		printf("dup out fail\n");
-	// else
-		// printf("dup out success\n");
-	// printf("dfdfsfsdafsdf\n");
+		printf("dup fail\n");
+	printf("dfdfsfsdafsdf\n");
 	close(fd_out);
 	if (execve(check_executable(*cmd, path), cmd, envp) == -1)
 		printf("failllllllll\n");
@@ -132,19 +130,19 @@ int main(int ac, char **av, char **envp)
 		pid = fork();
 		if (pid != 0)
 		{
-			// wait(&status);
+			wait(&status);
 			continue ;
 		}
-		// close(fd[fd_in(i + 1)]);
-		// close(fd[fd_out(i + 1, ac)]);
+		close(fd[fd_in(i + 1)]);
+		close(fd[fd_out(i + 1, ac)]);
 		if (i == 2)
 		{
-			// close(fd[fd_in(i)]);
+			close(fd[fd_in(i)]);
 			child_proc(fd[INFILE], fd[fd_out(i, ac)], path, ft_split(av[i], ' '), envp);
 		}
 		else if (i == ac - 2)
 		{
-			// close(fd[fd_out(i, ac)]);
+			close(fd[fd_out(i, ac)]);
 			printf("outfile name : %s\n", av[ac-1]);
 			child_proc(fd[fd_in(i)], fd[OUTFILE], path, ft_split(av[i], ' '), envp);
 		}

@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Thu Feb  9 23:12:30 2023
+# Make data base, printed on Fri Feb 10 10:26:41 2023
 
 # Variables
 
@@ -25,6 +25,7 @@ VSCODE_LOG_NATIVE = false
 # automatic
 @F = $(notdir $@)
 # makefile
+ 
 CURDIR := /Users/siwolee/42c/pipex
 # makefile
 SHELL = /bin/sh
@@ -32,26 +33,23 @@ SHELL = /bin/sh
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
-# makefile (from `Makefile', line 66)
+# makefile (from `Makefile', line 67)
 CFLAGS = -Wall -Werror -Wextra -g3
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
- 
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cv240036rj/T/vscode-ipc-047f3c08-c31f-4103-8548-954221cf736c.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cv240036rj/T/vscode-ipc-40bb16c6-8e03-4f80-a076-788b210a0e26.sock
 # environment
 VSCODE_CWD = /
 # environment
 PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/siwolee/localBin
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
-# makefile (from `Makefile', line 69)
+# makefile (from `Makefile', line 70)
 ARFLAGS = -cr
-# environment
-LaunchInstanceID = 566153AC-22CE-424B-91D3-49FCF7685D1C
-# makefile (from `Makefile', line 68)
+# makefile (from `Makefile', line 69)
 AR = ar
 # environment
 VSCODE_LOG_STACK = false
@@ -60,7 +58,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.ztHo0FN2DE/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.5Tyl9ZMraf/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -95,7 +93,7 @@ MAKECMDGOALS := all
 SHLVL = 1
 # makefile (from `Makefile', line 24)
 LIBFT = libft.a
-# makefile (from `Makefile', line 65)
+# makefile (from `Makefile', line 66)
 CC = cc
 # default
 MAKE_VERSION := 3.81
@@ -124,15 +122,13 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000004.Electron
+XPC_SERVICE_NAME = com.microsoft.VSCode.1168
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
 __CF_USER_TEXT_ENCODING = 0x19B11:0x0:0x0
-# environment
-COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
@@ -143,8 +139,6 @@ EDITOR = /usr/bin/vim
 PAGER = less
 # environment
 LC_ALL = C
-# environment
-SECURITYSESSIONID = 186a6
 # automatic
 ^F = $(notdir $^)
 # default
@@ -156,9 +150,10 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 9895
+ 
+VSCODE_PID = 75837
 # variable set hash-table stats:
-# Load=72/1024=7%, Rehash=0, Collisions=2/100=2%
+# Load=69/1024=7%, Rehash=0, Collisions=2/97=2%
 
 # Pattern-specific Variable Values
 
@@ -166,9 +161,9 @@ VSCODE_PID = 9895
 
 # Directories
 
-# . (device 16777225, inode 1229507): 21 files, no impossibilities.
+# . (device 16777225, inode 1229507): 25 files, no impossibilities.
 
-# 21 files, no impossibilities in 1 directories.
+# 25 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -189,7 +184,6 @@ all:
 # % := 
 # automatic
 # * := 
- 
 # automatic
 # + := 
 # automatic
@@ -215,7 +209,7 @@ all:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2023-02-09 23:12:22
+#  Last modified 2023-02-10 10:18:20
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -273,6 +267,6 @@ re: fclean all
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu Feb  9 23:12:30 2023
+# Finished Make data base on Fri Feb 10 10:26:41 2023
 
  
