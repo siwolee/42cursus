@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 23:43:53 by siwolee           #+#    #+#             */
-/*   Updated: 2023/02/10 10:41:49 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/02/10 11:10:08 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,6 @@ int	child_proc(int fd_in, int fd_out, char **path, char **cmd)
 	if (dup2(fd_out, STDOUT_FILENO) == -1)
 		printf("dup out fail\n");
 	close(fd_out);
-	// printf("exec\n");
 	execve(check_executable(*cmd, path), cmd, NULL);
 	return (1);
 }
@@ -166,8 +165,6 @@ int	main(int ac, char **av, char **envp)
 	fd[OUTFILE] = open(av[ac - 1], O_RDWR | O_TRUNC | O_CREAT, 0644);
 	if (fd[INFILE] == -1 || fd[OUTFILE] == -1)
 		printf("errno : %d\n", errno);
-	printf("parent :: fd in_a%d out_a%d in_b%d, out_b%d infile%d outfile%d\n",
-			fd[0], fd[1], fd[2], fd[3], fd[4], fd[5]);
 	i = 1;
 	while (++i < ac - 1)
 	{
