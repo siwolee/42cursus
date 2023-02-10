@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 23:43:53 by siwolee           #+#    #+#             */
-/*   Updated: 2023/02/10 11:10:08 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/02/10 11:40:12 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,27 +47,23 @@ void	fd_close(int i, int *fd, int ac)
 		close(fd[IN_A]);
 		close(fd[IN_B]);
 		close(fd[OUT_B]);
-		printf("\ni = %d, closed IN_A , B\n", i);
 	}
 	else if (i == ac - 2 && i % 2)
 	{
 		close(fd[IN_B]);
 		close(fd[OUT_B]);
 		close(fd[OUT_A]);
-		printf("\ni = %d, closed OUT_A, B\n", i);
 	}
 	else if (i == ac - 2 && i % 2 == 0)
 	{
 		close(fd[IN_A]);
 		close(fd[OUT_A]);
 		close(fd[OUT_B]);
-		printf("\ni = %d, closed OUT_B, A\n", i);
 	}
 	else if (i % 2)
 	{
 		close(fd[IN_B]);
 		close(fd[OUT_A]);
-		printf("\ni = %d, closed IN_B, OUT_A\n", i);
 	}
 	else if (i % 2 == 0)
 	{
