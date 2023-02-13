@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 23:43:53 by siwolee           #+#    #+#             */
-/*   Updated: 2023/02/10 11:40:29 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/02/14 00:30:15 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,13 +172,18 @@ int	main(int ac, char **av, char **envp)
 			child_proc(fd_in(i, fd), fd_out(i, fd, ac), \
 						path, ft_split(av[i],' '));
 		}
+		else
+			printf("pid :: %d\n", pid);
+
 	}
+	sleep(20);
 	close(fd[0]);
 	close(fd[1]);
 	close(fd[2]);
 	close(fd[3]);
 	close(fd[4]);
 	close(fd[5]);
+	wait(&status);
 	waitpid(pid, &status, 0);
 	free(path);
 }
