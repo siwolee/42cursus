@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 23:43:53 by siwolee           #+#    #+#             */
-/*   Updated: 2023/02/15 19:08:38 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/02/18 19:02:05 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	main(int ac, char **av, char **envp)
 
 	}
 	close_all_fd(fd, 6);
+	wait_all_child(i - 1);
 	wait(&status);
 	waitpid(pid, &status, 0);
 	free(path);
