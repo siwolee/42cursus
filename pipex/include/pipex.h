@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 00:12:04 by siwolee           #+#    #+#             */
-/*   Updated: 2023/01/30 20:00:20 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/02/15 18:15:32 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,12 @@
 #include <stdlib.h>
 #include "../libft/include/libft.h"
 
-#define STDIN 0
-#define STDOUT 1
-#define STDERR 2
-
-#define PIPE_IN 0
-#define PIPE_OUT 1
-#define STDIN_COPY 2
-#define STDOUT_COPY 3
-
+#define IN_A 0
+#define OUT_A 1
+#define IN_B 2
+#define OUT_B 3
+#define INFILE 4
+#define OUTFILE 5
 
 // #define BUFFER_SIZE 20
 

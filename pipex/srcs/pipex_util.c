@@ -1,24 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test3.c                                            :+:      :+:    :+:   */
+/*   pipex_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 23:43:53 by siwolee           #+#    #+#             */
-/*   Updated: 2023/02/14 00:30:15 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/02/15 19:10:34 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/pipex.h"
 #include <errno.h>
-
-#define IN_A 0
-#define OUT_A 1
-#define IN_B 2
-#define OUT_B 3
-#define INFILE 4
-#define OUTFILE 5
 
 int	fd_in(int i, int *fd)
 {
@@ -145,45 +138,15 @@ int	child_proc(int fd_in, int fd_out, char **path, char **cmd)
 	return (1);
 }
 
-int	main(int ac, char **av, char **envp)
+void close_all_fd(int *fd, int cnt)
 {
-	int		fd[6];
-	pid_t	pid;
-	int		i;
-	int		status;
-	char	**path;
+	int i;
 
-	path = init_check(ac, envp);
-	printf("ac : %d\n", ac);
-	pipe(fd);
-	pipe(fd + 2);
-	fd[INFILE] = open(av[1], O_RDONLY);
-	fd[OUTFILE] = open(av[ac - 1], O_RDWR | O_TRUNC | O_CREAT, 0644);
-	if (fd[INFILE] == -1 || fd[OUTFILE] == -1)
-		printf("errno : %d\n", errno);
-	i = 1;
-	while (++i < ac - 1)
+	i = 0;
+	while (i < cnt)
 	{
-		fd_reopen(i, fd, ac);
-		pid = fork();
-		if (pid == 0)
-		{
-			fd_close(i, fd, ac);
-			child_proc(fd_in(i, fd), fd_out(i, fd, ac), \
-						path, ft_split(av[i],' '));
-		}
-		else
-			printf("pid :: %d\n", pid);
-
+		if (fd[i] > 0)
+			close(fd[i]);
+		i++;
 	}
-	sleep(20);
-	close(fd[0]);
-	close(fd[1]);
-	close(fd[2]);
-	close(fd[3]);
-	close(fd[4]);
-	close(fd[5]);
-	wait(&status);
-	waitpid(pid, &status, 0);
-	free(path);
 }

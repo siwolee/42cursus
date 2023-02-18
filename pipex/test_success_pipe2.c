@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test3 copy.c                                       :+:      :+:    :+:   */
+/*   test_success_pipe2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 23:43:53 by siwolee           #+#    #+#             */
-/*   Updated: 2023/02/10 10:41:08 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/02/15 18:13:14 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//version : succed 다중 명령어는 성공했지만, out 부분이 안 됨....
-//닫고 열고 하면서 파이프 2개
 
+// 멘데 테스트 성공하고... 슬립 걸어둔 파일
 
 
 #include "./include/pipex.h"
@@ -28,7 +27,7 @@
 int	fd_in(int i, int *fd)
 {
 	if (i == 2)
-	 	return (fd[INFILE]);
+		return (fd[INFILE]);
 	if (i % 2 == 0)
 		return (fd[IN_B]);
 	else
@@ -45,36 +44,30 @@ int	fd_out(int i, int *fd, int ac)
 		return (fd[OUT_B]);
 }
 
-void fd_close(int i, int *fd, int ac)
+void	fd_close(int i, int *fd, int ac)
 {
 	if (i == 2)
 	{
 		close(fd[IN_A]);
 		close(fd[IN_B]);
 		close(fd[OUT_B]);
-		printf("\ni = %d, closed IN_A , B\n", i);
 	}
 	else if (i == ac - 2 && i % 2)
 	{
 		close(fd[IN_B]);
 		close(fd[OUT_B]);
 		close(fd[OUT_A]);
-		printf("\ni = %d, closed OUT_A, B\n", i);
-
 	}
 	else if (i == ac - 2 && i % 2 == 0)
 	{
 		close(fd[IN_A]);
 		close(fd[OUT_A]);
 		close(fd[OUT_B]);
-		printf("\ni = %d, closed OUT_B, A\n", i);
-
 	}
 	else if (i % 2)
 	{
 		close(fd[IN_B]);
 		close(fd[OUT_A]);
-		printf("\ni = %d, closed IN_B, OUT_A\n", i);
 	}
 	else if (i % 2 == 0)
 	{
@@ -85,11 +78,11 @@ void fd_close(int i, int *fd, int ac)
 	else
 		printf("close error\n");
 }
-void fd_reopen(int i, int *fd, int ac)
+void	fd_reopen(int i, int *fd, int ac)
 {
 	if (i < 3 || i == ac - 2)
 		return ;
-	if (i % 2)// reopen B
+	if (i % 2) // reopen B
 	{
 		close(fd[IN_B]);
 		close(fd[OUT_B]);
@@ -103,9 +96,10 @@ void fd_reopen(int i, int *fd, int ac)
 	}
 }
 
-char **get_path (char *const *envp)
+char	**get_path(char *const *envp)
 {
 	int	i;
+
 	i = 0;
 	while (envp[i] && ft_strncmp(envp[i], "PATH", 4))
 	{
@@ -114,11 +108,12 @@ char **get_path (char *const *envp)
 	return (ft_split_replace(envp[i] + 5, ':', '/'));
 }
 
-char *check_executable(char *cmd, char **path)
+char	*check_executable(char *cmd, char **path)
 {
-	int i = 0;
-	char *testcmd;
+	int		i;
+	char	*testcmd;
 
+	i = 0;
 	i = 0;
 	testcmd = NULL;
 	while (path[i])
@@ -133,7 +128,7 @@ char *check_executable(char *cmd, char **path)
 	return (testcmd);
 }
 
-char **init_check(int ac, char *const *envp)
+char	**init_check(int ac, char *const *envp)
 {
 	//heredoc 옵션 필요함
 	if (ac < 4)
@@ -143,27 +138,24 @@ char **init_check(int ac, char *const *envp)
 
 int	child_proc(int fd_in, int fd_out, char **path, char **cmd)
 {
-	printf("print.. in%d out%d %s\n",fd_in, fd_out, *cmd);
+	printf("print.. in%d out%d %s\n", fd_in, fd_out, *cmd);
 	if (dup2(fd_in, STDIN_FILENO) == -1)
 		printf("dup in fail\n");
 	close(fd_in);
 	if (dup2(fd_out, STDOUT_FILENO) == -1)
 		printf("dup out fail\n");
 	close(fd_out);
-	// printf("exec\n");
 	execve(check_executable(*cmd, path), cmd, NULL);
 	return (1);
 }
 
-
-int main(int ac, char **av, char **envp)
+int	main(int ac, char **av, char **envp)
 {
-	int 	fd[6];
+	int		fd[6];
 	pid_t	pid;
 	int		i;
-	// char	*buf;
-	int 	status;
-	char **path;
+	int		status;
+	char	**path;
 
 	path = init_check(ac, envp);
 	printf("ac : %d\n", ac);
@@ -173,7 +165,6 @@ int main(int ac, char **av, char **envp)
 	fd[OUTFILE] = open(av[ac - 1], O_RDWR | O_TRUNC | O_CREAT, 0644);
 	if (fd[INFILE] == -1 || fd[OUTFILE] == -1)
 		printf("errno : %d\n", errno);
-	printf("parent :: fd in_a%d out_a%d in_b%d, out_b%d infile%d outfile%d\n", fd[0], fd[1], fd[2], fd[3], fd[4], fd[5]);
 	i = 1;
 	while (++i < ac - 1)
 	{
@@ -182,15 +173,21 @@ int main(int ac, char **av, char **envp)
 		if (pid == 0)
 		{
 			fd_close(i, fd, ac);
-			child_proc(fd_in(i, fd), fd_out(i, fd, ac), path, ft_split(av[i], ' '));
+			child_proc(fd_in(i, fd), fd_out(i, fd, ac), \
+						path, ft_split(av[i],' '));
 		}
+		else
+			printf("pid :: %d\n", pid);
+
 	}
+	sleep(20);
 	close(fd[0]);
 	close(fd[1]);
 	close(fd[2]);
 	close(fd[3]);
 	close(fd[4]);
 	close(fd[5]);
+	wait(&status);
 	waitpid(pid, &status, 0);
 	free(path);
 }
