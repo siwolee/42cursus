@@ -12,10 +12,14 @@
 # Github
 - [[SSH 여러 개 관리하기]]
 - [[Merge and conflict]]
+- [[git commit 되돌리기]]
+
+
 
 # C / C\#\#
 [[가변인자 인수의 사용]]
 [[Makefile bonus]]
+- [[Makefile relink and 종속성]]
 
 
 # 관련  읽어볼만한 글
