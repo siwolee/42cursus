@@ -6,11 +6,11 @@
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 23:43:53 by siwolee           #+#    #+#             */
-/*   Updated: 2023/02/15 19:10:34 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/02/23 16:40:41 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/pipex.h"
+#include "pipex.h"
 #include <errno.h>
 
 int	fd_in(int i, int *fd)
@@ -149,4 +149,16 @@ void close_all_fd(int *fd, int cnt)
 			close(fd[i]);
 		i++;
 	}
+}
+
+int	*wait_all_child(int child_cnt)
+{
+	int *status;
+
+	status = NULL;
+	while (--child_cnt != 1)
+	{
+		wait(status);
+	}
+	return (status);
 }

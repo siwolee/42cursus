@@ -3,32 +3,48 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/01 16:34:39 by siwolee           #+#    #+#              #
-#    Updated: 2023/02/10 10:18:20 by siwolee          ###   ########.fr        #
+#    Updated: 2023/02/23 17:47:44 by siwolee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 
 
-# NAME = pipex
+NAME = pipex
 
-# SRCS_DIR = ./srcs
-# # MAIN = main.c
-# # MAIN_OBJ = main.o
-# SRCS = $(wildcard ./srcs/*.c)
-# OBJS = $(SRCS:.c=.o)
+CC = cc
+CFLAGS = -Wall -Werror -Wextra -g3
+
+AR = ar
+ARFLAGS = -rc
+
+SRCS_DIR = ./srcs
+MENDE_SRC = $(SRCS_DIR)/pipex_mende.c
+MENDE_OBJ = $(MENDE_SRCS:.c=.o)
+MAIN_OBJ = main.o
+SRCS = $(wildcard ./srcs/*.c)
+OBJS = $(SRCS:.c=.o)
+INCLUDE = $(SRCS_DIR)/pipex.h
 
 LIBFT = libft.a
 
-$(LIBFT) : 
-	cd libft; make; cp $(LIBFT) ../
-	cd ..
 
-all :
-	cc -Wall -Werror -Wextra -g3 -L. -lft main.c -o tt
+all : $(NAME)
+
+$(NAME) : $(LIBFT) $(MENDE_OBJ) $(OBJS)
+	$(CC) $(CFLAGS) -L. -lft -o $(NAME) $(MENDE_OBJ) $(OBJS)
+
+bonus : $(LIBFT)
+
+$(MENDE_OBJ) : $(MENDE_SRCS) $(INCLUDE)
+	$(CC) $(CFLAGS) -L. -lft -c -o $@ $>
+
+*.o : *.c $(INCLUDE)
+	$(CC) $(CFLAGS) -L. -lft -c -o $@ $^
+
 
 test : $(LIBFT)
 	rm -rf outfile
@@ -36,9 +52,17 @@ test : $(LIBFT)
 	./tt infile "grep a1" "cat -e" outfile
 	cat outfile
 
-fclean :
-	rm -rf tt
+$(LIBFT) : 
+	@cd libft ; make; cd ../
+	@mv libft/$(LIBFT) ./
+	@printf "LIBFT library compiled\n"
+	
 
+fclean : clean
+	rm -rf 
+
+clean :
+	rm -rf $(OBJS) $(MENDE_OBJ) $(BONUS_OBJ) $(LIBFT)
 
 re : fclean all
 
@@ -63,11 +87,7 @@ re : fclean all
 # # 		printf/printf.c 
 # # PRINTF_OBJS = $(PRINTF_SRCS:.c=.o)
 
-CC = cc
-CFLAGS = -Wall -Werror -Wextra -g3
 
-AR = ar
-ARFLAGS = -cr
 
 # all : $(NAME)
 
@@ -96,4 +116,4 @@ ARFLAGS = -cr
 
 # re : fclean all
 
-# .PHONY : fclean clean test all re
+.PHONY : fclean clean test all re

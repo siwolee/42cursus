@@ -6,25 +6,13 @@
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 23:43:53 by siwolee           #+#    #+#             */
-/*   Updated: 2023/02/18 19:06:29 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/02/23 17:02:56 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/pipex.h"
+#include "pipex.h"
 #include <errno.h>
 
-int	child_proc(int fd_in, int fd_out, char **path, char **cmd)
-{
-	printf("print.. in%d out%d %s\n", fd_in, fd_out, *cmd);
-	if (dup2(fd_in, STDIN_FILENO) == -1)
-		printf("dup in fail\n");
-	close(fd_in);
-	if (dup2(fd_out, STDOUT_FILENO) == -1)
-		printf("dup out fail\n");
-	close(fd_out);
-	execve(check_executable(*cmd, path), cmd, NULL);
-	return (1);
-}
 
 int	main(int ac, char **av, char **envp)
 {
