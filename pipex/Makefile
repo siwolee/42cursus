@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+         #
+#    By: siwolee <siwolee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/01 16:34:39 by siwolee           #+#    #+#              #
-#    Updated: 2023/02/18 19:27:57 by siwolee          ###   ########.fr        #
+#    Updated: 2023/02/10 10:18:20 by siwolee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@
 # SRCS_DIR = ./srcs
 # # MAIN = main.c
 # # MAIN_OBJ = main.o
-SRCS = $(wildcard ./srcs/*.c)
+# SRCS = $(wildcard ./srcs/*.c)
 # OBJS = $(SRCS:.c=.o)
 
 LIBFT = libft.a
@@ -27,10 +27,10 @@ $(LIBFT) :
 	cd libft; make; cp $(LIBFT) ../
 	cd ..
 
-all : $(LIBFT)
-	cc -Wall -Werror -Wextra -g3 -L. -lft -o $(NAME) $(SRCS)
+all :
+	cc -Wall -Werror -Wextra -g3 -L. -lft main.c -o tt
 
-test : $(LIBFT) $(all)
+test : $(LIBFT)
 	rm -rf outfile
 	cc -Wall -Werror -Wextra -g3 -L. -lft test3.c -o tt
 	./tt infile "grep a1" "cat -e" outfile
@@ -42,6 +42,26 @@ fclean :
 
 re : fclean all
 
+# LIBGNL = libgnl.a
+# GNL_SRCS = get_next_line/get_next_line_bonus.c 
+# 			get_next_line/get_next_line_utils_bonus.c 
+# GNL_OBJS = $(GNL_SRCS:.c=.o)
+
+# # LIBFT_PRINTF = libftprintf.a
+# # PRINTF_INC = printf/ft_printf.h
+# # PRINTF_SRCS =  \
+# # 		printf/ft_calloc.c \
+# # 		printf/ft_isalpha.c \
+# # 		printf/ft_strlcpy.c \
+# # 		printf/ft_strlen.c \
+# # 		printf/printf_format.c \
+# # 		printf/printf_hex.c \
+# # 		printf/printf_num.c \
+# # 		printf/printf_ptr.c \
+# # 		printf/printf_str.c \
+# # 		printf/printf_type.c \
+# # 		printf/printf.c 
+# # PRINTF_OBJS = $(PRINTF_SRCS:.c=.o)
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g3
