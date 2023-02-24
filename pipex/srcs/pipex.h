@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 00:12:04 by siwolee           #+#    #+#             */
-/*   Updated: 2023/02/23 16:31:00 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/02/23 18:53:48 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ char	*check_executable(char *cmd, char **path);
 char	**init_check(int ac, char *const *envp);
 int	child_proc(int fd_in, int fd_out, char **path, char **cmd);
 void close_all_fd(int *fd, int cnt);
-int	*wait_all_child(int child_cnt);
+int	wait_all_child(int child_cnt, pid_t pid);
+int check_infile(char *file);
+int check_outfile(char *file);
 
 char		*get_next_line(int fd);
 int 	pipecheck(int fd[], char *name);

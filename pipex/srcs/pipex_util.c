@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 23:43:53 by siwolee           #+#    #+#             */
-/*   Updated: 2023/02/23 16:40:41 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/02/23 18:55:13 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,13 @@ int	fd_out(int i, int *fd, int ac)
 void	fd_close(int i, int *fd, int ac)
 {
 	if (i == 2)
-	{
-		close(fd[IN_A]);
 		close(fd[IN_B]);
-		close(fd[OUT_B]);
-	}
-	else if (i == ac - 2 && i % 2)
+	else if (i == ac - 2)
 	{
-		close(fd[IN_B]);
 		close(fd[OUT_B]);
 		close(fd[OUT_A]);
 	}
-	else if (i == ac - 2 && i % 2 == 0)
-	{
-		close(fd[IN_A]);
-		close(fd[OUT_A]);
-		close(fd[OUT_B]);
-	}
-	else if (i % 2)
+	if (i % 2)
 	{
 		close(fd[IN_B]);
 		close(fd[OUT_A]);
@@ -62,7 +51,6 @@ void	fd_close(int i, int *fd, int ac)
 	{
 		close(fd[IN_A]);
 		close(fd[OUT_B]);
-		printf("\ni = %d, closed IN_A, OUT_B\n", i);
 	}
 	else
 		printf("close error\n");
@@ -151,14 +139,38 @@ void close_all_fd(int *fd, int cnt)
 	}
 }
 
-int	*wait_all_child(int child_cnt)
+int	wait_all_child(int child_cnt, pid_t pid)
 {
 	int *status;
 
 	status = NULL;
-	while (--child_cnt != 1)
+	while (--child_cnt > 1)
 	{
 		wait(status);
 	}
+	waitpid(pid, *status, 0);
 	return (status);
+}
+
+int check_infile(char *file)
+{
+	int fd;
+
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		printf("no such file or directory: %s\n", file);
+	return (fd);
+}
+
+int check_outfile(char *file)
+{
+	int fd;
+
+	fd = open(file, O_RDWR | O_TRUNC | O_CREAT, 0644);
+	if (fd == -1)
+	{
+		printf("no such file or directory: %s\n", file);
+		exit(1);
+	}
+	return (fd);
 }

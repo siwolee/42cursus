@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 23:43:53 by siwolee           #+#    #+#             */
-/*   Updated: 2023/02/23 17:02:56 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/02/23 18:55:44 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@ int	main(int ac, char **av, char **envp)
 	printf("ac : %d\n", ac);
 	pipe(fd);
 	pipe(fd + 2);
-	fd[INFILE] = open(av[1], O_RDONLY);
-	fd[OUTFILE] = open(av[ac - 1], O_RDWR | O_TRUNC | O_CREAT, 0644);
-	if (fd[INFILE] == -1 || fd[OUTFILE] == -1)
-		printf("errno : %d\n", errno);
+	fd[INFILE] = check_infile(av[1]);
+	fd[OUTFILE] = check_outfile(av[ac - 1]);
 	i = 1;
 	while (++i < ac - 1)
 	{
@@ -46,8 +44,7 @@ int	main(int ac, char **av, char **envp)
 
 	}
 	close_all_fd(fd, 6);
-	wait_all_child(i - 1);
-	wait(&status);
-	waitpid(pid, &status, 0);
+	status = wait_all_child(ac - 3, pid);
 	free(path);
+	return (status);
 }
