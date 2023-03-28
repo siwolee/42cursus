@@ -1,8 +1,8 @@
 {
-  "accentColor": "",
-  "cssTheme": "Obsidian gruvbox",
-  "theme": "obsidian",
-  "interfaceFontFamily": "AppleMyungjo",
+  "accentColor": "#98d1dd",
+  "cssTheme": "Obsidianotion",
+  "theme": "moonstone",
+  "interfaceFontFamily": "Apple SD Gothic Neo",
   "monospaceFontFamily": "Andale Mono",
   "textFontFamily": "Apple SD Gothic Neo"
 }

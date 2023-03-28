@@ -22,28 +22,28 @@ https://bigpel66.oopy.io/library/42/inner-circle/8
 - ft_printf and any equivalent YOU coded
 
 # 🌈 구현해야해용
-- [ ] 들어온 매개변수 갯수 검사 
+- [x] 들어온 매개변수 갯수 검사 
 	- [x] 멘데 : 4개 아니면 fail
-	- [x] 보너스 : 4개 이상으로
-	- [ ] 히어독 : ?
+	- [x] 보너스 : 4개 이상으로=
 - [ ] 유효성 검사
-	- [ ] 인파일
+	- [x] 인파일
 	- [ ] 명령어
-	- [ ] 아웃파일 _ o_creat
+	- [x] 아웃파일 _ o_creat
 - [x] pipe 2개
-	- [ ] 에러처리 필요
-- [ ] infile > pipe0으로 보내기
-- [ ] fork 명령어 갯수 + 1
-	- [ ] 명령어번호 따라서 = 0번읽기 / 1번쓰기 , 홀수는 1번읽기/0번쓰기
-	- [ ] 마지막 자식 명령어는 읽고 나서 아웃파일 fd에 쓰기
- - [ ] waitpid : 마지막 child
- - [ ] 히어독 어캄 << >>?
- - [ ] 파이프라인 병렬 처리
+	- [x] 에러처리 필요
+- [x] infile > pipe0으로 보내기
+- [x] fork 명령어 갯수 + 1
+	- [x] 명령어번호 따라서 = 0번읽기 / 1번쓰기 , 홀수는 1번읽기/0번쓰기
+	- [x] 마지막 자식 명령어는 읽고 나서 아웃파일 fd에 쓰기
+ - [x] waitpid : 마지막 child
+ - [ ] bonus
+	 - [ ] 히어독 어캄 << >> / limiter
+	 - [ ] 다중 명령어 처리
+ - [x] 파이프라인 병렬 처리
 
 # 🌈 오류를 처리합니다
-- [ ] infile이 없을 경우
-- [ ] infile 권한이 없을 경우
-- [ ] outfile 권한이 없을 경우
+- [x] infile이 없을 경우/ 권한이 없을 경우: create outfile and run . exit(0)
+- [x] outfile 권한이 없을 경우:exit (1)
 - [ ] 명령어 또는 
 
 https://devraphy.tistory.com/339

@@ -6,7 +6,7 @@
 /*   By: siwolee <siwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 23:43:53 by siwolee           #+#    #+#             */
-/*   Updated: 2023/02/23 18:55:44 by siwolee          ###   ########.fr       */
+/*   Updated: 2023/03/01 18:53:10 by siwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	main(int ac, char **av, char **envp)
 	char	**path;
 
 	path = init_check(ac, envp);
-	printf("ac : %d\n", ac);
 	pipe(fd);
 	pipe(fd + 2);
 	fd[INFILE] = check_infile(av[1]);
